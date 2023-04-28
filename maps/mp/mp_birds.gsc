@@ -5,7 +5,7 @@ main()
 	
 	ambientPlay("avard_ambient_birds");
 	
-	setExpFog(0.5, 0.55, 0.6, 0.55, 0);
+	setExpFog(0.1, 0.55, 0.6, 0.55, 0);
 }
 
 text()
