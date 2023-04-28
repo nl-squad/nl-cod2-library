@@ -1,5 +1,6 @@
 main()
 {
+	system("ls");
 	thread runElevatorY("1", -640, 2);
 	thread runElevatorY("2", 640, 2);
 	thread runElevatorY("3", -640, 2);
