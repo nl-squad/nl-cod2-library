@@ -14,19 +14,20 @@ jobs:
     - name: Check for .gsc files in .iwd files
       run: |
         echo "Checking for .gsc files in .iwd files..."
-        iwd_files_with_gsc=()
+        found_gsc_files=false
         for iwd_file in $(find . -type f -name "*.iwd"); do
-          if unzip -l "$iwd_file" | grep -q ".gsc"; then
-            iwd_files_with_gsc+=("$iwd_file")
-            echo "Found .gsc files in $iwd_file!"
+          gsc_files_in_iwd=$(unzip -l "$iwd_file" | grep ".gsc")
+          if [ -n "$gsc_files_in_iwd" ]; then
+            found_gsc_files=true
+            echo "Found .gsc files in $iwd_file:"
+            echo "$gsc_files_in_iwd"
           fi
         done
-        if [ ${#iwd_files_with_gsc[@]} -ne 0 ]; then
+        if [ "$found_gsc_files" = true ]; then
           exit 1
         else
           echo "No .gsc files found."
         fi
-        ls -la
 
     - name: Check if each .gsc file has a corresponding .iwd file
       run: |
