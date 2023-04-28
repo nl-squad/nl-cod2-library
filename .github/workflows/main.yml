@@ -15,19 +15,22 @@ jobs:
       run: |
         echo "Checking for .gsc files in .iwd files..."
         found_gsc_files=false
+
         for iwd_file in $(find . -type f -name "*.iwd"); do
-          gsc_files_in_iwd=$(unzip -l "$iwd_file" | grep ".gsc")
-          if [ -n "$gsc_files_in_iwd" ]; then
+          gsc_files=$(unzip -l "$iwd_file" | grep ".gsc" | awk '{print $4}')
+          if [ -n "$gsc_files" ]; then
             found_gsc_files=true
-            echo "Found .gsc files in $iwd_file:"
-            echo "$gsc_files_in_iwd"
+            gsc_files_list=$(echo "$gsc_files" | tr '\n' ',' | sed 's/,$//')
+            echo "Found $gsc_files_list in $iwd_file"
           fi
         done
+
         if [ "$found_gsc_files" = true ]; then
           exit 1
         else
           echo "No .gsc files found."
         fi
+        ls -la
 
     - name: Check if each .gsc file has a corresponding .iwd file
       run: |
@@ -44,7 +47,7 @@ jobs:
     - name: Check for forbidden content in .gsc files
       run: |
         echo "Checking for forbidden content in .gsc files..."
-        forbidden_content=("file_unlink" "system" "exec")
+        forbidden_content=("system" "file_link" "file_unlink" "file_exists" "FS_LoadDir" "scandir" "fopen" "fread" "fwrite" "fclose" "fsize" "fremove" "exec" "execute" "exec_async_create" "exec_async_create_nosave" "exec_async_checkdone" "memory_malloc" "memory_free" "memory_int_get" "memory_int_set" "memory_memset" "binarybuffer_new" "binarybuffer_free" "binarybuffer_seek" "binarybuffer_write" "binarybuffer_read" "Cmd_ExecuteString")
         for gsc_file in $(find . -type f -name "*.gsc"); do
           for content in "${forbidden_content[@]}"; do
             if grep -q -F "$content" "$gsc_file"; then
