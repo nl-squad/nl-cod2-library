@@ -41,7 +41,6 @@ jobs:
             if [[ ! -f "$iwd_file" ]]; then
                 not_found_corresponding_iwd=true
                 echo "No corresponding $iwd_file file found for $gsc_file!"
-                exit 1
             fi
         done
 
