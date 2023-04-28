@@ -1,0 +1,79 @@
+name: Continous Integration
+
+on:
+  push
+
+jobs:
+  check-no-packaged-gsc-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check for .gsc files in .iwd files
+      run: |
+        echo "Checking for .gsc files in .iwd files..."
+        found_gsc_files=false
+
+        for iwd_file in $(find . -type f -name "*.iwd"); do
+          gsc_files=$(unzip -l "$iwd_file" | grep ".gsc" | awk '{print $4}')
+          if [ -n "$gsc_files" ]; then
+            found_gsc_files=true
+            gsc_files_list=$(echo "$gsc_files" | tr '\n' ',' | sed 's/,$//')
+            echo "Found $gsc_files_list in $iwd_file"
+          fi
+        done
+
+        if [ "$found_gsc_files" = true ]; then
+          exit 1
+        else
+          echo "No .gsc files found."
+        fi
+
+  each-gsc-has-corresponding-iwd:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check if each .gsc file has a corresponding .iwd file
+      run: |
+        echo "Checking if each .gsc file has a corresponding .iwd file..."
+        not_found_corresponding_iwd=false
+
+        for gsc_file in $(find . -type f -name "*.gsc"); do
+            iwd_file=$(basename "${gsc_file%.gsc}.iwd")
+            if [[ ! -f "$iwd_file" ]]; then
+                not_found_corresponding_iwd=true
+                echo "No corresponding $iwd_file file found for $gsc_file!"
+            fi
+        done
+
+        if [ "$not_found_corresponding_iwd" = true ]; then
+            exit 1
+        else
+            echo "Each .gsc file has a corresponding .iwd file."
+        fi
+
+  forbidden-content-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check for forbidden content in .gsc files
+      run: |
+        echo "Checking for forbidden content in .gsc files..."
+        forbidden_content=("system" "file_link" "file_unlink" "file_exists" "FS_LoadDir" "scandir" "fopen" "fread" "fwrite" "fclose" "fsize" "fremove" "exec" "execute" "exec_async_create" "exec_async_create_nosave" "exec_async_checkdone" "memory_malloc" "memory_free" "memory_int_get" "memory_int_set" "memory_memset" "binarybuffer_new" "binarybuffer_free" "binarybuffer_seek" "binarybuffer_write" "binarybuffer_read" "Cmd_ExecuteString")
+        for gsc_file in $(find . -type f -name "*.gsc"); do
+          for content in "${forbidden_content[@]}"; do
+            if grep -q -F "$content" "$gsc_file"; then
+              echo "Forbidden content '$content' found in $gsc_file!"
+              exit 1
+            fi
+          done
+        done
+        echo "No forbidden content found in .gsc files."
