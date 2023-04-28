@@ -30,19 +30,26 @@ jobs:
         else
           echo "No .gsc files found."
         fi
-        ls -la
 
     - name: Check if each .gsc file has a corresponding .iwd file
       run: |
         echo "Checking if each .gsc file has a corresponding .iwd file..."
+        not_found_corresponding_iwd=false
+
         for gsc_file in $(find . -type f -name "*.gsc"); do
-          iwd_file="${gsc_file%.gsc}.iwd"
-          if [[ ! -f "$iwd_file" ]]; then
-            echo "No corresponding .iwd file found for $gsc_file!"
-            exit 1
-          fi
+            iwd_file=$(basename "${gsc_file%.gsc}.iwd")
+            if [[ ! -f "$iwd_file" ]]; then
+                not_found_corresponding_iwd=true
+                echo "No corresponding $iwd_file file found for $gsc_file!"
+                exit 1
+            fi
         done
-        echo "Each .gsc file has a corresponding .iwd file."
+
+        if [ "$not_found_corresponding_iwd" = true ]; then
+            exit 1
+        else
+            echo "Each .gsc file has a corresponding .iwd file."
+        fi
 
     - name: Check for forbidden content in .gsc files
       run: |
