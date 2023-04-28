@@ -1,9 +1,7 @@
 name: Remote Git Pull on VPS
 
 on:
-  push:
-    branches:
-      - main
+  push
 
 jobs:
   deploy:
@@ -12,6 +10,38 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Check for .gsc files in .iwd files
+      run: |
+        echo "Checking for .gsc files in .iwd files..."
+        find . -type f -name "*.iwd" -exec unzip -l {} \; | grep ".gsc" && echo "Found .gsc files!" && exit 1 || echo "No .gsc files found."
+        ls -la
+
+    - name: Check if each .gsc file has a corresponding .iwd file
+      run: |
+        echo "Checking if each .gsc file has a corresponding .iwd file..."
+        for gsc_file in $(find . -type f -name "*.gsc"); do
+          iwd_file="${gsc_file%.gsc}.iwd"
+          if [[ ! -f "$iwd_file" ]]; then
+            echo "No corresponding .iwd file found for $gsc_file!"
+            exit 1
+          fi
+        done
+        echo "Each .gsc file has a corresponding .iwd file."
+
+    - name: Check for forbidden content in .gsc files
+      run: |
+        echo "Checking for forbidden content in .gsc files..."
+        forbidden_content=("file_unlink" "system" "exec")
+        for gsc_file in $(find . -type f -name "*.gsc"); do
+          for content in "${forbidden_content[@]}"; do
+            if grep -q -F "$content" "$gsc_file"; then
+              echo "Forbidden content '$content' found in $gsc_file!"
+              exit 1
+            fi
+          done
+        done
+        echo "No forbidden content found in .gsc files."
 
     - name: Execute remote Git pull on VPS
       run: |
