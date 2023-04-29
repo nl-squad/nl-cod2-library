@@ -1,11 +1,22 @@
 main()
 {
+	thread sphereControl(1);
 	thread runElevatorY("1", -640, 2);
 	thread runElevatorY("2", 640, 2);
 	thread runElevatorY("3", -640, 2);
 	thread runElevatorY("4", 640, 2);
 	thread tp();
 	thread text();
+}
+
+sphereControl(num)
+{
+	sphere = getEnt("sphere" + num, "targetname");	
+	while(true)
+		{
+			sphere rotateyaw(360, 45);
+			sphere waittill("rotatedone");
+		}
 }
 
 runElevatorY(num, yDiff, moveTime)
