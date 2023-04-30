@@ -1,7 +1,6 @@
 main()
 {
-	maps\mp\_load::main();
-	thread sphereControl();
+	thread sphereControl("1");
 	thread runElevatorY("1", -640, 2);
 	thread runElevatorY("2", 640, 2);
 	thread runElevatorY("3", -640, 2);
@@ -10,9 +9,9 @@ main()
 	thread text();
 }
 
-sphereControl()
+sphereControl(num)
 {
-	sphere = getEnt("sphere", "targetname");	
+	sphere = getEnt("sphere" + num, "targetname");	
 	while(true)
 		{
 			sphere rotateyaw(360, 45);
