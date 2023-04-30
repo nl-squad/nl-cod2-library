@@ -1,8 +1,8 @@
 main()
 {
-
-thread tp();
-thread text();
+	maps\mp\_load::main();
+	thread tp();
+	thread text();
 
 }
 
@@ -21,7 +21,7 @@ teleport()
 	if(!isDefined(dest))
 	{
 		wait 20;
-		iPrintlnBold("^1Trigger niepoprawnie po³¹czony ze script_origin!");
+		iPrintlnBold("^1Trigger niepoprawnie poÂ³Â¹czony ze script_origin!");
 		return;
 
 	}
