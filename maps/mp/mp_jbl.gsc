@@ -1,6 +1,7 @@
 main()
 {
 	maps\mp\_load::main();
+
 	thread tp();
 	thread text();
 
