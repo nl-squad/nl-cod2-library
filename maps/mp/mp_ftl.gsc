@@ -1,5 +1,6 @@
 main()
 {
+	maps\mp\_load::main();
 	thread sphereControl("1");
 	thread runElevatorY("1", -640, 2);
 	thread runElevatorY("2", 640, 2);
