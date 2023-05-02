@@ -13,6 +13,6 @@ text()
     while (true)
     {
         wait 30;
-        iPrintlnBold("Dupa dusznika");
+        iPrintlnBold("Kusznik");
     }
 }
