@@ -7,36 +7,6 @@ on:
       - completed
 
 jobs:
-  build-000empty:
-    name: Build 000empty.iwd
-    run: |
-      cwd="$(dirname "$(realpath "$0")")"
-
-      temp_dir=./tmp-000empty
-      mkdir -p "${temp_dir}/soundaliases"
-      mkdir -p "${temp_dir}/maps/mp"
-
-      timestamp=$(date +"%Y_%m_%d_%H_%M_%S")
-      echo " - soundaliases/nl_empty.csv (timestamp=$timestamp)"
-      cat << EOF > "${temp_dir}/soundaliases/nl_empty.csv"
-      name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage
-      ,,,,,,,,,,,,,,,,,,,,,,,
-      ,,,,,,,,,,,,,,,,,,,,,,,
-      nl_empty_${timestamp},,null.wav,1,1,,,,,,music,loaded,,nonlooping,,,,,,,,,,
-      EOF
-
-      files=$(find ~/cod2/Library -maxdepth 1 -type f -name "*.iwd")
-      for file in $files; do
-          filename=$(basename "$file" .iwd)
-          echo " - maps/mp/${filename}.csv"
-          touch "${temp_dir}/maps/mp/${filename}.csv"
-      done
-
-      rm $cwd/nl/000empty.iwd
-      (cd $temp_dir && zip -q -r $cwd/nl/000empty.iwd .)
-      chmod 744 $cwd/nl/000empty.iwd # make this readable for reverse-proxy
-      rm -r "${temp_dir}"
-
   deploy:
     name: Deployment job
     uses: nl-squad/nl-cod2-workflows/.github/workflows/deploy.yml@main
@@ -44,14 +14,54 @@ jobs:
       profile: default
     secrets: inherit
 
+  build-000empty:
+    name: Build 000empty.iwd
+    run: |
+      project_definition="project-definition.json"
+      if [ ! -f $project_definition ]; then
+          echo "Error: $project_definition doesn't exist. Please use mynl CLI tool from within NL directory."
+          exit 1
+      fi
+
+      function extract_value_or_exit() {
+        local key=$1
+        local value=$(jq -r "$key" "$project_definition")
+
+        if [ "$value" = "null" ]; then
+            echo "Error: $key not found in the $project_definition file."
+            exit 1
+        fi
+
+        echo "$value"
+      }
+
+      ###
+
+      profile=${{ inputs.profile }}
+      connection_address=$(extract_value_or_exit '.connection.address')
+      connection_user=$(extract_value_or_exit '.connection.user')
+      connection_key_path=~/private_key
+      echo "Starting ~/cod2/library/build-000empty.sh, host: $connection_user@$connection_address"
+
+      echo "${{ secrets.VPS_PRIVATE_KEY }}" > $connection_key_path
+      chmod 600 $connection_key_path
+      echo "Private key set up"
+
+      ssh -i $connection_key_path -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $connection_user@$connection_address "\
+        echo 'Executing ~/cod2/library/build-000empty.sh' && \
+        ~/cod2/library/build-000empty.sh"
+
+      rm -f $connection_key_path
+    env:
+      PRIVATE_KEY: ${{ secrets.VPS_PRIVATE_KEY }}
 
 # Done: Support for iwds path nl-cli
-# ./src/maps -> ~/cod2/library/maps
-# ./src/scripts -> ~/cod2/library/scripts
-# Get sha256sum of ~/cod2/library/maps
-# Compare with ~/cod2/library/000empty.maps_sum
-# If not the same - build ~/cod2/library/000empty.iwd
+# Done: ./src/scripts -> ~/cod2/library/scripts
+# Done: ./src/iwds -> ~/cod2/library/iwds
+# Get sha256sum of ~/cod2/library/iwds
+# Compare with ~/cod2/library/iwds_sum
+# Done: If not the same - build ~/cod2/library/000empty.iwd
 # ./restart.sh - copy maps
-# ./restart.sh - copy scripts
+# ./restart.sh - copy iwds
 # ./restart.sh - copy 000empty.iwd
 # ./restart.sh - restart docker-compose
