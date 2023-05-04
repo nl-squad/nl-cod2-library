@@ -17,6 +17,7 @@ jobs:
   build-000empty:
     name: Build 000empty.iwd
     runs-on: ubuntu-latest
+    needs: deploy
 
     steps:
     - name: Checkout repository
