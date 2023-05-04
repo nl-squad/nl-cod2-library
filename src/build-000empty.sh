@@ -11,13 +11,15 @@ fi
 echo "new_sha=$new_sha"
 echo "old_sha=$old_sha"
 
-if [[ "$new_sha" == "$old_sha" ]]; then
+if [[ ! -f $cwd/000empty.iwd ]]; then
+    echo "$cwd/000empty.iwd doesn't exist"
+elif [[ "$new_sha" == "$old_sha" ]]; then
     echo "It seems that the iwds didn't change, probably just scripts update"
     echo "Skipping 000empty.iwd build"
     exit 0
 fi
 
-echo "Detected change in iwd files, building new 000empty.iwd"
+echo "Building new 000empty.iwd"
 
 echo $new_sha > $cwd/iwds_sum
 echo "Saved $(cat $cwd/iwds_sum) SHA to $cwd/iwds_sum"
@@ -35,7 +37,7 @@ name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max
 nl_empty_${timestamp},,null.wav,1,1,,,,,,music,loaded,,nonlooping,,,,,,,,,,
 EOF
 
-for file in $cwd/iwds/*.iwds; do
+for file in $cwd/iwds/*.iwd; do
     filename=$(basename "$file" .iwd)
     echo " - maps/mp/${filename}.csv"
     touch "${temp_dir}/maps/mp/${filename}.csv"
