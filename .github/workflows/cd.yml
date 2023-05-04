@@ -16,44 +16,51 @@ jobs:
 
   build-000empty:
     name: Build 000empty.iwd
-    run: |
-      project_definition="project-definition.json"
-      if [ ! -f $project_definition ]; then
-          echo "Error: $project_definition doesn't exist. Please use mynl CLI tool from within NL directory."
-          exit 1
-      fi
+    runs-on: ubuntu-latest
 
-      function extract_value_or_exit() {
-        local key=$1
-        local value=$(jq -r "$key" "$project_definition")
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-        if [ "$value" = "null" ]; then
-            echo "Error: $key not found in the $project_definition file."
+    - name: Execute build-000empty.sh remotely
+      run: |
+        project_definition="project-definition.json"
+        if [ ! -f $project_definition ]; then
+            echo "Error: $project_definition doesn't exist. Please use mynl CLI tool from within NL directory."
             exit 1
         fi
 
-        echo "$value"
-      }
+        function extract_value_or_exit() {
+          local key=$1
+          local value=$(jq -r "$key" "$project_definition")
 
-      ###
+          if [ "$value" = "null" ]; then
+              echo "Error: $key not found in the $project_definition file."
+              exit 1
+          fi
 
-      profile=${{ inputs.profile }}
-      connection_address=$(extract_value_or_exit '.connection.address')
-      connection_user=$(extract_value_or_exit '.connection.user')
-      connection_key_path=~/private_key
-      echo "Starting ~/cod2/library/build-000empty.sh, host: $connection_user@$connection_address"
+          echo "$value"
+        }
 
-      echo "${{ secrets.VPS_PRIVATE_KEY }}" > $connection_key_path
-      chmod 600 $connection_key_path
-      echo "Private key set up"
+        ###
 
-      ssh -i $connection_key_path -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $connection_user@$connection_address "\
-        echo 'Executing ~/cod2/library/build-000empty.sh' && \
-        ~/cod2/library/build-000empty.sh"
+        profile=${{ inputs.profile }}
+        connection_address=$(extract_value_or_exit '.connection.address')
+        connection_user=$(extract_value_or_exit '.connection.user')
+        connection_key_path=~/private_key
+        echo "Starting ~/cod2/library/build-000empty.sh, host: $connection_user@$connection_address"
 
-      rm -f $connection_key_path
-    env:
-      PRIVATE_KEY: ${{ secrets.VPS_PRIVATE_KEY }}
+        echo "${{ secrets.VPS_PRIVATE_KEY }}" > $connection_key_path
+        chmod 600 $connection_key_path
+        echo "Private key set up"
+
+        ssh -i $connection_key_path -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $connection_user@$connection_address "\
+          echo 'Executing ~/cod2/library/build-000empty.sh' && \
+          ~/cod2/library/build-000empty.sh"
+
+        rm -f $connection_key_path
+      env:
+        PRIVATE_KEY: ${{ secrets.VPS_PRIVATE_KEY }}
 
 # Done: Support for iwds path nl-cli
 # Done: ./src/scripts -> ~/cod2/library/scripts
