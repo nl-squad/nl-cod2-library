@@ -7,36 +7,51 @@ on:
       - completed
 
 jobs:
+  build-000empty:
+    name: Build 000empty.iwd
+    run: |
+      cwd="$(dirname "$(realpath "$0")")"
+
+      temp_dir=./tmp-000empty
+      mkdir -p "${temp_dir}/soundaliases"
+      mkdir -p "${temp_dir}/maps/mp"
+
+      timestamp=$(date +"%Y_%m_%d_%H_%M_%S")
+      echo " - soundaliases/nl_empty.csv (timestamp=$timestamp)"
+      cat << EOF > "${temp_dir}/soundaliases/nl_empty.csv"
+      name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage
+      ,,,,,,,,,,,,,,,,,,,,,,,
+      ,,,,,,,,,,,,,,,,,,,,,,,
+      nl_empty_${timestamp},,null.wav,1,1,,,,,,music,loaded,,nonlooping,,,,,,,,,,
+      EOF
+
+      files=$(find ~/cod2/Library -maxdepth 1 -type f -name "*.iwd")
+      for file in $files; do
+          filename=$(basename "$file" .iwd)
+          echo " - maps/mp/${filename}.csv"
+          touch "${temp_dir}/maps/mp/${filename}.csv"
+      done
+
+      rm $cwd/nl/000empty.iwd
+      (cd $temp_dir && zip -q -r $cwd/nl/000empty.iwd .)
+      chmod 744 $cwd/nl/000empty.iwd # make this readable for reverse-proxy
+      rm -r "${temp_dir}"
+
   deploy:
-    runs-on: ubuntu-latest
+    name: Deployment job
+    uses: nl-squad/nl-cod2-workflows/.github/workflows/deploy.yml@main
+    with:
+      profile: default
+    secrets: inherit
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
 
-    - name: Execute remote Git pull on VPS
-      if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' }}
-      run: |
-        echo "1/8: Setting up private key..."
-        echo "${{ secrets.VPS_PRIVATE_KEY }}" > private_key
-        chmod 600 private_key
-        echo "2/8: Connecting to VPS and deploying changes..."
-        echo "VPS_USERNAME: ${{ vars.VPS_USERNAME }}"
-        echo "VPS_ADDRESS: ${{ vars.VPS_ADDRESS }}"
-        ssh -i private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ vars.VPS_USERNAME }}@${{ vars.VPS_ADDRESS }} "\
-          echo '3/8: Changing directory to VPS_DIRECTORY...' && \
-          echo 'VPS_DIRECTORY: ${{ vars.VPS_DIRECTORY }}' && \
-          cd ${{ vars.VPS_DIRECTORY }} && \
-          echo '4/8: Checking git initialization and setting up remote...' && \
-          (test -d .git || git init) && \
-          (git remote | grep -q '^origin$' || git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}github.com/${GITHUB_REPOSITORY}.git) && \
-          echo '6/8: Fetching latest changes...' && \
-          git fetch https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git && \
-          echo '7/8: Resetting local branch to the exact commit...' && \
-          echo 'github.sha: ${{ github.sha }}' && \
-          git reset --hard ${{ github.sha }} && \
-          git clean -f -d && \
-          echo '8/8: Deployment complete!'"
-        rm -f private_key
-      env:
-        PRIVATE_KEY: ${{ secrets.VPS_PRIVATE_KEY }}
+# Done: Support for iwds path nl-cli
+# ./src/maps -> ~/cod2/library/maps
+# ./src/scripts -> ~/cod2/library/scripts
+# Get sha256sum of ~/cod2/library/maps
+# Compare with ~/cod2/library/000empty.maps_sum
+# If not the same - build ~/cod2/library/000empty.iwd
+# ./restart.sh - copy maps
+# ./restart.sh - copy scripts
+# ./restart.sh - copy 000empty.iwd
+# ./restart.sh - restart docker-compose
