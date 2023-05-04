@@ -35,7 +35,7 @@ name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max
 nl_empty_${timestamp},,null.wav,1,1,,,,,,music,loaded,,nonlooping,,,,,,,,,,
 EOF
 
-for file in iwds/*.iwds; do
+for file in $cwd/iwds/*.iwds; do
     filename=$(basename "$file" .iwd)
     echo " - maps/mp/${filename}.csv"
     touch "${temp_dir}/maps/mp/${filename}.csv"
