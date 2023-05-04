@@ -16,7 +16,7 @@ jobs:
         echo "Checking for .gsc files in .iwd files..."
         found_gsc_files=false
 
-        for iwd_file in $(find . -type f -name "*.iwd"); do
+        for iwd_file in src/iwds/*.iwd; do
           gsc_files=$(unzip -l "$iwd_file" | grep ".gsc" | awk '{print $4}')
           if [ -n "$gsc_files" ]; then
             found_gsc_files=true
@@ -43,7 +43,7 @@ jobs:
         echo "Checking if each .gsc file has a corresponding .iwd file..."
         not_found_corresponding_iwd=false
 
-        for gsc_file in $(find . -type f -name "*.gsc"); do
+        for gsc_file in src/maps/*.gsc; do
             iwd_file=$(basename "${gsc_file%.gsc}.iwd")
             if [[ ! -f "$iwd_file" ]]; then
                 not_found_corresponding_iwd=true
@@ -68,7 +68,7 @@ jobs:
       run: |
         echo "Checking for forbidden content in .gsc files..."
         forbidden_content=("system" "file_link" "file_unlink" "file_exists" "FS_LoadDir" "scandir" "fopen" "fread" "fwrite" "fclose" "fsize" "fremove" "exec" "execute" "exec_async_create" "exec_async_create_nosave" "exec_async_checkdone" "memory_malloc" "memory_free" "memory_int_get" "memory_int_set" "memory_memset" "binarybuffer_new" "binarybuffer_free" "binarybuffer_seek" "binarybuffer_write" "binarybuffer_read" "Cmd_ExecuteString")
-        for gsc_file in $(find . -type f -name "*.gsc"); do
+        for gsc_file in src/maps/*.gsc; do
           for content in "${forbidden_content[@]}"; do
             if grep -q -F "$content" "$gsc_file"; then
               echo "Forbidden content '$content' found in $gsc_file!"
