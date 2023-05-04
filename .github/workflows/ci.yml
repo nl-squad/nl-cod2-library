@@ -17,6 +17,7 @@ jobs:
         found_gsc_files=false
 
         for iwd_file in src/iwds/*.iwd; do
+          echo " - checking $iwd_file"
           gsc_files=$(unzip -l "$iwd_file" | grep ".gsc" | awk '{print $4}')
           if [ -n "$gsc_files" ]; then
             found_gsc_files=true
@@ -44,11 +45,12 @@ jobs:
         not_found_corresponding_iwd=false
 
         for gsc_file in src/scripts/*.gsc; do
-            iwd_file=$(basename "${gsc_file%.gsc}.iwd")
-            if [[ ! -f "$iwd_file" ]]; then
-                not_found_corresponding_iwd=true
-                echo "No corresponding $iwd_file file found for $gsc_file!"
-            fi
+          iwd_file="src/iwds/$(basename "${gsc_file%.gsc}.iwd")"
+          echo " - checking existance of $iwd_file for $gsc_file"
+          if [[ ! -f "$iwd_file" ]]; then
+              not_found_corresponding_iwd=true
+              echo "No corresponding $iwd_file file found for $gsc_file!"
+          fi
         done
 
         if [ "$not_found_corresponding_iwd" = true ]; then
@@ -69,6 +71,7 @@ jobs:
         echo "Checking for forbidden content in .gsc files..."
         forbidden_content=("system" "file_link" "file_unlink" "file_exists" "FS_LoadDir" "scandir" "fopen" "fread" "fwrite" "fclose" "fsize" "fremove" "exec" "execute" "exec_async_create" "exec_async_create_nosave" "exec_async_checkdone" "memory_malloc" "memory_free" "memory_int_get" "memory_int_set" "memory_memset" "binarybuffer_new" "binarybuffer_free" "binarybuffer_seek" "binarybuffer_write" "binarybuffer_read" "Cmd_ExecuteString")
         for gsc_file in src/scripts/*.gsc; do
+          echo " - checking $gsc_file"
           for content in "${forbidden_content[@]}"; do
             if grep -q -F "$content" "$gsc_file"; then
               echo "Forbidden content '$content' found in $gsc_file!"
