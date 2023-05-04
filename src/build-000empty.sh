@@ -12,10 +12,15 @@ echo "new_sha=$new_sha"
 echo "old_sha=$old_sha"
 
 if [[ "$new_sha" == "$old_sha" ]]; then
-    echo "It seems that the iwds didn't change"
+    echo "It seems that the iwds didn't change, probably just scripts update"
     echo "Skipping 000empty.iwd build"
     exit 0
 fi
+
+echo "Detected change in iwd files, building new 000empty.iwd"
+
+echo $new_sha > $cwd/iwds_sum
+echo "Saved $(cat $cwd/iwds_sum) SHA to $cwd/iwds_sum"
 
 temp_dir=./tmp-000empty
 mkdir -p "${temp_dir}/soundaliases"

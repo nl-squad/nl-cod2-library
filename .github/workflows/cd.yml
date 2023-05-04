@@ -66,8 +66,8 @@ jobs:
 # Done: Support for iwds path nl-cli
 # Done: ./src/scripts -> ~/cod2/library/scripts
 # Done: ./src/iwds -> ~/cod2/library/iwds
-# Get sha256sum of ~/cod2/library/iwds
-# Compare with ~/cod2/library/iwds_sum
+# Done: Get sha256sum of ~/cod2/library/iwds
+# Done: Compare with ~/cod2/library/iwds_sum
 # Done: If not the same - build ~/cod2/library/000empty.iwd
 # ./restart.sh - copy maps
 # ./restart.sh - copy iwds
