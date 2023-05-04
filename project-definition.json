@@ -1,0 +1,19 @@
+{
+    "connection": {
+        "address": "mynl.pl",
+        "user": "ubuntu",
+        "keyPath": "~/.ssh/nl"
+    },
+    "profiles": {
+        "default": {
+            "localDeploymentPath": "src",
+            "remoteDeploymentPath": "~/cod2/Library",
+            "rsyncExclude": [
+                ".DS_Store"
+            ],
+            "cod2": {
+                "iwdsPath": "src/iwds"
+            }
+        }
+    }
+}
