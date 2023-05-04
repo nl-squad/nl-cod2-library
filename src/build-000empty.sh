@@ -2,7 +2,7 @@
 cwd="$(dirname "$(realpath "$0")")"
 echo "Executing in $cwd"
 
-new_sha=$(find $cwd/iwds -type f -exec sha256sum {} \; | sort -k 2 | sha256sum)
+new_sha=$(find $cwd/iwds -type f -exec sha256sum {} \; | sort -k 2 | sha256sum | awk '{print $1}')
 old_sha=""
 if [ -f $cwd/iwds_sum ]; then
     old_sha=$(cat $cwd/iwds_sum)
