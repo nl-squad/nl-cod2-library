@@ -7,7 +7,7 @@
     "profiles": {
         "default": {
             "localDeploymentPath": "src",
-            "remoteDeploymentPath": "~/cod2/Library",
+            "remoteDeploymentPath": "~/cod2/library",
             "rsyncExclude": [
                 ".DS_Store"
             ],
