@@ -17,13 +17,13 @@ wall()
 
     while(1)
     {
-        wall moveY(144, 3);
-        wall waittill ("movedone");
-        wait 3;
-
         wall moveY(-144, 3);
         wall waittill ("movedone");
-        wait 3;
+        wait 5;
+
+        wall moveY(144, 3);
+        wall waittill ("movedone");
+        wait 5;
     }
 }
 
