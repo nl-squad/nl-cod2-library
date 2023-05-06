@@ -1,6 +1,5 @@
 main()
 {
-	maps\mp\_load::main();
 	thread tp();
 	thread text();
 
@@ -39,6 +38,6 @@ text()
 {
 	wait 12 * 60;
 	iPrintlnBold("Map was made By K2o & Maruch");
-	wait 1.5;
+	wait 1;
 	iprintlnbold ("in May 2013");
 }

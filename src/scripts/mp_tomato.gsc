@@ -72,6 +72,6 @@ text()
 {
 	wait 12 * 60;
 	iPrintlnBold("Map was made by SlaYer");
-	wait 1.5;
+	wait 1;
 	iPrintlnBold("in June 2013");
 }

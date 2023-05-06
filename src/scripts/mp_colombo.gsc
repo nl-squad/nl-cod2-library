@@ -7,6 +7,6 @@ text()
 {
 	wait 12 * 60;
 	iPrintlnBold("Map was made by K2o & Yuri");
-	wait 1.5;
+	wait 1;
 	iPrintlnBold("in December 2013");
 }
