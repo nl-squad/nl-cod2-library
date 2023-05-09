@@ -18,13 +18,13 @@ elevatorWithoutTrigger()
 
     while(1)
     {
-        elevator moveX(-128, 2);
+        elevator moveX(-64, 2);
         elevator waittill ("movedone");
-        wait 5;
+        wait 4;
 
-        elevator moveX(128, 2);
+        elevator moveX(64, 2);
         elevator waittill ("movedone");
-        wait 5;
+        wait 4;
     }
 }
 
