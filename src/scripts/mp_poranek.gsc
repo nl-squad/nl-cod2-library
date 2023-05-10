@@ -27,11 +27,11 @@ elevator()
     {
         trig waittill ("trigger");
 
-        elevator moveY(1240, 4);
+        elevator movey(1240, 5);
         elevator waittill ("movedone");
         wait 3;
 
-        elevator moveY(-1240, 4);
+        elevator movey(-1240, 4);
         elevator waittill ("movedone");
         wait 1;
     }
