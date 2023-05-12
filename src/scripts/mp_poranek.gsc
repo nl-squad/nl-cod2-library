@@ -42,5 +42,5 @@ text()
 	wait 12 * 60;
 	iPrintlnBold("Map was made by K2o");
 	wait 1;
-	iPrintlnBold("in May 2013");
+	iPrintlnBold("in June 2012");
 }
