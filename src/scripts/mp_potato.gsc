@@ -19,11 +19,11 @@ elevator()
 
     while(1)
     {
-        elevator moveZ(304, 2);
+        elevator moveZ(264, 2);
         elevator waittill ("movedone");
         wait 2;
 
-        elevator moveZ(-304, 2);
+        elevator moveZ(-264, 2);
         elevator waittill ("movedone");
         wait 4;
     }
