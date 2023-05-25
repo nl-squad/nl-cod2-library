@@ -16,14 +16,14 @@ main()
 
 unlockGate()
 {
-	iprintln("dupa");
+	iprintln("The gate has been opened");
     gate = getEnt("gate", "targetname");
-    gate moveZ(42, 2);
+    gate moveZ(-42, 2);
 }
 
 lockGate()
 {
-	iprintln("dupa2");
+	iprintln("The gate has been closed");
     gate = getEnt("gate", "targetname");
-    gate moveZ(-42, 1);
+    gate moveZ(42, 1);
 }
