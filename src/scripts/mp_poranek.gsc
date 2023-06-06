@@ -40,7 +40,5 @@ elevator()
 text()
 {
 	wait 4 * 60;
-	iPrintln("Map was made by K2o");
-	wait 1;
-	iPrintln("in June 2012");
+	iPrintln("Map was made by K2o in June 2012");
 }
