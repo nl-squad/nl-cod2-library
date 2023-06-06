@@ -39,6 +39,6 @@ elevator()
 
 text()
 {
-	wait 4 * 60;
+	wait 20;
 	iPrintln("Map was made by K2o in June 2012");
 }
