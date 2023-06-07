@@ -16,14 +16,14 @@ main()
 
 unlockGate()
 {
-	iprintln("The gate has been opened");
+    iprintlnBold("The gate has been opened");
     gate = getEnt("gate", "targetname");
-    gate moveZ(-42, 2);
+    gate moveZ(42, 2);
 }
 
 lockGate()
 {
-	iprintln("The gate has been closed");
+    iprintlnBold("The gate has been closed");
     gate = getEnt("gate", "targetname");
-    gate moveZ(42, 1);
+    gate moveZ(-42, 2);
 }
