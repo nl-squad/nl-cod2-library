@@ -1,6 +1,8 @@
 main()
 {
 	thread TeleportsInit();
+	thread text();
+	
 
 	setExpFog(0.0001, 0.55, 0.6, 0.55, 0);
 	// setCullFog(0, 16500, 0.55, 0.6, 0.55, 0);
@@ -33,4 +35,12 @@ Transporter()
 		other setplayerangles(entTarget.angles);
 		wait(0.10);
 	}
+}
+
+text()
+{
+	wait 12 * 60;
+	iPrintlnBold("Map was made by Sluw");
+	wait 1;
+	iPrintlnBold("in June 2008");
 }
