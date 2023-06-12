@@ -69,7 +69,7 @@ runElevatorY(num, yDiff, moveTime)
 
 		elevator moveY (ydiff, moveTime);
 		elevator waittill ("movedone");
-      	wait 2;
+      		wait 2;
 
 		elevator moveY (ydiff * -1, moveTime);
 		elevator waittill ("movedone");
