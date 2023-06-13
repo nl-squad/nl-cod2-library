@@ -8,11 +8,9 @@ elevator()
 
 {
     elevator = getEnt("elevator", "targetname");
-    trig = getEnt("trig_elevator", "targetname");
 	
     while(1)
     {
-	trig waittill ("trigger");
 
         elevator moveZ(256, 2);
         elevator waittill ("movedone");
@@ -20,7 +18,7 @@ elevator()
 
         elevator moveZ(-256, 2);
         elevator waittill ("movedone");
-        wait 1;
+        wait 4;
     }
 }
 
