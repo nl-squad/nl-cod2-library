@@ -1,7 +1,18 @@
 main()
 {
+	thread sphereControl(1);
 	thread elevator();
 	thread text();
+}
+
+sphereControl(num)
+{
+	sphere = getEnt("sphere" + num, "targetname");	
+	while(true)
+		{
+			sphere rotateyaw(360, 10);
+			sphere waittill("rotatedone");
+		}
 }
 
 elevator()
