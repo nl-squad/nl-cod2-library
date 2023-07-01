@@ -3,6 +3,8 @@ main()
 	thread tp();
 	thread elevator();
 	thread text();
+
+ambientPlay("ambient_france_nl");
 }
 
 tp()
