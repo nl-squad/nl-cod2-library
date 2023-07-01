@@ -11,6 +11,8 @@ main()
 	setCvar("r_glowbloomintensity0", ".25");
 	setCvar("r_glowbloomintensity1", ".25");
 	setcvar("r_glowskybleedintensity0",".3");	
+	
+	ambientPlay("ambient_africa_nl");
 }	
 
 TeleportsInit()
@@ -40,7 +42,5 @@ Transporter()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Sluw");
-	wait 1;
-	iPrintlnBold("in June 2008");
+	iPrintlnBold("Map was made by Sluw in June 2008");
 }

@@ -1,9 +1,10 @@
 main()
 {
 
-thread tp();
-thread text();
+	thread tp();
+	thread text();
 
+	ambientPlay("ambient_africa_nl");
 }
 
 tp()
@@ -38,7 +39,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by hOlyguy");
-	wait 1;
-	iprintlnbold ("in August 2012");
+	iPrintlnBold("Map was made by hOlyguy in August 2012");
 }

@@ -3,6 +3,8 @@ main()
 	thread sphereControl(1);
 	thread elevator();
 	thread text();
+	
+	ambientPlay("ambient_africa_nl");
 }
 
 sphereControl(num)
@@ -51,7 +53,5 @@ elevator()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by K2o");
-	wait 1;
-	iPrintlnBold("in June 2012");
+	iPrintlnBold("Map was made by K2o in June 2012");
 }

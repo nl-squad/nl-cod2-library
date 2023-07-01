@@ -9,21 +9,23 @@ main()
     gateRegistration = spawnStruct();
     gateRegistration.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
     gateRegistration.activatorValue = 6;
-    gateRegistration.activateFunction = ::unlockGate;
+	gateRegistration.activateFunction = ::unlockGate;
     gateRegistration.deactivateFunction = ::lockGate;
     [[ level.registerDynamicMapPart ]]( gateRegistration );
+
+	ambientPlay("ambient_france_nl");
 }
 
 unlockGate()
 {
-    iprintlnBold("The gate has been opened");
+    iprintlnBold("The gate has been ^2opened");
     gate = getEnt("gate", "targetname");
     gate moveZ(42, 2);
 }
 
 lockGate()
 {
-    iprintlnBold("The gate has been closed");
+    iprintlnBold("The gate has been ^1closed");
     gate = getEnt("gate", "targetname");
     gate moveZ(-42, 2);
 }

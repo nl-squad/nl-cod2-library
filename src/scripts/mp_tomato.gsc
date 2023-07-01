@@ -3,6 +3,8 @@ main()
 	thread runElevatorZ("1", 280, 2);
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_africa_nl");
 }
 
 runElevatorZ(num, ZDiff, moveTime)
@@ -71,7 +73,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by SlaYer");
-	wait 1;
-	iPrintlnBold("in June 2013");
+	iPrintlnBold("Map was made by SlaYer in June 2013");
 }

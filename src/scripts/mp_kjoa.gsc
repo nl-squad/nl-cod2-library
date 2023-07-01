@@ -4,6 +4,8 @@ main()
 thread tp();
 thread text();
 
+ambientPlay("ambient_africa_nl");
+
 }
 
 tp()
@@ -38,7 +40,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Akamaru");
-	wait 1;
-	iprintlnbold ("in April 2012");
+	iPrintlnBold("Map was made by Akamaru in April 2012");
 }

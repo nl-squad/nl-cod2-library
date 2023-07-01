@@ -2,9 +2,11 @@ main()
 
 {
 	thread winda();
-    	thread wiatrak();
-    	thread t_wiatrak();
+    thread wiatrak();
+    thread t_wiatrak();
 	thread text();	
+
+	ambientPlay("ambient_france_nl");
 }
 
 winda()
@@ -75,7 +77,5 @@ podmuch()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by BlancO");
-	wait 1.5;
-	iPrintlnBold("in December 2012");
+	iPrintlnBold("Map was made by BlancO in December 2012");
 }

@@ -9,6 +9,9 @@ main()
 	thread runElevatorY("4", 640, 2);
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_russia_nl");
+	
 }
 
 sphereControl(num)
@@ -110,7 +113,4 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 1;
-	iPrintlnBold("in March 2023");
-}
+	iPrintlnBold("Map was made by Dusza in March 2023");

@@ -3,6 +3,8 @@ main()
 	thread elevator();
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_france_nl");
 }
 
 elevator()
@@ -61,7 +63,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Black & Zazu");
-	wait 1;
-	iPrintlnBold("in January 2013");
+	iPrintlnBold("Map was made by Black & Zazu in January 2013");
 }

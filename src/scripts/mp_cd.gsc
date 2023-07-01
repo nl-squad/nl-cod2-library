@@ -2,6 +2,8 @@ main()
 {
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_russia_nl");
 }
 
 
@@ -38,7 +40,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 1;
-	iPrintlnBold("in January 2014");
+	iPrintlnBold("Map was made by Dusza in January 2014");
 }

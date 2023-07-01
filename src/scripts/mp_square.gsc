@@ -2,6 +2,8 @@ main()
 {
 	thread elevator();
 	thread text();
+	
+	ambientPlay("ambient_russia_nl");
 }
 
 elevator()
@@ -25,7 +27,5 @@ elevator()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 1;
-	iPrintlnBold("in January 2017");
+	iPrintlnBold("Map was made by Dusza in January 2017");
 }

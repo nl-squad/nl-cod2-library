@@ -2,6 +2,8 @@ main()
 {
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_africa_nl");
 
 }
 
@@ -37,7 +39,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made By K2o & Maruch");
-	wait 1;
-	iprintlnbold ("in May 2013");
+	iPrintlnBold("Map was made By K2o & Maruch in May 2013");
 }

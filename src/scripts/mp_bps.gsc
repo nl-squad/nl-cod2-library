@@ -3,6 +3,8 @@ main()
 	thread elevatorWithoutTrigger();
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_africa_nl");
 }
 
 elevatorWithoutTrigger()
@@ -60,7 +62,5 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Akamaru");
-	wait 1;
-	iPrintlnBold("in February 2012");
+	iPrintlnBold("Map was made by Akamaru in February 2012");
 }

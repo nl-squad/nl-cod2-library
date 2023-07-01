@@ -2,6 +2,8 @@ main()
 {
 	thread wall();
 	thread text();	
+	
+	ambientPlay("ambient_africa_nl");
 }
 
 wall()
@@ -30,7 +32,5 @@ wall()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by BlancO");
-	wait 1;
-	iPrintlnBold("in January 2012");
+	iPrintlnBold("Map was made by BlancO in January 2012");
 }

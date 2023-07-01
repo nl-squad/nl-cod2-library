@@ -4,6 +4,7 @@ main()
 	thread object();
 	thread text();
 	
+	ambientPlay("ambient_russia_nl");
 }
 
 object()
@@ -20,7 +21,5 @@ object()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by K2o");
-	wait 1;
-	iPrintlnBold("in September 2014");
+	iPrintlnBold("Map was made by K2o in September 2014");
 }

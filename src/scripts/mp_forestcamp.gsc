@@ -4,7 +4,7 @@ main()
 	thread elevator();
 	thread text();
 
-ambientPlay("ambient_france_nl");
+	ambientPlay("ambient_france_nl");
 }
 
 tp()
@@ -58,8 +58,6 @@ elevator()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 1;
-	iPrintlnBold("in February 2017");
+	iPrintlnBold("Map was made by Dusza in February 2015");
 }
 
