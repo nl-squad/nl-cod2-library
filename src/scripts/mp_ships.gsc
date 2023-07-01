@@ -2,7 +2,7 @@ main()
 {
 	thread text();
 	
-	setExpFog(0.05, 0.05, 0.05, 0.2, 0);
+	setExpFog(0, 0, 0, 0.05, 0);
 }
 
 text()
