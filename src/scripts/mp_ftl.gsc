@@ -114,3 +114,4 @@ text()
 {
 	wait 12 * 60;
 	iPrintlnBold("Map was made by Dusza in March 2023");
+}
