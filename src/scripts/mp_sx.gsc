@@ -14,6 +14,11 @@ main()
     [[ level.registerDynamicMapPart ]]( gateRegistration );
 
 	ambientPlay("ambient_france_nl");
+	
+	level._effect["spot2"] = loadfx("fx/props/barrel_fire2.efx");
+	
+	maps\mp\_fx::loopfx("spot2", (-864, -646, 48), 1500);
+	maps\mp\_fx::loopfx("spot2", (-942, -816, 56), 1500);
 }
 
 unlockGate()
