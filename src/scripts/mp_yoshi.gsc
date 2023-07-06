@@ -2,6 +2,8 @@ main()
 {
 	thread tp();
 	thread text();
+	
+	ambientPlay("ambient_france_nl");
 }
 
 tp()
