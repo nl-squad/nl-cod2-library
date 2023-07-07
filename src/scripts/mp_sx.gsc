@@ -17,10 +17,10 @@ main()
 	
     level._effect["spot1"] = loadfx("fx/props/barrel_fire.efx");
     level._effect["spot2"] = loadfx("fx/props/barrel_fire2.efx");
-	level._effect["spot3"] = loadfx("fx/props/barrel_ignite.efx");
+	level._effect["spot3"] = loadfx("fx/props/barrel_fire2.efx");
     maps\mp\_fx::loopfx("spot1", (-864, -646, 60), 1);
     maps\mp\_fx::loopfx("spot2", (-942, -816, 72), 1);
-	maps\mp\_fx::loopfx("spot3", (534, -1116, 72), 1);
+	maps\mp\_fx::loopfx("spot3", (534, -1116, 76), 1);
 }
 
 unlockGate(dynamicMapPart)
