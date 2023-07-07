@@ -1,4 +1,4 @@
 main()
 {
-    [[ level.setDefaultExpFog ]](0.01, 0.01, 0.01, 0.01, 0);
+    [[ level.setDefaultExpFog ]](0.4, 0.4, 0.4, 0.01, 0);
 }
