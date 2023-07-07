@@ -11,6 +11,7 @@ main()
     gateRegistration.activatorValue = 6;
     gateRegistration.activateFunction = ::unlockGate;
     gateRegistration.deactivateFunction = ::lockGate;
+	gateRegistration.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration );
 
     ambientPlay("ambient_france_nl");
