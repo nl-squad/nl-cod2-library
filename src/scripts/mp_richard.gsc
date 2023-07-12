@@ -32,5 +32,7 @@ wall()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by BlancO in January 2012");
+	iPrintlnBold("Map was made by BlancO");
+	wait 0.1;
+	iPrintlnBold("in January 2012"); 		
 }

@@ -8,5 +8,7 @@ main()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Bozzy in May 2023");
+	iPrintlnBold("Map was made by Bozzy");
+	wait 0.1;
+	iPrintlnBold("in May 2023"); 
 }

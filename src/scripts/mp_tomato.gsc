@@ -73,5 +73,7 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by SlaYer in June 2013");
+	iPrintlnBold("Map was made by SlaYer");
+	wait 0.1;
+	iPrintlnBold("in June 2013");
 }

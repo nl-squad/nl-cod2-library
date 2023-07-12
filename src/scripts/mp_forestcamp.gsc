@@ -58,6 +58,8 @@ elevator()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza in February 2015");
+	iPrintlnBold("Map was made by Dusza");
+	wait 0.1;
+	iPrintlnBold("in February 2015"); 
 }
 

@@ -9,5 +9,7 @@ main()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Jeannot in July 2007");
+	iPrintlnBold("Map was made by Jeannot");
+	wait 0.1;
+	iPrintlnBold("in July 2007");
 }

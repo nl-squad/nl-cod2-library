@@ -39,5 +39,7 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made By K2o & Maruch in May 2013");
+	iPrintlnBold("Map was made By K2o & Maruch");
+	wait 0.1;
+	iPrintlnBold("in May 2013"); 
 }

@@ -21,5 +21,7 @@ object()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by K2o in September 2014");
+	iPrintlnBold("Map was made by K2o");
+	wait 0.1;
+	iPrintlnBold("in September 2014");
 }

@@ -39,7 +39,7 @@ text()
 {
 	wait 12 * 60;
 	iPrintlnBold("Map was made by Yoshi");
-	wait 1;
+	wait 0.1;
 	iPrintlnBold("in November 2008");
 }
 

@@ -42,5 +42,7 @@ Transporter()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Sluw in June 2008");
+	iPrintlnBold("Map was made by Sluw");
+	wait 0.1;
+	iPrintlnBold("in June 2008"); 
 }

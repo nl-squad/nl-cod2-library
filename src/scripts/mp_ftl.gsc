@@ -113,5 +113,7 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza in March 2023");
+	iPrintlnBold("Map was made by Dusza");
+	wait 0.1;
+	iPrintlnBold("in March 2023"); 
 }

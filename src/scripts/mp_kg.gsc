@@ -13,5 +13,7 @@ main()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by K1r@ in October 2016");
+	iPrintlnBold("Map was made by K1r@");
+	wait 0.1;
+	iPrintlnBold("in October 2016"); 	
 }
