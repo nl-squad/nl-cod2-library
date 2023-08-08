@@ -1,6 +1,6 @@
 main()
 {
-	//thread NoZombies();
+	thread NoZombies();
 	thread zooka();
 	thread czolganie();
 	thread winda();
@@ -9,6 +9,7 @@ main()
 	thread text();
 
 	ambientPlay("ambient_russia_nl");
+}
 
 NoZombies()
 {
