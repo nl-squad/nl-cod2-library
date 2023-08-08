@@ -1,14 +1,22 @@
 main()
 {
+	thread text();
 	thread NoZombies();
 	thread zooka();
 	thread czolganie();
 	thread winda();
 	thread secretVIP();
 	thread watchSecretCampers();
-	thread text();
 
 	ambientPlay("ambient_russia_nl");
+}
+
+text()
+{
+	wait 12 * 60;
+	iPrintlnBold("Map was made by Avard & BlancO");
+	wait 0.1;
+	iPrintlnBold("in September 2012"); 
 }
 
 NoZombies()
@@ -188,10 +196,3 @@ watchSecretCampers()
 	}
 }
 
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by Avard & BlancO");
-	wait 0.1;
-	iPrintlnBold("in September 2012"); 
-}
