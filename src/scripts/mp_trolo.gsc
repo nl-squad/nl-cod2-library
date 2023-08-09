@@ -137,14 +137,14 @@ secretVIP()
 			{
 				player iPrintlnBold("^4! ^9Only For ^7Hunters ^4!");
 				wall solid();
-				wait 0.5;
+				wait 1;
 			}
 		}
 		else
 		{
-			player iPrintlnBold("^4! ^7You ^9Aren't ^7VIP ^4!");
+			player iPrintlnBold("Your penis size is too small!");
 			wall solid();
-			wait 0.5;
+			wait 1;
 		}
 	}
 }
