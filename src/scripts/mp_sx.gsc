@@ -1,5 +1,15 @@
 main()
 {	
+	ambientPlay("ambient_france_nl");
+	
+    level._effect["spot1"] = loadfx("fx/props/barrel_fire.efx");
+    level._effect["spot2"] = loadfx("fx/props/barrel_fire2.efx");
+	
+    maps\mp\_fx::loopfx("spot1", (-864, -646, 60), 1);
+    maps\mp\_fx::loopfx("spot2", (-942, -816, 72), 1);
+	maps\mp\_fx::loopfx("spot2, (534, -1116, 80), 1);
+
+
     if (!isDefined(level.registerDynamicMapPart))
     {
         thread unlockGate();
@@ -13,15 +23,6 @@ main()
     gateRegistration.deactivateFunction = ::lockGate;
 	gateRegistration.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration );
-
-    ambientPlay("ambient_france_nl");
-	
-    level._effect["spot1"] = loadfx("fx/props/barrel_fire.efx");
-    level._effect["spot2"] = loadfx("fx/props/barrel_fire2.efx");
-	
-    maps\mp\_fx::loopfx("spot1", (-864, -646, 60), 1);
-    maps\mp\_fx::loopfx("spot2", (-942, -816, 72), 1);
-	maps\mp\_fx::loopfx("spot2, (534, -1116, 80), 1);
 }
 
 unlockGate(dynamicMapPart)
