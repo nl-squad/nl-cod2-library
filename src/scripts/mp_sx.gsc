@@ -7,7 +7,7 @@ main()
 	
     maps\mp\_fx::loopfx("spot1", (-864, -646, 60), 1);
     maps\mp\_fx::loopfx("spot2", (-942, -816, 72), 1);
-	maps\mp\_fx::loopfx("spot2, (534, -1116, 80), 1);
+	maps\mp\_fx::loopfx("spot2", (534, -1116, 80), 1);
 
 
     if (!isDefined(level.registerDynamicMapPart))
