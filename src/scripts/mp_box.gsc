@@ -1,7 +1,8 @@
 main()
 {
-	thread nl();
+	
 	thread text();
+	thread nl();
 
 	
 	ambientPlay("ambient_france_nl");
@@ -16,7 +17,7 @@ text()
 	iPrintlnBold("in August 2023"); 
 }
 
-nl
+nl()
 {
 	nl = getEnt("nl", "targetname");	
 	while(true)
