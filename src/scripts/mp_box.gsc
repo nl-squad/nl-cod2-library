@@ -22,7 +22,7 @@ nl()
 	nl = getEnt("nl", "targetname");	
 	while(true)
 		{
-			sphere rotateyaw(360, 5);
-			sphere waittill("rotatedone");
+			nl rotateyaw(360, 5);
+			nl waittill("rotatedone");
 		}
 }
