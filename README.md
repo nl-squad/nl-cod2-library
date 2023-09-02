@@ -9,12 +9,23 @@ On **main** branch push all files will be tested if they don't contain any forbi
 # Roadmap 🛣️
 
 ✅ Support for iwds path nl-cli
+
 ✅ ./src/scripts -> ~/cod2/library/scripts
+
 ✅ ./src/iwds -> ~/cod2/library/iwds
+
 ✅ Get sha256sum of ~/cod2/library/iwds
+
 ✅ Compare with ~/cod2/library/iwds_sum
+
 ✅ If not the same - build ~/cod2/library/000empty.iwd
-✅ ./restart.sh - copy ~/cod2/library/scripts
-✅ ./restart.sh - copy ~/cod2/library/iwds
-✅ ./restart.sh - copy ~/cod2/library/000empty.iwd
+
+✅ Mapping ~/cod2/library/scripts on restart
+
+✅ Mapping ~/cod2/library/iwds on restart
+
+✅ Mapping ~/cod2/library/000empty.iwd on restart
+
 ✅ ./restart.sh - restart docker-compose
+
+✅ CI/CD integration

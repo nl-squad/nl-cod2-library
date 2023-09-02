@@ -1,4 +1,4 @@
-name: Test
+name: Test and deploy
 
 on:
   push
@@ -22,7 +22,7 @@ jobs:
           if [ -n "$gsc_files" ]; then
             found_gsc_files=true
             gsc_files_list=$(echo "$gsc_files" | tr '\n' ',' | sed 's/,$//')
-            echo "Found $gsc_files_list in $iwd_file"
+            echo "Error: Found $gsc_files_list in $iwd_file"
           fi
         done
 
@@ -49,7 +49,7 @@ jobs:
           echo " - checking existance of $iwd_file for $gsc_file"
           if [[ ! -f "$iwd_file" ]]; then
               not_found_corresponding_iwd=true
-              echo "No corresponding $iwd_file file found for $gsc_file!"
+              echo "Error: No corresponding $iwd_file file found for $gsc_file!"
           fi
         done
 
@@ -74,9 +74,68 @@ jobs:
           echo " - checking $gsc_file"
           for content in "${forbidden_content[@]}"; do
             if grep -q -F "$content" "$gsc_file"; then
-              echo "Forbidden content '$content' found in $gsc_file!"
+              echo "Error: Forbidden content '$content' found in $gsc_file!"
               exit 1
             fi
           done
         done
         echo "No forbidden content found in .gsc files."
+
+  deploy:
+    needs: [check-no-packaged-gsc-files, each-gsc-has-corresponding-iwd, forbidden-content-check]
+    if: github.ref == 'refs/heads/main'
+    name: Deployment job
+    uses: nl-squad/nl-cod2-workflows/.github/workflows/deploy.yml@main
+    with:
+      profile: default
+      branch: main
+    secrets: inherit
+
+  build-000empty:
+    needs: deploy
+    name: Build 000empty.iwd
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Execute build-000empty.sh remotely
+      run: |
+        project_definition="project-definition.json"
+        if [ ! -f $project_definition ]; then
+            echo "Error: $project_definition doesn't exist. Please use mynl CLI tool from within NL directory."
+            exit 1
+        fi
+
+        function extract_value_or_exit() {
+          local key=$1
+          local value=$(jq -r "$key" "$project_definition")
+
+          if [ "$value" = "null" ]; then
+              echo "Error: $key not found in the $project_definition file."
+              exit 1
+          fi
+
+          echo "$value"
+        }
+
+        ###
+
+        profile=${{ inputs.profile }}
+        connection_address=$(extract_value_or_exit '.connection.address')
+        connection_user=$(extract_value_or_exit '.connection.user')
+        connection_key_path=~/private_key
+        echo "Starting ~/cod2/library/build-000empty.sh, host: $connection_user@$connection_address"
+
+        echo "${{ secrets.VPS_PRIVATE_KEY }}" > $connection_key_path
+        chmod 600 $connection_key_path
+        echo "Private key set up"
+
+        ssh -i $connection_key_path -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $connection_user@$connection_address "\
+          echo 'Executing ~/cod2/library/build-000empty.sh' && \
+          ~/cod2/library/build-000empty.sh"
+
+        rm -f $connection_key_path
+      env:
+        PRIVATE_KEY: ${{ secrets.VPS_PRIVATE_KEY }}
