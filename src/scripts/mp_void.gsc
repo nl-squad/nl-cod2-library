@@ -2,30 +2,8 @@ main()
 {
 maps\mp\_load::main();
 
-setExpFog(0.0001, 0.55, 0.6, 0.55, 0);
-// setCullFog(0, 16500, 0.55, 0.6, 0.55, 0);
-ambientPlay("ambient_france");
+ambientPlay("ambient_france_nl");
 
-game["allies"] = "american";
-game["axis"] = "german";
-game["attackers"] = "allies";
-game["defenders"] = "axis";
-game["american_soldiertype"] = "normandy";
-game["german_soldiertype"] = "normandy";
-
-setCvar("r_glowbloomintensity0", ".25");
-setCvar("r_glowbloomintensity1", ".25");
-setcvar("r_glowskybleedintensity0",".3");
-
-//DEBUG CONFIGURATIONS
-debug = false;
-self.time_multiplicator = 1;
-
-
-if(debug)
-	self.time_multiplicator = 0.01;
-	
-	
 thread mainMultiTeleporter("trig_void_tp", 0, "tp_void_output");
 if (!isDefined(level.registerDynamicMapPart))
     {
@@ -72,8 +50,8 @@ unlockGate(dynamicMapPart)
 	gate_down_block NotSolid();
 	
 	wait 10;
-	thread moveEntity(gate_up_barrier, 0, -220, 0, 120*self.time_multiplicator);
-	wait 110*self.time_multiplicator;
+	thread moveEntity(gate_up_barrier, 0, -220, 0, 120);
+	wait 110;
 	iPrintlnBold("The second gate is opening in 10 seconds!");
 	wait 10;
 	thread moveEntity(gate_up, 0, 0, 56, 3);
