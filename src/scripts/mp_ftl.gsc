@@ -1,6 +1,7 @@
 main()
 {
-	thread sphereControl(1);
+	thread sphere1();
+	thread sphere2();
 	thread tp();
 	thread text();
 	
@@ -8,12 +9,22 @@ main()
 	
 }
 
-sphereControl(num)
+sphere1()
 {
-	sphere = getEnt("sphere" + num, "targetname");	
+	sphere = getEnt("sphere1", "targetname");	
 	while(true)
 		{
 			sphere rotateyaw(360, 45);
+			sphere waittill("rotatedone");
+		}
+}
+
+sphere2()
+{
+	sphere = getEnt("sphere2", "targetname");	
+	while(true)
+		{
+			sphere rotatexaw(360, 35);
 			sphere waittill("rotatedone");
 		}
 }
