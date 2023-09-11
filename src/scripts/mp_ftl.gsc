@@ -11,7 +11,7 @@ main()
 
 sphere1()
 {
-	sphere = getEnt("sphere1", "targetname");	
+	sphere1 = getEnt("sphere1", "targetname");	
 	while(true)
 		{
 			sphere rotateyaw(360, 45);
@@ -21,10 +21,10 @@ sphere1()
 
 sphere2()
 {
-	sphere = getEnt("sphere2", "targetname");	
+	sphere2 = getEnt("sphere2", "targetname");	
 	while(true)
 		{
-			sphere rotatexaw(360, 35);
+			sphere rotatepitch(360, 35);
 			sphere waittill("rotatedone");
 		}
 }
