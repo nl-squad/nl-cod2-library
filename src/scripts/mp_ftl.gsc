@@ -1,7 +1,7 @@
 main()
 {
-	thread sphereControl(1);
-	thread sphereControl(2);
+	thread sphereControl(num);
+	thread sphereControl(num);
 	thread tp();
 	thread text();
 	
