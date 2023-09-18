@@ -1,12 +1,21 @@
 main()
 {
+	thread sphere1();
 	thread tp();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
 }
 
-
+sphere1()
+{
+	sphere1 = getEnt("sphere1", "targetname");	
+	while(true)
+		{
+			sphere1 rotatepitch(360, 20);
+			sphere1 waittill("rotatedone");
+		}
+}
 tp()
 {
 	teleporters = getentarray("tp", "targetname");
