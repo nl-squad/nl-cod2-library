@@ -13,7 +13,7 @@ sphere1()
 	sphere1 = getEnt("sphere1", "targetname");	
 	while(true)
 		{
-			sphere1 rotateyaw(360, 20);
+			sphere1 rotateyaw(360, 30);
 			sphere1 waittill("rotatedone");
 		}
 }
