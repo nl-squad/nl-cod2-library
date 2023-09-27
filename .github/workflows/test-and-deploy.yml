@@ -81,8 +81,35 @@ jobs:
         done
         echo "No forbidden content found in .gsc files."
 
+  check-iwd-unzip:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check if all .iwd files can be successfully unzipped
+      run: |
+        echo "Checking if all .iwd files can be successfully unzipped..."
+        unzip_failure=false
+
+        for iwd_file in src/iwds/*.iwd; do
+          echo " - attempting to unzip $iwd_file"
+          unzip -tq "$iwd_file"
+          if [ $? -ne 0 ]; then
+            unzip_failure=true
+            echo "Error: Failed to unzip $iwd_file!"
+          fi
+        done
+
+        if [ "$unzip_failure" = true ]; then
+          exit 1
+        else
+          echo "All .iwd files were successfully unzipped."
+        fi
+
   deploy:
-    needs: [check-no-packaged-gsc-files, each-gsc-has-corresponding-iwd, forbidden-content-check]
+    needs: [check-no-packaged-gsc-files, each-gsc-has-corresponding-iwd, forbidden-content-check, check-iwd-unzip]
     if: github.ref == 'refs/heads/main'
     name: Deployment job
     uses: nl-squad/nl-cod2-workflows/.github/workflows/deploy.yml@main
