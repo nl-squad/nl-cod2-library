@@ -50,7 +50,7 @@ teleport()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Tyrex");
+	iPrintlnBold("Map was made by TyreX");
 	wait 0.1;
 	iPrintlnBold("in August 2012"); 
 }
