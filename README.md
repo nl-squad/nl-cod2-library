@@ -1,12 +1,14 @@
-# cod2-library 🏞️
+# 🏞️ cod2-library
 
-Library repo for maps used in CoD2 by NoLimits servers.
+Library repo for maps used in CoD2 by NoLimits servers. It holds all the nl-squad custom-made maps and scripts.
 
-# CI / CD ⚡️
+# ⚡️ CI / CD
 
-On **main** branch push all files will be tested if they don't contain any forbidden functions. Then if it succeeds all files will be deployed to VM under ~/cod2/library directory. Later on - when any server is restarted it needs to copy scripts and iwds and also build its own `000empty.iwd` file for purpose of generating pure client and refrence all the maps available.
+On **main** branch push all files will be tested if they don't contain any forbidden functions. Then if it succeeds all files will be deployed to VM under ~/cod2/library directory.
 
-# Roadmap 🛣️
+Later on - when any server is restarted it needs to copy scripts and iwds to its own contained library. Also a build of `000empty.iwd` file is required. This is for the purpose of generating a pure client and referencing all the maps available.
+
+# 🛣️ Roadmap
 
 ✅ Support for iwds path nl-cli
 
