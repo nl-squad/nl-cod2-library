@@ -2,7 +2,6 @@ main()
 
 {
 	thread text();
-	
 	ambientPlay("ambient_france_nl");
 	
 	if (!isDefined(level.registerDynamicMapPart))
@@ -36,7 +35,6 @@ main()
     gateRegistration3.deactivateFunction = ::lockGate3;
 	gateRegistration3.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration3 );
-}
 }
 
 unlockGate1(dynamicMapPart)
@@ -83,7 +81,7 @@ lockGate2(dynamicMapPart)
 
 unlockGate3(dynamicMapPart)
 {
-    iPrintlnBold("The gates has been lowered");
+    iPrintlnBold("The gates have been lowered");
     gate = getEnt("gate3", "targetname");
     gate moveZ(-144, 2);
     gate waittill("movedone");

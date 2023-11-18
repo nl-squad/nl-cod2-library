@@ -1,5 +1,6 @@
 main()
 {	
+	thread text();
 	ambientPlay("ambient_france_nl");
 	
     level._effect["spot1"] = loadfx("fx/props/barrel_fire.efx");
@@ -12,23 +13,32 @@ main()
 
     if (!isDefined(level.registerDynamicMapPart))
     {
-        thread unlockGate();
+        thread unlockGate1();
+		thread unlockGate2();
         return;
     }
 
-    gateRegistration = spawnStruct();
-    gateRegistration.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration.activatorValue = 6;
-    gateRegistration.activateFunction = ::unlockGate;
-    gateRegistration.deactivateFunction = ::lockGate;
-	gateRegistration.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration );
+    gateRegistration1 = spawnStruct();
+    gateRegistration1.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
+    gateRegistration1.activatorValue = 6;
+    gateRegistration1.activateFunction = ::unlockGate1;
+    gateRegistration1.deactivateFunction = ::lockGate1;
+	gateRegistration1.isRoundActivatedOnce = true;
+    [[ level.registerDynamicMapPart ]]( gateRegistration1 );
+	
+	gateRegistration2 = spawnStruct();
+    gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
+    gateRegistration2.activatorValue = 12;
+    gateRegistration2.activateFunction = ::unlockGate2;
+    gateRegistration2.deactivateFunction = ::lockGate2;
+	gateRegistration2.isRoundActivatedOnce = true;
+    [[ level.registerDynamicMapPart ]]( gateRegistration2 )
 }
 
-unlockGate(dynamicMapPart)
+unlockGate1(dynamicMapPart)
 {
     iPrintlnBold("The gate has been ^2opened");
-    gate = getEnt("gate", "targetname");
+    gate = getEnt("gate1", "targetname");
     gate moveZ(42, 2);
     gate waittill("movedone");
 
@@ -36,13 +46,41 @@ unlockGate(dynamicMapPart)
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
-lockGate(dynamicMapPart)
+lockGate1(dynamicMapPart)
 {
     iPrintlnBold("The gate has been ^1closed");
-    gate = getEnt("gate", "targetname");
-    gate moveZ(-42, 1);
+    gate = getEnt("gate1", "targetname");
+    gate moveZ(-42, 2);
     gate waittill("movedone");
 
     if (isDefined(level.markAcitivationAsDone))
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
+}
+
+unlockGate2(dynamicMapPart)
+{
+    gate = getEnt("gate2", "targetname");
+    gate moveZ(-48, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+}
+
+lockGate2(dynamicMapPart)
+{
+    gate = getEnt("gate2", "targetname");
+    gate moveZ(48, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+}
+
+text()
+{
+	wait 12 * 60;
+	iPrintlnBold("Map was made by Dusza");
+	wait 0.1;
+	iPrintlnBold("in April 2023"); 
 }
