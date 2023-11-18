@@ -39,71 +39,43 @@ main()
 unlockGate1(dynamicMapPart)
 {
     iPrintlnBold("The gate has been ^2opened");
-    if (isDefined(level.markActivationAsDone))
-    {
-        gate = getEnt("gate1", "targetname");
-        if (isDefined(gate))
-        {
-            gate moveZ(42, 2);
-            gate waittill("movedone");
-            [[ level.markActivationAsDone ]](dynamicMapPart);
-        }
-        else
-        {
-            iPrintln("Error: Gate1 not found!");
-        }
-    }
+    gate = getEnt("gate1", "targetname");
+    gate moveZ(42, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
 lockGate1(dynamicMapPart)
 {
     iPrintlnBold("The gate has been ^1closed");
-    if (isDefined(level.markActivationAsDone))
-    {
-        gate = getEnt("gate1", "targetname");
-        if (isDefined(gate))
-        {
-            gate moveZ(-42, 2);
-            gate waittill("movedone");
-            [[ level.markActivationAsDone ]](dynamicMapPart);
-        }
-        else
-        {
-            iPrintln("Error: Gate1 not found!");
-        }
-    }
+    gate = getEnt("gate1", "targetname");
+    gate moveZ(-42, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
 unlockGate2(dynamicMapPart)
 {
     gate = getEnt("gate2", "targetname");
-    if (isDefined(gate))
-    {
-        gate moveZ(-48, 2);
-        gate waittill("movedone");
-        if (isDefined(level.markActivationAsDone))
-            [[ level.markActivationAsDone ]](dynamicMapPart);
-    }
-    else
-    {
-        iPrintln("Error: Gate2 not found!");
-    }
+    gate moveZ(-48, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
 lockGate2(dynamicMapPart)
 {
     gate = getEnt("gate2", "targetname");
-    if (isDefined(gate))
-    {
-        gate moveZ(48, 2);
-        gate waittill("movedone");
-        if (isDefined(level.markActivationAsDone))
-            [[ level.markActivationAsDone ]](dynamicMapPart);
-    }
-    else
-    {
-        iPrintln("Error: Gate2 not found!");
-    }
+    gate moveZ(48, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
 text()
