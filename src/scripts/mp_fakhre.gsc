@@ -41,7 +41,7 @@ unlockGate1(dynamicMapPart)
 {
     iPrintlnBold("Footbridge #1 has been lowered");
     gate = getEnt("gate1", "targetname");
-    gate moveZ(-144, 2);
+    gate moveZ(-144, 5);
     gate waittill("movedone");
 
     if (isDefined(level.markAcitivationAsDone))
@@ -62,7 +62,7 @@ unlockGate2(dynamicMapPart)
 {
     iPrintlnBold("Footbridge #2 has been lowered");
     gate = getEnt("gate2", "targetname");
-    gate moveZ(-144, 2);
+    gate moveZ(-144, 5);
     gate waittill("movedone");
 
     if (isDefined(level.markAcitivationAsDone))
