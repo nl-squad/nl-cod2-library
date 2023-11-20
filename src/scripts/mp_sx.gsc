@@ -15,7 +15,6 @@ main()
     if (!isDefined(level.registerDynamicMapPart))
     {
         thread unlockGate1();
-		thread unlockGate2();
         return;
     }
 
@@ -27,13 +26,6 @@ main()
 	gateRegistration1.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration1 );
 	
-	gateRegistration2 = spawnStruct();
-    gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration2.activatorValue = 12;
-    gateRegistration2.activateFunction = ::unlockGate2;
-    gateRegistration2.deactivateFunction = ::lockGate2;
-	gateRegistration2.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration2 );
 }
 
 unlockGate1(dynamicMapPart)
@@ -52,26 +44,6 @@ lockGate1(dynamicMapPart)
     iPrintlnBold("The gate has been ^1closed");
     gate = getEnt("gate1", "targetname");
     gate moveZ(-42, 2);
-    gate waittill("movedone");
-
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
-}
-
-unlockGate2(dynamicMapPart)
-{
-    gate = getEnt("gate2", "targetname");
-    gate moveZ(-48, 2);
-    gate waittill("movedone");
-
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
-}
-
-lockGate2(dynamicMapPart)
-{
-    gate = getEnt("gate2", "targetname");
-    gate moveZ(48, 2);
     gate waittill("movedone");
 
     if (isDefined(level.markAcitivationAsDone))
