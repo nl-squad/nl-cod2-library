@@ -4,14 +4,13 @@ main()
 	thread text();
 	ambientPlay("ambient_france_nl");
 	
-    level._effect["spot1"] = loadfx("fx/props/barrel_fire.efx");
     level._effect["spot2"] = loadfx("fx/props/barrel_fire2.efx");
 	
-    maps\mp\_fx::loopfx("spot1", (-864, -646, 60), 1);
+    maps\mp\_fx::loopfx("spot2", (-864, -646, 60), 1);
     maps\mp\_fx::loopfx("spot2", (-942, -816, 72), 1);
 	maps\mp\_fx::loopfx("spot2", (520, -1120, 80), 1);
-	maps\mp\_fx::loopfx("spot1", (480, -1120, 80), 1);
-	maps\mp\_fx::loopfx("spot1", (504, -968, 80), 1);
+	maps\mp\_fx::loopfx("spot2", (480, -1120, 80), 1);
+	maps\mp\_fx::loopfx("spot2", (504, -968, 80), 1);
 	maps\mp\_fx::loopfx("spot2", (464, -968, 80), 1);
 
 
