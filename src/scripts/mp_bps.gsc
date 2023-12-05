@@ -1,33 +1,9 @@
 main()
 {
-	thread elevatorWithoutTrigger();
 	thread tp();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
-}
-
-elevatorWithoutTrigger()
-{
-    elevator = getEnt("floor", "targetname");
-
-    if(!isDefined(elevator))
-    {
-        wait 20;
-        iPrintlnBold("^1Entity named 'elevator' not found");
-        return;
-    }
-
-    while(1)
-    {
-        elevator moveX(-64, 2);
-        elevator waittill ("movedone");
-        wait 4;
-
-        elevator moveX(64, 2);
-        elevator waittill ("movedone");
-        wait 4;
-    }
 }
 
 tp()
