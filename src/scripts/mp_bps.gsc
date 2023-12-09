@@ -1,6 +1,9 @@
+#include blanco\utils;
+
 main()
 {
 	thread tp();
+	thread tpbot();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
@@ -29,6 +32,37 @@ teleport()
 	while(1)
 	{
 		self waittill("trigger", player);
+		player setOrigin(dest.origin);
+		player setPlayerAngles(dest.angles);
+	}
+}
+
+tpbot()
+{
+	teleporters = getentarray("tpbot", "targetname");
+	for(i = 0; i < teleporters.size; i++)
+	{
+		teleporters[i] thread teleport();
+	}
+}
+
+teleport()
+{
+	dest = getent(self.target, "targetname");
+	if(!isDefined(dest))
+	{
+		wait 15;
+		iPrintlnBold("^1MaxDamage is a thief");
+		return;
+
+	}
+
+	while(1)
+	{
+		self waittill("trigger", player);
+
+		if (!player isBot())
+			continue;
 
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
