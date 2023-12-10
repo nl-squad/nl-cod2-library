@@ -42,11 +42,11 @@ tpbot()
 	teleporters = getentarray("tpbot", "targetname");
 	for(i = 0; i < teleporters.size; i++)
 	{
-		teleporters[i] thread teleport();
+		teleporters[i] thread teleport1();
 	}
 }
 
-teleport()
+teleport1()
 {
 	dest = getent(self.target, "targetname");
 	if(!isDefined(dest))
