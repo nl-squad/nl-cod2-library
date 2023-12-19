@@ -2,6 +2,8 @@ main()
 
 {
 	thread tp();
+	thread wall1();
+	thread wall2();
 	thread text();
 
 	ambientPlay("ambient_france_nl");
@@ -34,6 +36,52 @@ teleport()
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
 	}
+}
+
+wall1()
+{
+    elevator = getEnt("wall1", "targetname");
+
+    if(!isDefined(elevator))
+    {
+        wait 20;
+        iPrintlnBold("^1Entity named 'elevator' not found");
+        return;
+    }
+
+    while(1)
+    {
+        elevator movex(-104, 3);
+        elevator waittill ("movedone");
+        wait 2;
+
+        elevator movex(104, 3);
+        elevator waittill ("movedone");
+        wait 2;
+    }
+}
+
+wall2()
+{
+    elevator2 = getEnt("wall2", "targetname");
+
+    if(!isDefined(elevator2))
+    {
+        wait 20;
+        iPrintlnBold("^1Entity named 'elevator2' not found");
+        return;
+    }
+
+    while(1)
+    {
+        elevator2 movex(104, 3);
+        elevator2 waittill ("movedone");
+        wait 2;
+
+        elevator2 movex(-104, 3);
+        elevator2 waittill ("movedone");
+        wait 2;
+    }
 }
 
 text()
