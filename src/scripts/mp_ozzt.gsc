@@ -42,6 +42,7 @@ teleport()
 
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
+		player setVelocity((0, 0, 0));	
 	}
 }
 winda()
