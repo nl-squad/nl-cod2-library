@@ -42,7 +42,9 @@ teleport()
 
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
-		player setVelocity((0, 0, 0));	
+		player linkTo(level.blocker);
+		wait 0.05;
+		player unlink();
 	}
 }
 winda()
