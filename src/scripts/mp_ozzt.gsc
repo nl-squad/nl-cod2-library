@@ -43,7 +43,7 @@ teleport()
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
 		player linkTo(level.blocker);
-		wait 0.05;
+		wait 2;
 		player unlink();
 	}
 }
