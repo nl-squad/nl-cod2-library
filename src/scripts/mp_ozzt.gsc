@@ -44,7 +44,9 @@ teleport()
 		player setPlayerAngles(dest.angles);
 		player linkTo(level.blocker);
 		wait 1.5;
-		player unlink();
+
+        if (isDefined(player))
+		    player unlink();
 	}
 }
 winda()
