@@ -57,12 +57,12 @@ winda()
         trig waittill("trigger");
 
         wall solid();
-        wall moveZ(280, 1.5);
+        wall moveZ(272, 1.5);
         wall waittill("movedone");
         wait 1;
 
         wall notsolid();
-        wall moveZ(-280, 1.5);
+        wall moveZ(-272, 1.5);
         wall waittill("movedone");
         wait 1;
     }
@@ -74,7 +74,7 @@ wiatrak()
 
     while(1)
     {
-        wall rotateYaw(3600, 5);
+        wall rotateYaw(1800, 5);
         wall waittill("rotatedone");
     }
 }
