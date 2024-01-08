@@ -10,6 +10,8 @@ main()
         return;
     }
 
+	level.MAP_MAX_STAGE = 3;
+
     gateRegistration1 = spawnStruct();
     gateRegistration1.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
     gateRegistration1.activatorValue = 3;
