@@ -21,13 +21,13 @@ main()
     gateRegistration1.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration1 );
 
-    gateRegistration2 = spawnStruct();
-    gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_HUNTERS_AT_MOST;
-    gateRegistration2.activatorValue = 1;
-    gateRegistration2.activateFunction = ::unlockGateStage2;
-    gateRegistration2.deactivateFunction = ::lockGateStage2;
-    gateRegistration2.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration2 );
+    // gateRegistration2 = spawnStruct();
+    // gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_HUNTERS_AT_MOST;
+    // gateRegistration2.activatorValue = 1;
+    // gateRegistration2.activateFunction = ::unlockGateStage2;
+    // gateRegistration2.deactivateFunction = ::lockGateStage2;
+    // gateRegistration2.isRoundActivatedOnce = true;
+    // [[ level.registerDynamicMapPart ]]( gateRegistration2 );
 	
 }
 
