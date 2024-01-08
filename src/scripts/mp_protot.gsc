@@ -4,6 +4,8 @@ main()
 
 	ambientPlay("ambient_africa_nl");
 
+	printf("level.registerDynamicMapPart=%\n", level.registerDynamicMapPart);
+
     if (!isDefined(level.registerDynamicMapPart))
     {
         thread unlockGateStage1();
@@ -12,6 +14,7 @@ main()
     }
 
 	level.MAP_MAX_STAGE = 3;
+	printf("map MAP_MAX_STAGE=%\n", level.MAP_MAX_STAGE);
 
     gateRegistration1 = spawnStruct();
     gateRegistration1.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
