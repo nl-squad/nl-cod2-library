@@ -14,7 +14,7 @@ main()
 	level.MAP_MAX_STAGE = 3;
 
     gateRegistration1 = spawnStruct();
-    gateRegistration1.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
+    gateRegistration1.activatorType = level.ACTIVATE_ON_ROUND_HUNTERS_AT_MOST;
     gateRegistration1.activatorValue = 3;
     gateRegistration1.activateFunction = ::unlockGateStage1;
     gateRegistration1.deactivateFunction = ::lockGateStage1;
@@ -22,8 +22,8 @@ main()
     [[ level.registerDynamicMapPart ]]( gateRegistration1 );
 
     gateRegistration2 = spawnStruct();
-    gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration2.activatorValue = 6;
+    gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_HUNTERS_AT_MOST;
+    gateRegistration2.activatorValue = 1;
     gateRegistration2.activateFunction = ::unlockGateStage2;
     gateRegistration2.deactivateFunction = ::lockGateStage2;
     gateRegistration2.isRoundActivatedOnce = true;
