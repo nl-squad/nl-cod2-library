@@ -41,7 +41,6 @@ text()
 
 unlockGateStage1(dynamicMapPart)
 {
-    iPrintlnBold("The gate has been ^2opened");
     gate = getEnt("gatestage1", "targetname");
     gate moveZ(180, 2);
     gate waittill("movedone");
@@ -53,7 +52,6 @@ unlockGateStage1(dynamicMapPart)
 
 lockGateStage1(dynamicMapPart)
 {
-    iPrintlnBold("The gate has been ^1closed");
     gate = getEnt("gatestage1", "targetname");
     gate moveZ(-180, 1);
     gate waittill("movedone");
@@ -64,7 +62,6 @@ lockGateStage1(dynamicMapPart)
 
 unlockGateStage2(dynamicMapPart)
 {
-    iPrintlnBold("The gate has been ^2opened");
     gate = getEnt("gatestage2", "targetname");
     gate moveZ(180, 2);
     gate waittill("movedone");
@@ -76,7 +73,6 @@ unlockGateStage2(dynamicMapPart)
 
 lockGateStage2(dynamicMapPart)
 {
-    iPrintlnBold("The gate has been ^1closed");
     gate = getEnt("gatestage2", "targetname");
     gate moveZ(-180, 1);
     gate waittill("movedone");
