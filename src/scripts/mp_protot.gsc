@@ -45,6 +45,8 @@ unlockGateStage1(dynamicMapPart)
     gate moveZ(180, 2);
     gate waittill("movedone");
 
+    wait 3;
+
     [[ level.setCurrentStage ]](2);
     if (isDefined(level.markAcitivationAsDone))
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
@@ -55,6 +57,8 @@ lockGateStage1(dynamicMapPart)
     gate = getEnt("gatestage1", "targetname");
     gate moveZ(-180, 1);
     gate waittill("movedone");
+
+    wait 3;
 
     if (isDefined(level.markAcitivationAsDone))
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
