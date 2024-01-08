@@ -6,7 +6,8 @@ main()
 
     if (!isDefined(level.registerDynamicMapPart))
     {
-        thread unlockGate();
+        thread unlockGateStage1();
+        thread unlockGateStage2();
         return;
     }
 
