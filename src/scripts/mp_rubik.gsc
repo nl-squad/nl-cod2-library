@@ -30,6 +30,7 @@ teleport()
 	{
 		self waittill("trigger", player);
 
+		player.solutionNextCalculationTime = getTime();
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
 	}
