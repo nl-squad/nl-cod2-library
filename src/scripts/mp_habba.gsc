@@ -70,7 +70,7 @@ teleport1()
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
 		player linkTo(level.blocker);
-		wait 0.1;
+		wait 0.2;
 
         if (isDefined(player))
 		    player unlink();
@@ -90,11 +90,11 @@ wall1()
 
     while(1)
     {
-        elevator movex(-104, 3);
+        elevator movex(-104, 2);
         elevator waittill ("movedone");
         wait 2;
 
-        elevator movex(104, 3);
+        elevator movex(104, 2);
         elevator waittill ("movedone");
         wait 2;
     }
@@ -113,11 +113,11 @@ wall2()
 
     while(1)
     {
-        elevator2 movex(104, 3);
+        elevator2 movex(104, 2);
         elevator2 waittill ("movedone");
         wait 2;
 
-        elevator2 movex(-104, 3);
+        elevator2 movex(-104, 2);
         elevator2 waittill ("movedone");
         wait 2;
     }
