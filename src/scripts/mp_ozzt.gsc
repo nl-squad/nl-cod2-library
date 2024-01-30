@@ -50,6 +50,7 @@ teleport()
 		    player unlink();
 	}
 }
+
 winda()
 {
     wall = getEnt("winda", "targetname");
