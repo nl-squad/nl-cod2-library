@@ -1,7 +1,7 @@
 main()
 {
 	thread tp();
-	thread q1();
+	thread q2();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
@@ -37,13 +37,13 @@ teleport()
 	}
 }
 
-q1()
+q2()
 {
-	q1 = getEnt("q1", "targetname");	
+	q2 = getEnt("q2", "targetname");	
 	while(true)
 		{
-			q1 rotateyaw(360, 7);
-			q1 waittill("rotatedone");
+			q2 rotateyaw(360, 7);
+			q2 waittill("rotatedone");
 		}
 }
 
