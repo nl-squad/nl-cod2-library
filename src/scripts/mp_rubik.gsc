@@ -42,7 +42,7 @@ q2()
 	q2 = getEnt("q2", "targetname");	
 	while(true)
 		{
-			q2 rotateyaw(360, 7);
+			q2 rotateyaw(360, 10);
 			q2 waittill("rotatedone");
 		}
 }
