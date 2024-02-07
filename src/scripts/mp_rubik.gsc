@@ -1,6 +1,7 @@
 main()
 {
 	thread tp();
+	thread q1();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
@@ -34,6 +35,16 @@ teleport()
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
 	}
+}
+
+q1()
+{
+	q1 = getEnt("q1", "targetname");	
+	while(true)
+		{
+			q1 rotateyaw(360, 7);
+			q1 waittill("rotatedone");
+		}
 }
 
 text()
