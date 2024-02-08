@@ -5,7 +5,7 @@ main()
 
 	level._effect["spot1"] = loadfx("fx/misc/spotlight_decoytown.efx");
 	
-	maps\mp\_fx::loopfx("spot1", (56, 576, -192), 5);
+	maps\mp\_fx::loopfx("spot1", (60, 576, -184), 5);
 	
 	thread tp();
 	thread tpbot();
