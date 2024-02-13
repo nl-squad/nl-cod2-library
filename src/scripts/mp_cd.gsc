@@ -33,6 +33,7 @@ teleport()
 
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
+		player.solutionNextCalculationTime = getTime();
 	}
 }
 
