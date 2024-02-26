@@ -104,7 +104,7 @@ elevator2()
 {
     elevator2 = getEnt("elevator2", "targetname");
 
-    if(!isDefined(elevator1))
+    if(!isDefined(elevator2))
     {
         wait 20;
         iPrintlnBold("^1Entity named 'elevator2' not found");
