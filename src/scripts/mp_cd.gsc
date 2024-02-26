@@ -2,6 +2,8 @@ main()
 {
 	thread tp();
 	thread tpbot();
+	thread elevator1();
+	thread elevator2();
 	thread text();
 	
 	ambientPlay("ambient_russia_nl");
@@ -73,6 +75,52 @@ teleport1()
         if (isDefined(player))
 		    player unlink();
 	}
+}
+
+elevator1()
+{
+    elevator1 = getEnt("elevator1", "targetname");
+
+    if(!isDefined(elevator1))
+    {
+        wait 20;
+        iPrintlnBold("^1Entity named 'elevator1' not found");
+        return;
+    }
+
+    while(1)
+    {
+        elevator1 moveZ(-360, 3);
+        elevator1 waittill ("movedone");
+        wait 3;
+
+        elevator1 moveZ(360, 3);
+        elevator1 waittill ("movedone");
+        wait 3;
+    }
+}
+
+elevator2()
+{
+    elevator2 = getEnt("elevator2", "targetname");
+
+    if(!isDefined(elevator1))
+    {
+        wait 20;
+        iPrintlnBold("^1Entity named 'elevator2' not found");
+        return;
+    }
+
+    while(1)
+    {
+        elevator2 moveZ(-360, 3);
+        elevator2 waittill ("movedone");
+        wait 3;
+
+        elevator2 moveZ(360, 3);
+        elevator2 waittill ("movedone");
+        wait 3;
+    }
 }
 
 text()
