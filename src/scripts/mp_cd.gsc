@@ -90,13 +90,13 @@ elevator1()
 
     while(1)
     {
-        elevator1 moveZ(-360, 3);
+        elevator1 moveZ(-368, 3);
         elevator1 waittill ("movedone");
-        wait 3;
+        wait 4;
 
-        elevator1 moveZ(360, 3);
+        elevator1 moveZ(368, 3);
         elevator1 waittill ("movedone");
-        wait 3;
+        wait 4;
     }
 }
 
@@ -113,13 +113,13 @@ elevator2()
 
     while(1)
     {
-        elevator2 moveZ(-360, 3);
+        elevator2 moveZ(-368, 3);
         elevator2 waittill ("movedone");
-        wait 3;
+        wait 4;
 
-        elevator2 moveZ(360, 3);
+        elevator2 moveZ(368, 3);
         elevator2 waittill ("movedone");
-        wait 3;
+        wait 4;
     }
 }
 
