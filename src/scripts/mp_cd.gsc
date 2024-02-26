@@ -96,7 +96,7 @@ elevator1()
 
         elevator1 moveZ(368, 3);
         elevator1 waittill ("movedone");
-        wait 4;
+        wait 2;
     }
 }
 
@@ -119,7 +119,7 @@ elevator2()
 
         elevator2 moveZ(368, 3);
         elevator2 waittill ("movedone");
-        wait 4;
+        wait 2;
     }
 }
 
