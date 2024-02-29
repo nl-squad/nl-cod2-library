@@ -9,6 +9,7 @@ main()
         thread unlockGate1();
         thread unlockGate2();
 		thread unlockGate3();
+		thread unlockGate4();
         return;
     }
 
@@ -35,6 +36,14 @@ main()
     gateRegistration3.deactivateFunction = ::lockGate3;
 	gateRegistration3.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration3 );
+	
+	gateRegistration4 = spawnStruct();
+    gateRegistration4.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
+    gateRegistration4.activatorValue = 16;
+    gateRegistration4.activateFunction = ::unlockGate4;
+    gateRegistration4.deactivateFunction = ::lockGate4;
+	gateRegistration4.isRoundActivatedOnce = true;
+    [[ level.registerDynamicMapPart ]]( gateRegistration4 );
 }
 
 unlockGate1(dynamicMapPart)
@@ -93,6 +102,26 @@ unlockGate3(dynamicMapPart)
 lockGate3(dynamicMapPart)
 {
     gate = getEnt("gate3", "targetname");
+    gate moveZ(168, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+}
+
+unlockGate4(dynamicMapPart)
+{
+    gate = getEnt("gate4", "targetname");
+    gate moveZ(-168, 2);
+    gate waittill("movedone");
+
+    if (isDefined(level.markAcitivationAsDone))
+        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+}
+
+lockGate4(dynamicMapPart)
+{
+    gate = getEnt("gate4", "targetname");
     gate moveZ(168, 2);
     gate waittill("movedone");
 
