@@ -83,7 +83,7 @@ unlockGate3(dynamicMapPart)
 {
     iPrintlnBold("The gates have been lowered");
     gate = getEnt("gate3", "targetname");
-    gate moveZ(-144, 2);
+    gate moveZ(-160, 2);
     gate waittill("movedone");
 
     if (isDefined(level.markAcitivationAsDone))
@@ -93,7 +93,7 @@ unlockGate3(dynamicMapPart)
 lockGate3(dynamicMapPart)
 {
     gate = getEnt("gate3", "targetname");
-    gate moveZ(144, 2);
+    gate moveZ(160, 2);
     gate waittill("movedone");
 
     if (isDefined(level.markAcitivationAsDone))
