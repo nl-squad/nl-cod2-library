@@ -130,7 +130,7 @@ wall3()
     trig = getEnt("wall3_trig", "targetname");
 	trig setHintString("Reduce Hunters' Sight for 10s");
 
-    if(!isDefined(elevator))
+    if(!isDefined(wall3))
     {
         wait 20;
         iPrintlnBold("^1Entity named 'wall3' not found");
@@ -143,19 +143,18 @@ wall3()
         iPrintlnBold("^1Entity named 'wall3_trig' not found");
         return;
     }
-
-    while(1)
-    {
 		wall3 movez(176, 2);
         wall3 waittill ("movedone");
-		
+
+    while(1)
+    {	
         trig waittill ("trigger");
 
         wall3 moveZ(-176, 3);
         wall3 waittill ("movedone");
         wait 10;
 
-        wall3 moveZ(176, 3);
+        wall3 moveZ(176, 2);
         wall3 waittill ("movedone");
         wait 25;
     }
