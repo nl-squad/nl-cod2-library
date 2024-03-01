@@ -5,6 +5,7 @@ main()
 	thread tpbot();
 	thread wall1();
 	thread wall2();
+	thread wall3();
 	thread text();
 
 	ambientPlay("ambient_france_nl");
@@ -84,7 +85,7 @@ wall1()
     if(!isDefined(elevator))
     {
         wait 20;
-        iPrintlnBold("^1Entity named 'elevator' not found");
+        iPrintlnBold("^1Entity named 'wall' not found");
         return;
     }
 
@@ -107,7 +108,7 @@ wall2()
     if(!isDefined(elevator2))
     {
         wait 20;
-        iPrintlnBold("^1Entity named 'elevator2' not found");
+        iPrintlnBold("^1Entity named 'wall2' not found");
         return;
     }
 
@@ -120,6 +121,43 @@ wall2()
         elevator2 movex(-104, 2);
         elevator2 waittill ("movedone");
         wait 2;
+    }
+}
+
+wall3()
+{
+    wall3 = getEnt("wall3", "targetname");
+    trig = getEnt("wall3_trig", "targetname");
+	trig setHintString("Reduce Hunters' Sight for 10s");
+
+    if(!isDefined(elevator))
+    {
+        wait 20;
+        iPrintlnBold("^1Entity named 'wall3' not found");
+        return;
+    }
+
+    if(!isDefined(trig))
+    {
+        wait 20;
+        iPrintlnBold("^1Entity named 'wall3_trig' not found");
+        return;
+    }
+
+    while(1)
+    {
+		wall3 movez(176, 2);
+        wall3 waittill ("movedone");
+		
+        trig waittill ("trigger");
+
+        wall3 moveZ(-176, 3);
+        wall3 waittill ("movedone");
+        wait 10;
+
+        wall3 moveZ(176, 3);
+        wall3 waittill ("movedone");
+        wait 25;
     }
 }
 
