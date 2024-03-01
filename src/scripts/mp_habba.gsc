@@ -91,11 +91,11 @@ wall1()
 
     while(1)
     {
-        elevator movex(-104, 2);
+        elevator movex(-96, 2);
         elevator waittill ("movedone");
         wait 2;
 
-        elevator movex(104, 2);
+        elevator movex(96, 2);
         elevator waittill ("movedone");
         wait 2;
     }
@@ -114,11 +114,11 @@ wall2()
 
     while(1)
     {
-        elevator2 movex(104, 2);
+        elevator2 movex(96, 2);
         elevator2 waittill ("movedone");
         wait 2;
 
-        elevator2 movex(-104, 2);
+        elevator2 movex(-96, 2);
         elevator2 waittill ("movedone");
         wait 2;
     }
@@ -128,7 +128,7 @@ wall3()
 {
     wall3 = getEnt("wall3", "targetname");
     trig = getEnt("wall3_trig", "targetname");
-	trig setHintString("Reduce Hunters' Sight for 10s");
+	trig setHintString("Reduce Hunters' Sight (10s)");
 
     if(!isDefined(wall3))
     {
