@@ -11,7 +11,7 @@ wall()
     trig = getEnt("wall_trig", "targetname");
 	trig setHintString("Reduce Hunters' Sight (15s)");
 
-    if(!isDefined(wall3))
+    if(!isDefined(wall))
     {
         wait 20;
         iPrintlnBold("^1Entity named 'wall' not found");
