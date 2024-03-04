@@ -9,7 +9,7 @@ wall()
 {
     wall = getEnt("wall", "targetname");
     trig = getEnt("wall_trig", "targetname");
-	trig setHintString("Reduce Hunters' Sight (15s)");
+	trig setHintString("Reduce Hunters' Sight ^315^7s");
 
     if(!isDefined(wall))
     {

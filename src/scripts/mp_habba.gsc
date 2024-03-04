@@ -23,7 +23,7 @@ tp()
 teleport()
 {
 	dest = getent(self.target, "targetname");
-	self setHintString("Press F to be Teleported");
+	self setHintString("Press ^3F ^7to be Teleported");
 	if(!isDefined(dest))
 	{
 		wait 15;
@@ -129,7 +129,7 @@ wall3()
 {
     wall3 = getEnt("wall3", "targetname");
     trig = getEnt("wall3_trig", "targetname");
-	trig setHintString("Reduce Hunters' Sight (10s)");
+	trig setHintString("Reduce Hunters' Sight ^310^7s");
 
     if(!isDefined(wall3))
     {
