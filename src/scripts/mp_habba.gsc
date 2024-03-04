@@ -23,6 +23,7 @@ tp()
 teleport()
 {
 	dest = getent(self.target, "targetname");
+	self setHintString("Press F to be Teleported");
 	if(!isDefined(dest))
 	{
 		wait 15;
