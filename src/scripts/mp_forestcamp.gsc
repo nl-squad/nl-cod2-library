@@ -41,7 +41,7 @@ elevator()
 	elevator = getent("elevator", "targetname");
 	trig = getent("trig_elevator", "targetname");
 	
-	trig setHintString("Move the wooden planks");
+	trig setHintString("Move the wooden planks ");
 	
 	while(1)
 	{
