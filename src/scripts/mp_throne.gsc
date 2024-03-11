@@ -76,7 +76,7 @@ kraty()
     elevator = getent("kraty", "targetname");
     trig = getent("kraty_trig", "targetname");
 
-    trig setHintString("Raise the grates");
+    trig setHintString("Open the gate ");
 
     while(1)
     {
@@ -95,18 +95,19 @@ zapadnia()
 	zapadnia2 = getent("zapadnia2", "targetname");
 	trig = getent("zapadnia_trig", "targetname");
 
-    trig setHintString("Activate the trap");
+    trig setHintString("Activate the trap ");
 
-	while(true)
+	while(1)
 	{
+		trig waittill("trigger");
 		zapadnia1 rotatepitch(85, 3);
-		zapadnia1 waittill("rotatedone");
 		zapadnia2 rotatepitch(-85, 3);
+		zapadnia1 waittill("rotatedone");
 		zapadnia2 waittill("rotatedone");
 		wait(10);
 		zapadnia1 rotatepitch(-85, 3);
-		zapadnia1 waittill("rotatedone");
 		zapadnia2 rotatepitch(85, 3);
+		zapadnia1 waittill("rotatedone");
 		zapadnia2 waittill("rotatedone");
 	}
 }
