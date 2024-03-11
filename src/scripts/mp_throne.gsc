@@ -91,25 +91,29 @@ kraty()
 
 zapadnia()
 {
-	zapadnia1 = getent("zapadnia1", "targetname");
-	zapadnia2 = getent("zapadnia2", "targetname");
-	trig = getent("zapadnia_trig", "targetname");
+    zapadnia1 = getent("zapadnia1", "targetname");
+    zapadnia2 = getent("zapadnia2", "targetname");
+    trig = getent("zapadnia_trig", "targetname");
 
     trig setHintString("Activate the trap ");
 
-	while(1)
-	{
-		trig waittill("trigger");
-		zapadnia1 rotatepitch(85, 3);
-		zapadnia2 rotatepitch(-85, 3);
-		zapadnia1 waittill("rotatedone");
-		zapadnia2 waittill("rotatedone");
-		wait(10);
-		zapadnia1 rotatepitch(-85, 3);
-		zapadnia2 rotatepitch(85, 3);
-		zapadnia1 waittill("rotatedone");
-		zapadnia2 waittill("rotatedone");
-	}
+    while(1)
+    {
+        trig waittill("trigger");
+        zapadnia1 rotatepitch(85, 3);
+        zapadnia2 rotatepitch(-85, 3);
+        iPrintlnBold("^11");
+        zapadnia1 waittill("rotatedone");
+        iPrintlnBold("^12");
+        zapadnia2 waittill("rotatedone");
+        iPrintlnBold("^13");
+        wait(10);
+        iPrintlnBold("^14");
+        zapadnia1 rotatepitch(-85, 3);
+        zapadnia2 rotatepitch(85, 3);
+        zapadnia1 waittill("rotatedone");
+        zapadnia2 waittill("rotatedone");
+    }
 }
 
 text()
