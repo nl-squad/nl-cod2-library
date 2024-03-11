@@ -102,14 +102,10 @@ zapadnia()
         trig waittill("trigger");
         zapadnia1 rotatepitch(85, 3);
         zapadnia2 rotatepitch(-85, 3);
-        iPrintlnBold("^11");
         wait(10);
-        iPrintlnBold("^22");
         zapadnia1 rotatepitch(-85, 3);
         zapadnia2 rotatepitch(85, 3);
-        iPrintlnBold("^33");
         wait(4);
-        iPrintlnBold("^44");
     }
 }
 
