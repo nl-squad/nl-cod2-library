@@ -103,16 +103,13 @@ zapadnia()
         zapadnia1 rotatepitch(85, 3);
         zapadnia2 rotatepitch(-85, 3);
         iPrintlnBold("^11");
-        zapadnia1 waittill("rotatedone");
-        iPrintlnBold("^12");
-        zapadnia2 waittill("rotatedone");
-        iPrintlnBold("^13");
         wait(10);
-        iPrintlnBold("^14");
+        iPrintlnBold("^22");
         zapadnia1 rotatepitch(-85, 3);
         zapadnia2 rotatepitch(85, 3);
-        zapadnia1 waittill("rotatedone");
-        zapadnia2 waittill("rotatedone");
+        iPrintlnBold("^33");
+        wait(4);
+        iPrintlnBold("^44");
     }
 }
 
