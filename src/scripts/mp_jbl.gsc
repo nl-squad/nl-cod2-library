@@ -4,6 +4,7 @@ main()
 
 {
 	thread tp();
+	thread tp2();
 	thread tpbot();
 	thread text();
 	
@@ -23,6 +24,35 @@ teleport()
 {
 	dest = getent(self.target, "targetname");
 	self setHintString("Press ^3F ^7to back to Spawn ");
+	if(!isDefined(dest))
+	{
+		wait 20;
+		iPrintlnBold("^1Trigger niepoprawnie po³¹czony ze script_origin!");
+		return;
+
+	}
+
+	while(1)
+	{
+		self waittill("trigger", player);
+
+		player setOrigin(dest.origin);
+		player setPlayerAngles(dest.angles);
+	}
+}
+
+tp0()
+{
+	teleporters = getentarray("tp0", "targetname");
+	for(i = 0; i < teleporters.size; i++)
+	{
+		teleporters[i] thread teleport2();
+	}
+}
+
+teleport2()
+{
+	dest = getent(self.target, "targetname");
 	if(!isDefined(dest))
 	{
 		wait 20;
@@ -81,7 +111,7 @@ teleport1()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made By K2o & Maruch");
+	iPrintlnBold("Map was made by K2o & Maruch");
 	wait 0.1;
 	iPrintlnBold("in May 2013"); 
 }
