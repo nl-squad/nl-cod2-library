@@ -1,6 +1,5 @@
 #include blanco\utils;
 
-
 main()
 
 {

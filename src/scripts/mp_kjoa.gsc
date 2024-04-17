@@ -1,13 +1,14 @@
+#include blanco\utils;
+
 main()
+
 {
+	thread tp();
+	thread tpbot();
+	thread tpbot2();
+	thread text();
 
-thread tp();
-thread tpbot();
-thread tpbot2();
-thread text();
-
-ambientPlay("ambient_africa_nl");
-
+	ambientPlay("ambient_africa_nl");
 }
 
 tp()
