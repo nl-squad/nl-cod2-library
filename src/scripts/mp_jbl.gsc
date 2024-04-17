@@ -1,6 +1,7 @@
 #include blanco\utils;
 
 main()
+
 {
 	thread tp();
 	thread tpbot();
