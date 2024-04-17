@@ -4,7 +4,7 @@ main()
 
 {
 	thread tp();
-	thread tp2();
+	thread tp0();
 	thread tpbot();
 	thread text();
 	
