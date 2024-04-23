@@ -4,7 +4,7 @@ main()
 	thread text();
 	ambientPlay("ambient_france_nl");
 	
-	if (!isDefined(level.registerDynamicMapPart))
+	if (!isDefined(level.registerStage))
     {
         thread unlockGate1();
         thread unlockGate2();
@@ -13,37 +13,16 @@ main()
         return;
     }
 
-    gateRegistration1 = spawnStruct();
-    gateRegistration1.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration1.activatorValue = 8;
-    gateRegistration1.activateFunction = ::unlockGate1;
-    gateRegistration1.deactivateFunction = ::lockGate1;
-	gateRegistration1.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration1 );
+    [[ level.selectStageZombiesSpawnStrategy ]](level.STAGE_ZOMBIE_SPAWN_ONLY_CURRENT_STAGE);
 
-    gateRegistration2 = spawnStruct();
-    gateRegistration2.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration2.activatorValue = 12;
-    gateRegistration2.activateFunction = ::unlockGate2;
-    gateRegistration2.deactivateFunction = ::lockGate2;
-	gateRegistration2.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration2 );
+    [[ level.registerStage ]](2, level.ZOMBIES_AT_LEAST, 8);
+    [[ level.registerStage ]](3, level.ZOMBIES_AT_LEAST, 12);
+    [[ level.registerStage ]](4, level.ZOMBIES_AT_LEAST, 16);
 
-    gateRegistration3 = spawnStruct();
-    gateRegistration3.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration3.activatorValue = 16;
-    gateRegistration3.activateFunction = ::unlockGate3;
-    gateRegistration3.deactivateFunction = ::lockGate3;
-	gateRegistration3.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration3 );
-	
-	gateRegistration4 = spawnStruct();
-    gateRegistration4.activatorType = level.ACTIVATE_ON_ROUND_ZOMBIES_AT_LEAST;
-    gateRegistration4.activatorValue = 16;
-    gateRegistration4.activateFunction = ::unlockGate4;
-    gateRegistration4.deactivateFunction = ::lockGate4;
-	gateRegistration4.isRoundActivatedOnce = true;
-    [[ level.registerDynamicMapPart ]]( gateRegistration4 );
+    [[ level.registerStageAction ]](2, ::unlockGate1, ::lockGate1);
+    [[ level.registerStageAction ]](3, ::unlockGate2, ::lockGate2);
+    [[ level.registerStageAction ]](4, ::unlockGate3, ::lockGate3);
+    [[ level.registerStageAction ]](4, ::unlockGate4, ::lockGate4);
 }
 
 unlockGate1(dynamicMapPart)
@@ -53,8 +32,8 @@ unlockGate1(dynamicMapPart)
     gate moveZ(192, 4);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 lockGate1(dynamicMapPart)
@@ -63,8 +42,8 @@ lockGate1(dynamicMapPart)
     gate moveZ(-192, 2);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 unlockGate2(dynamicMapPart)
@@ -74,8 +53,8 @@ unlockGate2(dynamicMapPart)
     gate moveZ(192, 4);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 lockGate2(dynamicMapPart)
@@ -84,8 +63,8 @@ lockGate2(dynamicMapPart)
     gate moveZ(-192, 2);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 unlockGate3(dynamicMapPart)
@@ -95,8 +74,8 @@ unlockGate3(dynamicMapPart)
     gate moveZ(-168, 2);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 lockGate3(dynamicMapPart)
@@ -105,8 +84,8 @@ lockGate3(dynamicMapPart)
     gate moveZ(168, 2);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 unlockGate4(dynamicMapPart)
@@ -115,8 +94,8 @@ unlockGate4(dynamicMapPart)
     gate moveZ(-168, 2);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 lockGate4(dynamicMapPart)
@@ -125,8 +104,8 @@ lockGate4(dynamicMapPart)
     gate moveZ(168, 2);
     gate waittill("movedone");
 
-    if (isDefined(level.markAcitivationAsDone))
-        [[ level.markAcitivationAsDone ]](dynamicMapPart);
+    if (isDefined(level.markStageActionAsDone))
+        [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
 text()
