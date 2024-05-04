@@ -27,18 +27,18 @@ green()
 
 red()
 {
-	elevator = getent("red", "targetname");
-	trig = getent("red_trig", "targetname");
+	elevator1 = getent("red", "targetname");
+	trig1 = getent("red_trig", "targetname");
 	
 	while(1)
 	{
-		trig waittill("trigger");
+		trig1 waittill("trigger");
 		wait(2);
-		elevator movex(-64, 2);
-		elevator waittill ("movedone");
+		elevator1 movex(-64, 2);
+		elevator1 waittill ("movedone");
 		wait(5);
-		elevator movex(64, 2);
-		elevator waittill("movedone");
+		elevator1 movex(64, 2);
+		elevator1 waittill("movedone");
 	}
 }
 
