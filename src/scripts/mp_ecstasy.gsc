@@ -20,7 +20,7 @@ green()
 		elevator movez(40, 2);
 		elevator waittill ("movedone");
 		wait(5);
-		elevator movex(-40, 2);
+		elevator movez(-40, 2);
 		elevator waittill("movedone");
 	}
 }
@@ -36,7 +36,7 @@ red()
 		wait(2);
 		elevator1 movex(-64, 2);
 		elevator1 waittill ("movedone");
-		wait(5);
+		wait(10);
 		elevator1 movex(64, 2);
 		elevator1 waittill("movedone");
 	}
