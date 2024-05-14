@@ -1,7 +1,7 @@
 main()
 {
-	thread runElevatorZ("1", 344, 2);
-	thread runElevatorZ("2", 344, 2);
+	thread runElevatorZ("1", -344, 2);
+	thread runElevatorZ("2", -344, 2);
 	thread tp();
 	thread text();
 	
