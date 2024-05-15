@@ -13,6 +13,8 @@ runElevatorZ(num, zDiff, moveTime)
 {
 	elevator = getEnt("elevator" + num, "targetname");
   	trig = getEnt("trig_elevator" + num, "targetname");
+	
+	trig setHintString("Press ^3F ^7to Summon the Elevator  ");
 
   	if(!isDefined(elevator))
     {
