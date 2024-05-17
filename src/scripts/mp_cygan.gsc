@@ -12,10 +12,7 @@ main()
 runElevatorZ(num, zDiff, moveTime)
 {
 	elevator = getEnt("elevator" + num, "targetname");
-  	trig = getEnt("trig_elevator" + num, "targetname");
 	
-	trig setHintString("Press ^3F ^7to Summon the Elevator  ");
-
   	if(!isDefined(elevator))
     {
 		wait 15;
@@ -32,11 +29,9 @@ runElevatorZ(num, zDiff, moveTime)
 	
 	while(1)
 	{
-      	trig waittill ("trigger");
-
 		elevator moveZ (zdiff, moveTime);
 		elevator waittill ("movedone");
-      	wait 2;
+      	wait 4;
 
 		elevator moveZ (zdiff * -1, moveTime);
 		elevator waittill ("movedone");
