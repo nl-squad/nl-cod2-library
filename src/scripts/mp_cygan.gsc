@@ -19,13 +19,6 @@ runElevatorZ(num, zDiff, moveTime)
 		iPrintlnBold("^1Entity named 'elevator" + num + "' not found");
 		return;
 	}
-
-  	if(!isDefined(trig))
-    {
-		wait 15;
-		iPrintlnBold("^1Entity named 'trig_elevator" + num + "' not found");
-		return;
-	}
 	
 	while(1)
 	{
