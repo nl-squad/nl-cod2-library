@@ -13,8 +13,6 @@ main()
         return;
     }
 
-    [[ level.selectStageZombiesSpawnStrategy ]](level.STAGE_ZOMBIE_SPAWN_ONLY_CURRENT_STAGE);
-
     [[ level.registerStage ]](2, level.ZOMBIES_AT_LEAST, 8);
     [[ level.registerStage ]](3, level.ZOMBIES_AT_LEAST, 12);
     [[ level.registerStage ]](4, level.ZOMBIES_AT_LEAST, 16);
