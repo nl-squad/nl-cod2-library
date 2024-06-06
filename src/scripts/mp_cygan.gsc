@@ -1,7 +1,7 @@
 main()
 {
-	thread runElevatorZ("1", -344, 2);
-	thread runElevatorZ("2", -344, 2);
+	thread runElevatorZ("1", -344, 2.5);
+	thread runElevatorZ("2", -344, 2.5);
 	thread tp();
 	thread text();
 	
@@ -28,7 +28,7 @@ runElevatorZ(num, zDiff, moveTime)
 
 		elevator moveZ (zdiff * -1, moveTime);
 		elevator waittill ("movedone");
-		wait 2;
+		wait 3;
 	}
 }
 
