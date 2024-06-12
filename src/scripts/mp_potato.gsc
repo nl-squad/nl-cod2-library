@@ -103,7 +103,7 @@ elevator()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Black & Zazu");
+	iPrintlnBold("Map was made by Black & zazu");
 	wait 0.1;
 	iPrintlnBold("in January 2013"); 			 
 }
