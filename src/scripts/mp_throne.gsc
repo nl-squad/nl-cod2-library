@@ -1,11 +1,12 @@
 main()
 {
+	ambientPlay("ambient_russia_nl");
+	ambientFX();
+	
 	thread tp();
 	thread kraty();
 	thread zapadnia();
 	thread text();
-
-	ambientPlay("ambient_russia_nl");
 	
 	if (!isDefined(level.registerDynamicMapPart))
     {
@@ -20,6 +21,23 @@ main()
     gateRegistration1.deactivateFunction = ::lockGate1;
 	gateRegistration1.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration1 );
+}
+
+ambientFX()
+{
+	//fire
+	level._effect["fire_small"] = loadfx ("fx/fire/tank_fire_engine.efx");
+	maps\mp\_fx::loopfx("fire_small", (1740, 70, -475), 1);
+	maps\mp\_fx::soundfx("smallfire", (1740, 70, -475));
+	maps\mp\_fx::loopfx("fire_small", (-1207, -701, 25), 1);
+	maps\mp\_fx::soundfx("smallfire", (-1207, -701, 25));
+	
+	//radio
+	//maps\mp\_fx::soundfx("germanradio_chatter", (2015,-56,-471));
+	
+	//spotlight
+	level._effect["spotlight"] = loadfx("fx/misc/spotlight_decoytown.efx");
+	maps\mp\_fx::loopfx("spotlight", (-161, -655, -436), 3, (-88, -391, -375));
 }
 
 unlockGate1(dynamicMapPart)
@@ -91,22 +109,26 @@ kraty()
 
 zapadnia()
 {
-    zapadnia1 = getent("zapadnia1", "targetname");
-    zapadnia2 = getent("zapadnia2", "targetname");
-    trig = getent("zapadnia_trig", "targetname");
+	zapadnia1 = getent("zapadnia1", "targetname");
+	zapadnia2 = getent("zapadnia2", "targetname");
+	trig = getent("zapadnia_trig", "targetname");
 
     trig setHintString("Activate the trap ");
 
-    while(1)
-    {
-        trig waittill("trigger");
-        zapadnia1 rotatepitch(85, 3);
-        zapadnia2 rotatepitch(-85, 3);
-        wait(10);
-        zapadnia1 rotatepitch(-85, 3);
-        zapadnia2 rotatepitch(85, 3);
-        wait(4);
-    }
+	while(1)
+	{
+		trig waittill("trigger");
+		zapadnia1 rotatepitch(85, 3);
+		zapadnia2 rotatepitch(-85, 3);
+		iPrintlnBold("^11");
+		wait(10);
+		iPrintlnBold("^22");
+		zapadnia1 rotatepitch(-85, 3);
+		zapadnia2 rotatepitch(85, 3);
+		iPrintlnBold("^33");
+		wait(4);
+		iPrintlnBold("^44");
+	}
 }
 
 text()
