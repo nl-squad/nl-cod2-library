@@ -25,7 +25,7 @@ main()
 
 unlockGate1(dynamicMapPart)
 {
-    iPrintlnBold("Footbridge #1 has been lowered");
+    iPrintlnBold("Bridge #1 has been closed");
     gate = getEnt("gate1", "targetname");
     gate moveZ(192, 4);
     gate waittill("movedone");
@@ -46,7 +46,7 @@ lockGate1(dynamicMapPart)
 
 unlockGate2(dynamicMapPart)
 {
-    iPrintlnBold("Footbridge #2 has been lowered");
+    iPrintlnBold("Bridge #2 has been closed");
     gate = getEnt("gate2", "targetname");
     gate moveZ(192, 4);
     gate waittill("movedone");
@@ -67,7 +67,7 @@ lockGate2(dynamicMapPart)
 
 unlockGate3(dynamicMapPart)
 {
-    iPrintlnBold("The gates have been lowered");
+    iPrintlnBold("Gates have been lowered");
     gate = getEnt("gate3", "targetname");
     gate moveZ(-216, 2);
     gate waittill("movedone");
