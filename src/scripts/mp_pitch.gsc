@@ -18,7 +18,7 @@ unlockGate(dynamicMapPart)
 {
     iPrintlnBold("^7Gate has been ^1closed");
     gate = getEnt("gate", "targetname");
-    gate moveZ(152, 3);
+    gate moveZ(424, 3);
     gate waittill("movedone");
 
     if (isDefined(level.markStageActionAsDone))
@@ -28,7 +28,7 @@ unlockGate(dynamicMapPart)
 lockGate(dynamicMapPart)
 {
     gate = getEnt("gate", "targetname");
-    gate moveZ(-152, 3);
+    gate moveZ(-424, 3);
     gate waittill("movedone");
 
     if (isDefined(level.markStageActionAsDone))
