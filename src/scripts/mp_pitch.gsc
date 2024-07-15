@@ -2,23 +2,23 @@ main()
 {
 	thread text();
 	ambientPlay("ambient_russia_nl");
-	
+
 	if (!isDefined(level.registerStage))
     {
         thread unlockGate();
-		return;
+        return;
     }
-	
-	 [[ level.registerStage ]](2, level.ZOMBIES_AT_LEAST, 14);
-	 [[ level.registerStageAction ]](2, ::unlockGate, ::lockGate);
 
+    [[ level.registerStage ]](2, level.ZOMBIES_AT_LEAST, 14);
+
+    [[ level.registerStageAction ]](2, ::unlockGate, ::lockGate);
 }
 
 unlockGate(dynamicMapPart)
 {
     iPrintlnBold("^7Gate has been ^1closed");
     gate = getEnt("gate", "targetname");
-    gate moveZ(424, 3);
+    gate moveZ(224, 3);
     gate waittill("movedone");
 
     if (isDefined(level.markStageActionAsDone))
@@ -28,7 +28,7 @@ unlockGate(dynamicMapPart)
 lockGate(dynamicMapPart)
 {
     gate = getEnt("gate", "targetname");
-    gate moveZ(-424, 3);
+    gate moveZ(-224, 3);
     gate waittill("movedone");
 
     if (isDefined(level.markStageActionAsDone))
