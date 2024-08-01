@@ -2,7 +2,6 @@ main()
 {
 	thread tp();
 	thread tpbot();
-	thread elevator();
 	thread text();
 	
 	ambientPlay("ambient_france_nl");
@@ -74,30 +73,6 @@ teleport1()
         if (isDefined(player))
 		    player unlink();
 	}
-}
-
-elevator()
-
-{
-    elevator = getEnt("elevator", "targetname");
-
-    if(!isDefined(elevator))
-    {
-        wait 20;
-        iPrintlnBold("^1Entity named 'elevator' not found");
-        return;
-    }
-
-    while(1)
-    {
-        elevator moveZ(-256, 2);
-        elevator waittill ("movedone");
-        wait 4;
-
-        elevator moveZ(256, 2);
-        elevator waittill ("movedone");
-        wait 2;
-    }
 }
 
 text()
