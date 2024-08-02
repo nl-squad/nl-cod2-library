@@ -1,43 +1,10 @@
 main()
 {
-	thread runElevatorZ("1", 280, 2);
 	thread tp();
+	thread tpbot();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
-}
-
-runElevatorZ(num, ZDiff, moveTime)
-{
-	elevator = getEnt("elevator" + num, "targetname");
-  	trig = getEnt("trig_elevator" + num, "targetname");
-
-  	if(!isDefined(elevator))
-    {
-		wait 15;
-		iPrintlnBold("^1Entity named 'elevator" + num + "' not found");
-		return;
-	}
-
-  	if(!isDefined(trig))
-    {
-		wait 15;
-		iPrintlnBold("^1Entity named 'trig_elevator" + num + "' not found");
-		return;
-	}
-	
-	while(1)
-	{
-      	trig waittill ("trigger");
-
-		elevator moveZ (Zdiff, moveTime);
-		elevator waittill ("movedone");
-      	wait 2;
-
-		elevator moveZ (Zdiff * -1, moveTime);
-		elevator waittill ("movedone");
-		wait 2;
-	}
 }
 
 tp()
@@ -69,6 +36,43 @@ teleport()
 	}
 }
 
+tpbot()
+{
+	teleporters = getentarray("tpbot", "targetname");
+	for(i = 0; i < teleporters.size; i++)
+	{
+		teleporters[i] thread teleport1();
+	}
+}
+
+teleport1()
+{
+	dest = getent(self.target, "targetname");
+	if(!isDefined(dest))
+	{
+		wait 15;
+		iPrintlnBold("^1MaxDamage is a thief");
+		return;
+
+	}
+
+	while(1)
+	{
+		self waittill("trigger", player);
+
+		if (!player isBot())
+			continue;
+			
+		player.solutionNextCalculationTime = getTime();
+		player setOrigin(dest.origin);
+		player setPlayerAngles(dest.angles);
+		player linkTo(level.blocker);
+		wait 0.1;
+
+        if (isDefined(player))
+		    player unlink();
+	}
+}
 
 text()
 {
