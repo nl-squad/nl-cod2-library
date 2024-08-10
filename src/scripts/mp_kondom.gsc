@@ -1,7 +1,7 @@
 main()
 {
     thread text();
-    ambientPlay("ambient_africa_nl");
+    ambientPlay("ambient_france_nl");
 }
 
 text()
@@ -9,5 +9,5 @@ text()
     wait(12 * 60);
     iPrintlnBold("Map was made by K2o");
     wait(0.1);
-    iPrintlnBold("in July 2024");
+    iPrintlnBold("in June 2013");
 }
