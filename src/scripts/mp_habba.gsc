@@ -3,8 +3,6 @@ main()
 {
 	thread tp();
 	thread tpbot();
-	thread wall1();
-	thread wall2();
 	thread text();
 
 	ambientPlay("ambient_france_nl");
@@ -76,52 +74,6 @@ teleport1()
         if (isDefined(player))
 		    player unlink();
 	}
-}
-
-wall1()
-{
-    elevator = getEnt("wall1", "targetname");
-
-    if(!isDefined(elevator))
-    {
-        wait 20;
-        iPrintlnBold("^1Entity named 'wall' not found");
-        return;
-    }
-
-    while(1)
-    {
-        elevator movex(-96, 2);
-        elevator waittill ("movedone");
-        wait 2;
-
-        elevator movex(96, 2);
-        elevator waittill ("movedone");
-        wait 2;
-    }
-}
-
-wall2()
-{
-    elevator2 = getEnt("wall2", "targetname");
-
-    if(!isDefined(elevator2))
-    {
-        wait 20;
-        iPrintlnBold("^1Entity named 'wall2' not found");
-        return;
-    }
-
-    while(1)
-    {
-        elevator2 movex(96, 2);
-        elevator2 waittill ("movedone");
-        wait 2;
-
-        elevator2 movex(-96, 2);
-        elevator2 waittill ("movedone");
-        wait 2;
-    }
 }
 
 text()
