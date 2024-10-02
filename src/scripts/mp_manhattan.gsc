@@ -9,7 +9,7 @@ main()
 text()
 {
 	wait 12 * 60;
-	iPrintlnBold("Map was made by Akamaru & Black");
+	iPrintlnBold("Map was made by Akamaru & Vegarin");
 	wait 0.1;
 	iPrintlnBold("in January 2012");
 }
