@@ -1,15 +1,15 @@
 main()
 
 {
-	thread tp();
+	thread tpbot();
 	thread text();
 
 	ambientPlay("ambient_africa_nl");
 }
 
-tp()
+tpbot()
 {
-	teleporters = getentarray("tp", "targetname");
+	teleporters = getentarray("tpbot", "targetname");
 	for(i = 0; i < teleporters.size; i++)
 	{
 		teleporters[i] thread teleport();
