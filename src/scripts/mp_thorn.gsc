@@ -10,7 +10,7 @@ elevator()
 {
     elevator = getEnt("elevator", "targetname"); 
     
-    wait 60;  
+    wait 40;  
     iPrintlnBold("^3Yellow Room ^7has been Opened"); 
     
     elevator moveZ(-88, 2);  
@@ -45,11 +45,11 @@ wall()
 
         wall moveZ(136, 3);
         wall waittill ("movedone");
-        wait 15;
+        wait 20;
 
         wall moveZ(-136, 2);
         wall waittill ("movedone");
-        wait 20;
+        wait 10;
     }
 }
 

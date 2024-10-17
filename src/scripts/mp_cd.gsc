@@ -6,7 +6,7 @@ main()
 	thread elevator2();
 	thread text();
 	
-	ambientPlay("ambient_russia_nl");
+	ambientPlay("ambient_france_nl");
 }
 
 tp()

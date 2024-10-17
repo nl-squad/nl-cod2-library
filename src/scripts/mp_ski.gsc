@@ -6,7 +6,7 @@ main()
 	thread text();
 
 
-	ambientPlay("ambient_africa_nl");
+	ambientPlay("ambient_russia_nl");
 }
 
 tp()
