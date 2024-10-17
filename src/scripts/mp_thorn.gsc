@@ -1,8 +1,20 @@
 main()
 {
+	thread elevator();
 	thread wall();
     thread text();    
     ambientPlay("ambient_africa_nl");
+}
+
+elevator()
+{
+    elevator = getEnt("elevator", "targetname"); 
+    
+    wait 60;  
+    iPrintlnBold("^3Yellow Room ^7has been Opened"); 
+    
+    elevator moveZ(-88, 2);  
+    elevator waittill("movedone"); 
 }
 
 wall()
