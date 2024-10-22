@@ -3,6 +3,7 @@ main()
 	thread runElevatorZ("1", -344, 3);
 	thread runElevatorZ("2", -344, 3);
 	thread tp();
+	thread tpbot();
 	thread text();
 	
 	ambientPlay("ambient_france_nl");
@@ -61,6 +62,34 @@ teleport()
 	}
 }
 
+tpbot()
+{
+	teleporters = getentarray("tpbot", "targetname");
+	for(i = 0; i < teleporters.size; i++)
+	{
+		teleporters[i] thread teleport1();
+	}
+}
+
+teleport1()
+{
+	dest = getent(self.target, "targetname");
+	if(!isDefined(dest))
+	{
+		wait 15;
+		iPrintlnBold("^1MaxDamage is a thief");
+		return;
+
+	}
+
+	while(1)
+	{
+		self waittill("trigger", player);
+
+		player setOrigin(dest.origin);
+		player setPlayerAngles(dest.angles);
+	}
+}
 
 text()
 {
