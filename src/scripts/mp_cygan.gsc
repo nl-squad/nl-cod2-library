@@ -86,8 +86,17 @@ teleport1()
 	{
 		self waittill("trigger", player);
 
+		if (!player isBot())
+			continue;
+			
+		player.solutionNextCalculationTime = getTime();
 		player setOrigin(dest.origin);
 		player setPlayerAngles(dest.angles);
+		player linkTo(level.blocker);
+		wait 0.1;
+
+        if (isDefined(player))
+		    player unlink();
 	}
 }
 
