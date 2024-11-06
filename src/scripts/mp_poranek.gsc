@@ -3,7 +3,7 @@ main()
 
 	level._effect["spot1"] = loadfx("fx/misc/spotlight_decoytown.efx");
 	
-	maps\mp\_fx::loopfx("spot1", (-8, 120, -184), 5);
+	maps\mp\_fx::loopfx("spot1", (-8, -120, -184), 5);
 	
 	thread sphereControl(1);
 	thread text();
