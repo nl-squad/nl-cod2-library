@@ -11,8 +11,8 @@ main()
 	
     maps\mp\_fx::loopfx("fire", (-872, -568, -96), 1);
 	maps\mp\_fx::loopfx("smoke", (-872, -568, -96), 1);
-	maps\mp\_fx::loopfx("fire", (392, -104, -96), 1);
-	maps\mp\_fx::loopfx("smoke", (392, -104, -96), 1);
+	maps\mp\_fx::loopfx("fire", (392, -88, -96), 1);
+	maps\mp\_fx::loopfx("smoke", (392, -88, -96), 1);
 	maps\mp\_fx::loopfx("fire", (760, -212, -96), 1);
 	maps\mp\_fx::loopfx("smoke", (760, -212, -96), 1);
 
