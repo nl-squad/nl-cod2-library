@@ -6,8 +6,11 @@ main()
 	ambientPlay("ambient_russia_nl");
 
     level._effect["fire"] = loadfx("fx/props/barrel_fire2.efx");
+	level._effect["smoke"] = loadfx("fx/smoke/damaged_vehicle_smoke.efx");
 	
-    maps\mp\_fx::loopfx("fire", (-848, -544, 8), 1);
+	
+    maps\mp\_fx::loopfx("fire", (-872, -568, -64), 1);
+	maps\mp\_fx::loopfx("smoke", (392, -104, -80), 1);
 }
 
 text()
