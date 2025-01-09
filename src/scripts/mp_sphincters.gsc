@@ -20,6 +20,7 @@ tp()
 teleport()
 {
 	dest = getent(self.target, "targetname");
+	self setHintString("Press ^3F ^7to retreat to the Balcony ");
 	if(!isDefined(dest))
 	{
 		wait 15;
