@@ -1,10 +1,20 @@
 main()
 {
+	thread qula();
 	thread text();	
 	
 	ambientPlay("ambient_africa_nl");
 }
 
+qula()
+{
+	qula = getEnt("qula", "targetname");	
+	while(true)
+		{
+			qula rotateyaw(360, 10);
+			qula waittill("rotatedone");
+		}
+}
 
 text()
 {
@@ -13,3 +23,4 @@ text()
 	wait 0.1;
 	iPrintlnBold("in August 2012"); 		
 }
+
