@@ -4,8 +4,16 @@ main()
 	tp();
 	tpbot();
 	thread text();
-
+	
 	ambientPlay("ambient_france_nl");
+
+	level._effect["fire"] = loadfx("fx/props/barrel_fire2.efx");
+	level._effect["smoke"] = loadfx("fx/smoke/damaged_vehicle_smoke.efx");
+	
+	maps\mp\_fx::loopfx("fire", (24, 24, 400), 1);
+	maps\mp\_fx::loopfx("smoke", (24, 24, 400), 1);
+
+	
 }
 
 tp()
