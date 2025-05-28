@@ -17,7 +17,7 @@ secret1()
     wait 120;  
     iPrintlnBold("Box #1 ^2Available"); 
     
-    secret1 moveX(54, 2);  
+    secret1 moveX(48, 2);  
     secret1 waittill("movedone"); 
 }
 
@@ -28,7 +28,7 @@ secret2()
     wait 420;  
     iPrintlnBold("Box #2 ^2Available"); 
     
-    secret2 moveY(-54, 2);  
+    secret2 moveY(-48, 2);  
     secret2 waittill("movedone"); 
 }
 
@@ -39,7 +39,7 @@ secret3()
     wait 420;  
     iPrintlnBold("Box #3 ^2Available"); 
     
-    secret3 moveY(-54, 2);  
+    secret3 moveY(-48, 2);  
     secret3 waittill("movedone"); 
 }
 
@@ -50,7 +50,7 @@ secret4()
     wait 420;  
     iPrintlnBold("Box #4 ^2Available"); 
     
-    secret4 moveY(-54, 2);  
+    secret4 moveY(-48, 2);  
     secret4 waittill("movedone"); 
 }
 
