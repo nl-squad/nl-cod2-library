@@ -17,13 +17,13 @@ secret1()
     wait 120;  
     iPrintlnBold("Box #1 ^2Available"); 
     
-    secret1 moveX(48, 2);  
+    secret1 moveY(48, 2);  
     secret1 waittill("movedone"); 
 }
 
 secret2()
 {
-    secret2 = getEnt("secret1", "targetname"); 
+    secret2 = getEnt("secret2", "targetname"); 
     
     wait 420;  
     iPrintlnBold("Box #2 ^2Available"); 
@@ -34,7 +34,7 @@ secret2()
 
 secret3()
 {
-    secret3 = getEnt("secret1", "targetname"); 
+    secret3 = getEnt("secret3", "targetname"); 
     
     wait 420;  
     iPrintlnBold("Box #3 ^2Available"); 
