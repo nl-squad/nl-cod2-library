@@ -17,7 +17,7 @@ secret1()
     wait 120;  
     iPrintlnBold("Box #1 ^2Available"); 
     
-    secret1 moveY(48, 2);  
+    secret1 moveX(48, 2);  
     secret1 waittill("movedone"); 
 }
 
@@ -36,7 +36,7 @@ secret3()
 {
     secret3 = getEnt("secret3", "targetname"); 
     
-    wait 420;  
+    wait 720;  
     iPrintlnBold("Box #3 ^2Available"); 
     
     secret3 moveY(-48, 2);  
@@ -47,7 +47,7 @@ secret4()
 {
     secret4 = getEnt("secret4", "targetname"); 
     
-    wait 420;  
+    wait 1020;  
     iPrintlnBold("Box #4 ^2Available"); 
     
     secret4 moveY(-48, 2);  
