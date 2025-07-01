@@ -2,7 +2,7 @@ main()
 
 {
 	thread tp();
-	thread tp0();
+	thread tpbot();
 	thread text();
 	
 	ambientPlay("ambient_france_nl");
