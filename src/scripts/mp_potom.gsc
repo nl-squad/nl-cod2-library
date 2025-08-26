@@ -87,11 +87,11 @@ wall()
     {	
         trig waittill ("trigger");
 
-        wall moveZ(120, 3);
+        wall moveZ(80, 3);
         wall waittill ("movedone");
         wait 10;
 
-        wall moveZ(-120, 2);
+        wall moveZ(-80, 2);
         wall waittill ("movedone");
     }
 }
