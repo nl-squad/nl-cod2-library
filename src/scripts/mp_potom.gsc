@@ -83,9 +83,6 @@ wall()
     trig = getEnt("wall_trig", "targetname");
 	trig setHintString("Open the Door ");
 	
-	wait 40;  
-    iPrintlnBold("Labolatory is ^2Available"); 
-    
     while(1)
     {	
         trig waittill ("trigger");
