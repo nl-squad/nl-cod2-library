@@ -1,10 +1,19 @@
 main()
 {
-	
+	thread wall();
 	thread text();
 	
 	ambientPlay("ambient_africa_nl");
 	
+}
+
+wall()
+{
+    wall = getEnt("wall", "targetname"); 
+    
+    wait 40;  
+    wall moveZ(-60, 2);  
+    wall waittill("movedone"); 
 }
 
 text()
