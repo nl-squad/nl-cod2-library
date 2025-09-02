@@ -11,7 +11,7 @@ wall()
 {
     wall = getEnt("wall", "targetname"); 
     
-    wait 40;  
+    wait 180;  
     wall moveZ(-60, 2);  
     wall waittill("movedone"); 
 }
