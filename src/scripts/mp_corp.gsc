@@ -103,8 +103,8 @@ wallL()
     
     wait 180;  
     
-    elevator moveZ(-96, 3);  
-    elevator waittill("movedone"); 
+    wallL moveZ(-96, 3);  
+    wallL waittill("movedone"); 
 }
 
 
