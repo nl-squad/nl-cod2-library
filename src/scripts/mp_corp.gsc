@@ -4,6 +4,7 @@ main()
 	tp();
 	tpbot();
 	thread wall();
+	thread wallL();
 	thread text();
 
 	ambientPlay("ambient_france_nl");
@@ -89,12 +90,23 @@ wall()
 
         wall moveZ(80, 3);
         wall waittill ("movedone");
-        wait 10;
+        wait 15;
 
         wall moveZ(-80, 2);
         wall waittill ("movedone");
     }
 }
+
+wallL()
+{
+    wallL = getEnt("wallL", "targetname"); 
+    
+    wait 180;  
+    
+    elevator moveZ(-96, 3);  
+    elevator waittill("movedone"); 
+}
+
 
 text()
 {
