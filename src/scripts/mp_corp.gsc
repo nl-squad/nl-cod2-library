@@ -3,6 +3,7 @@ main()
 {
 	tp();
 	tpbot();
+	tpG();
 	thread wall();
 	thread wallL();
 	thread text();
@@ -78,17 +79,47 @@ teleport1()
 	}
 }
 
+tpG()
+{
+	teleporters = getentarray("tpG", "targetname");
+	for(i = 0; i < teleporters.size; i++)
+	{
+		teleporters[i] thread teleportG();
+	}
+}
+
+teleportG()
+{
+	dest = getent(self.target, "targetname");
+	self setHintString("Press ^3F ^7to go Up ");
+	if(!isDefined(dest))
+	{
+		wait 15;
+		iPrintlnBold("^1MaxDamage is a thief");
+		return;
+
+	}
+
+	while(1)
+	{
+		self waittill("trigger", player);
+
+		player setOrigin(dest.origin);
+		player setPlayerAngles(dest.angles);
+	}
+}
+
 wall()
 {
     wall = getEnt("wall", "targetname");
     trig = getEnt("wall_trig", "targetname");
-	trig setHintString("Open the Door ");
+	trig setHintString("Open the Gate ");
 	
     while(1)
     {	
         trig waittill ("trigger");
 
-        wall moveZ(80, 3);
+        wall moveZ(80, 4);
         wall waittill ("movedone");
         wait 15;
 
@@ -101,7 +132,8 @@ wallL()
 {
     wallL = getEnt("wallL", "targetname"); 
     
-    wait 180;  
+    wait 180;
+	iPrintlnBold("Luger is ^2Available");	
     
     wallL moveZ(-96, 3);  
     wallL waittill("movedone"); 
