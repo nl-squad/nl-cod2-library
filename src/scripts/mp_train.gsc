@@ -30,7 +30,7 @@ elevator()
 
         wait(5);
     }
-
+}
 text()
 {
 	wait 12 * 60;
