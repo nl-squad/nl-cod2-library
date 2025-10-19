@@ -8,12 +8,12 @@ main()
 
 elevator()
 {
-    elevator = getEnt("cug", "targetname");
-    trig = getEnt("trig_cug","targetname");
+    elevator = getEnt("elevator", "targetname");
+    trig = getEnt("trig_elevator","targetname");
 
     if(!isDefined(elevator) || !isDefined(trig))
     {
-        iPrintlnBold("^1Entity 'cug' or trigger 'trig_cug' not found");
+        iPrintlnBold("^1Entity 'elevator' or trigger 'trig_elevator' not found");
         return;
     }
 
