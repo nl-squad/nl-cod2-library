@@ -9,29 +9,27 @@ main()
 elevator()
 {
     elevator = getEnt("cug", "targetname");
-    trig = getent("trig_cug","targetname");
+    trig = getEnt("trig_cug","targetname");
 
-    if(!isDefined(elevator))
+    if(!isDefined(elevator) || !isDefined(trig))
     {
-        wait 20;
-        iPrintlnBold("^1Entity named 'elevator' not found");
+        iPrintlnBold("^1Entity 'cug' or trigger 'trig_cug' not found");
         return;
     }
 
     while(1)
     {
         trig waittill("trigger");
-        elevator moveY(-2500,7,1.2,1.2);
+        elevator moveY(2500,7);
         elevator waittill("movedone");
 
         wait(5);
 
-        elevator moveY(2500,7,1.2,1.2);
+        elevator moveY(-2500,7);
         elevator waittill("movedone");
 
         wait(5);
     }
-}
 
 text()
 {
