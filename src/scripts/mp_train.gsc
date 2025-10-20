@@ -20,12 +20,12 @@ elevator()
     while(1)
     {
         trig waittill("trigger");
-        elevator moveY(-2500,7);
+        elevator moveY(-2360,7);
         elevator waittill("movedone");
 
         wait(5);
 
-        elevator moveY(2500,7);
+        elevator moveY(2360,7);
         elevator waittill("movedone");
 
         wait(5);
