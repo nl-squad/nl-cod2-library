@@ -1,6 +1,6 @@
 main()
 {
-	thread teleport();
+	thread tp();
 	thread text();
 	
 	ambientPlay("ambient_france_nl");
