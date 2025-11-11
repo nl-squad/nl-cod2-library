@@ -3,7 +3,7 @@ main()
     thread elevator();
 	thread text();
 	
-	ambientPlay("ambient_france_nl");
+	ambientPlay("ambient_africa_nl");
 }
 
 elevator()
