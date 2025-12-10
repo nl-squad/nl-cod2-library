@@ -18,7 +18,6 @@ tp()
 teleport()
 {
 	dest = getent(self.target, "targetname");
-	self setHintString("Press ^3F ^7to back to Spawn ");
 	if(!isDefined(dest))
 	{
 		wait 15;
