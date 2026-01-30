@@ -5,7 +5,7 @@ main()
 	ambientPlay("ambient_africa_nl");
 
 	spotFxFilename = "fx/misc/spotlight_decoytown.efx";
-    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 5, a(spotFxFilename, (-8, -120, -184)));
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 30, a(spotFxFilename, (0, -128, 9)));
 	
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 
