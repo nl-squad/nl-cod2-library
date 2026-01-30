@@ -1,19 +1,18 @@
-main()
+#include blanco\utils;
 
+main()
 {
-	tp();
-	tpbot();
-	thread text();
-	
 	ambientPlay("ambient_france_nl");
 
-	level._effect["fire"] = loadfx("fx/props/barrel_fire2.efx");
-	level._effect["smoke"] = loadfx("fx/smoke/damaged_vehicle_smoke.efx");
-	
-	maps\mp\_fx::loopfx("fire", (24, 24, 400), 1);
-	maps\mp\_fx::loopfx("smoke", (24, 24, 400), 1);
+	fireFxFilename = "fx/props/barrel_fire2.efx";
+	smokeFxFilename = "fx/smoke/damaged_vehicle_smoke.efx";
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 1, a(fireFxFilename, (24, 24, 400)));
+    level RegisterLoopCallback("loopFx2", ::QueuePlayFx, 1, a(smokeFxFilename, (24, 24, 400)));
 
-	
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+
+	tp();
+	tpbot();
 }
 
 tp()
@@ -84,10 +83,8 @@ teleport1()
 	}
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by Bozzy");
-	wait 0.1;
 	iPrintlnBold("in May 2014"); 
 }

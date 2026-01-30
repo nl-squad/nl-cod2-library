@@ -1,3 +1,5 @@
+#include blanco\utils;
+
 main()
 {
 	ambientPlay("ambient_russia_nl");
@@ -6,7 +8,7 @@ main()
 	thread tp();
 	thread kraty();
 	thread zapadnia();
-	thread text();
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	
 	if (!isDefined(level.registerDynamicMapPart))
     {
@@ -25,19 +27,16 @@ main()
 
 ambientFX()
 {
-	//fire
-	level._effect["fire_small"] = loadfx ("fx/fire/tank_fire_engine.efx");
-	maps\mp\_fx::loopfx("fire_small", (1740, 70, -475), 1);
+
+	fireFxFilename = "fx/fire/tank_fire_engine.efx";
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 1, a(fireFxFilename, (1740, 70, -475)));
 	maps\mp\_fx::soundfx("smallfire", (1740, 70, -475));
-	maps\mp\_fx::loopfx("fire_small", (-1207, -701, 25), 1);
+
+    level RegisterLoopCallback("loopFx2", ::QueuePlayFx, 1, a(fireFxFilename, (-1207, -701, 25)));
 	maps\mp\_fx::soundfx("smallfire", (-1207, -701, 25));
-	
-	//radio
-	//maps\mp\_fx::soundfx("germanradio_chatter", (2015,-56,-471));
-	
-	//spotlight
-	level._effect["spotlight"] = loadfx("fx/misc/spotlight_decoytown.efx");
-	maps\mp\_fx::loopfx("spotlight", (-161, -655, -436), 3, (-88, -391, -375));
+
+	spotFxFilename = "fx/misc/spotlight_decoytown.efx";
+    level RegisterLoopCallback("loopFx3", ::QueuePlayFx, 1, a(spotFxFilename, (-161, -655, -436)));
 }
 
 unlockGate1(dynamicMapPart)
@@ -131,10 +130,8 @@ zapadnia()
 	}
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
     iPrintlnBold("Map was made by Avard");
-    wait 0.1;
     iPrintlnBold("in March 2024"); 
 }

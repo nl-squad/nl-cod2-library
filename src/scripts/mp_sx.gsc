@@ -1,18 +1,19 @@
-main()
+#include blanco\utils;
 
-{	
-	thread text();
+main()
+{
 	ambientPlay("ambient_france_nl");
 	
-    level._effect["spot2"] = loadfx("fx/props/barrel_fire2.efx");
-	
-    maps\mp\_fx::loopfx("spot2", (-864, -646, 60), 1);
-    maps\mp\_fx::loopfx("spot2", (-942, -816, 72), 1);
-	maps\mp\_fx::loopfx("spot2", (520, -1120, 80), 1);
-	maps\mp\_fx::loopfx("spot2", (480, -1120, 80), 1);
-	maps\mp\_fx::loopfx("spot2", (504, -968, 80), 1);
-	maps\mp\_fx::loopfx("spot2", (464, -968, 80), 1);
 
+	fireFxFilename = "fx/props/barrel_fire2.efx";
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 1, a(fireFxFilename, (-864, -646, 60)));
+    level RegisterLoopCallback("loopFx2", ::QueuePlayFx, 1, a(fireFxFilename, (-942, -816, 72)));
+    level RegisterLoopCallback("loopFx3", ::QueuePlayFx, 1, a(fireFxFilename, (520, -1120, 80)));
+    level RegisterLoopCallback("loopFx4", ::QueuePlayFx, 1, a(fireFxFilename, (480, -1120, 80)));
+    level RegisterLoopCallback("loopFx5", ::QueuePlayFx, 1, a(fireFxFilename, (504, -968, 80)));
+    level RegisterLoopCallback("loopFx6", ::QueuePlayFx, 1, a(fireFxFilename, (464, -968, 80)));
+    
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 
     if (!isDefined(level.registerDynamicMapPart))
     {
@@ -52,10 +53,8 @@ lockGate1(dynamicMapPart)
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by Dusza");
-	wait 0.1;
 	iPrintlnBold("in April 2023"); 
 }

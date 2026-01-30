@@ -2,11 +2,11 @@
 
 main()
 {
+	spotFxFilename = "fx/misc/spotlight_decoytown.efx";
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 5, a(spotFxFilename, (63, 598, -184)));
+	
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 
-	level._effect["spot1"] = loadfx("fx/misc/spotlight_decoytown.efx");
-	
-	maps\mp\_fx::loopfx("spot1", (63, 598, -184), 5);
-	
 	thread tp();
 	thread tpbot();
 	thread black();
@@ -22,7 +22,6 @@ main()
 	thread q11();
 	thread q12();
 	thread q13();
-	thread text();
 	
 	ambientPlay("ambient_france_nl");
 }
@@ -224,10 +223,8 @@ q13()
 		}
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by Dusza");
-	wait 0.1;
 	iPrintlnBold("in November 2013"); 
 }

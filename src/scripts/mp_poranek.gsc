@@ -1,14 +1,15 @@
+#include blanco\utils;
+
 main()
 {
-
-	level._effect["spot1"] = loadfx("fx/misc/spotlight_decoytown.efx");
-	
-	maps\mp\_fx::loopfx("spot1", (-8, -120, -184), 5);
-	
-	thread sphereControl(1);
-	thread text();
-	
 	ambientPlay("ambient_africa_nl");
+
+	spotFxFilename = "fx/misc/spotlight_decoytown.efx";
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 5, a(spotFxFilename, (-8, -120, -184)));
+	
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+
+	thread sphereControl(1);
 }
 
 sphereControl(num)
@@ -21,10 +22,8 @@ sphereControl(num)
 		}
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by K2o");
-	wait 0.1;
 	iPrintlnBold("in June 2012"); 
 }
