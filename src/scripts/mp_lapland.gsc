@@ -1,27 +1,23 @@
+#include blanco\utils;
+
 main()
-
 {
-	thread text();
-
 	ambientPlay("ambient_russia_nl");
 
-    level._effect["fire"] = loadfx("fx/props/barrel_fire2.efx");
-	level._effect["smoke"] = loadfx("fx/smoke/damaged_vehicle_smoke.efx");
-	
-	
-    maps\mp\_fx::loopfx("fire", (-872, -568, -96), 1);
-	maps\mp\_fx::loopfx("smoke", (-872, -568, -96), 1);
-	maps\mp\_fx::loopfx("fire", (392, -104, -96), 1);
-	maps\mp\_fx::loopfx("smoke", (392, -104, -96), 1);
-	maps\mp\_fx::loopfx("fire", (760, -96, -96), 1);
-	maps\mp\_fx::loopfx("smoke", (760, -96, -96), 1);
+	fireFxFilename = "fx/props/barrel_fire2.efx";
+	smokeFxFilename = "fx/smoke/damaged_vehicle_smoke.efx";
+    level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 1, a(fireFxFilename, (-872, -568, -96)));
+    level RegisterLoopCallback("loopFx2", ::QueuePlayFx, 1, a(smokeFxFilename, (-872, -568, -96)));
+    level RegisterLoopCallback("loopFx3", ::QueuePlayFx, 1, a(fireFxFilename, (392, -104, -96)));
+    level RegisterLoopCallback("loopFx4", ::QueuePlayFx, 1, a(smokeFxFilename, (392, -104, -96)));
+    level RegisterLoopCallback("loopFx5", ::QueuePlayFx, 1, a(fireFxFilename, (760, -96, -96)));
+    level RegisterLoopCallback("loopFx6", ::QueuePlayFx, 1, a(smokeFxFilename, (760, -96, -96)));
 
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by zazu");
-	wait 0.1;
 	iPrintlnBold("in December 2012"); 
 }
