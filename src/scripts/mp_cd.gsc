@@ -1,7 +1,6 @@
 main()
 {
 	thread tp();
-	thread tpbot();
 	thread elevator1();
 	thread elevator2();
 	thread text();
