@@ -139,7 +139,6 @@ wallL()
     wallL waittill("movedone"); 
 }
 
-
 text()
 {
 	wait 12 * 60;
