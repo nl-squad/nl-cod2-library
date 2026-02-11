@@ -1,35 +1,11 @@
 main()
 {
-	thread tp();
+	[[ level.registerTeleports ]]("tp");
 	thread elevator1();
 	thread elevator2();
 	thread text();
 	
 	ambientPlay("ambient_france_nl");
-}
-
-tp()
-{
-	teleporters = getentarray("tp", "targetname");
-	for(i = 0; i < teleporters.size; i++)
-	{
-		teleporters[i] thread teleport();
-	}
-}
-
-teleport()
-{
-	dest = getent(self.target, "targetname");
-	while(1)
-	{
-		self waittill("trigger", player);
-
-		if (player isBot())
-			player.solution = undefined;
-
-		player setOrigin(dest.origin);
-		player setPlayerAngles(dest.angles);
-	}
 }
 
 elevator1()
