@@ -1,6 +1,6 @@
 main()
 {
-	[[ level.registerTeleports ]]("tp");
+	[[ level.registerTeleportsForAll ]]("tp");
 	thread elevator1();
 	thread elevator2();
 	thread text();
