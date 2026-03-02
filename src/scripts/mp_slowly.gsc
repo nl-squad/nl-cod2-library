@@ -1,13 +1,19 @@
-main()
+#include blanco\utils;
 
+main()
 {
+	ambientPlay("ambient_france_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);	
 	thread secret1();
 	thread secret2();
 	thread secret3();
 	thread secret4();
-	thread text();
+}
 
-	ambientPlay("ambient_france_nl");
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Megan");
+	iPrintlnBold("in August 2023"); 
 }
 
 secret1()
@@ -52,12 +58,4 @@ secret4()
     
     secret4 moveY(-48, 2);  
     secret4 waittill("movedone"); 
-}
-
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by M3gan");
-	wait 0.1;
-	iPrintlnBold("in August 2023"); 
 }

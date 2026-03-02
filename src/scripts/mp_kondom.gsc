@@ -1,13 +1,13 @@
+#include blanco\utils;
+
 main()
 {
-    thread text();
-    ambientPlay("ambient_france_nl");
+	ambientPlay("ambient_france_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
-text()
+ownerCredits()
 {
-    wait(12 * 60);
-    iPrintlnBold("Map was made by K2o");
-    wait(0.1);
-    iPrintlnBold("in June 2013");
+	iPrintlnBold("Map was made by K2o");
+	iPrintlnBold("in June 2013"); 	
 }

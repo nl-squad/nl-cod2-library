@@ -1,53 +1,19 @@
 #include blanco\utils;
 
 main()
-
 {
-	thread tpbot();
+	ambientPlay("ambient_france_nl");
+	[[ level.registerTeleportsForAll ]]("tpbot");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread winda();
     thread wiatrak();
     thread t_wiatrak();
-	thread text();	
-
-	ambientPlay("ambient_france_nl");
 }
 
-tpbot()
+ownerCredits()
 {
-	teleporters = getentarray("tpbot", "targetname");
-	for(i = 0; i < teleporters.size; i++)
-	{
-		teleporters[i] thread teleport();
-	}
-}
-
-teleport()
-{
-	dest = getent(self.target, "targetname");
-	if(!isDefined(dest))
-	{
-		wait 15;
-		iPrintlnBold("^1MaxDamage is a thief");
-		return;
-
-	}
-
-	while(1)
-	{
-		self waittill("trigger", player);
-
-		if (!player isBot())
-			continue;
-			
-		player.solutionNextCalculationTime = getTime();
-		player setOrigin(dest.origin);
-		player setPlayerAngles(dest.angles);
-		player linkTo(level.blocker);
-		wait 1.5;
-
-        if (isDefined(player))
-		    player unlink();
-	}
+	iPrintlnBold("Map was made by BlancO");
+	iPrintlnBold("in December 2012"); 
 }
 
 winda()
@@ -115,10 +81,4 @@ podmuch()
     }
 }
 
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by BlancO");
-	wait 0.1;
-	iPrintlnBold("in December 2012"); 	 
-}
+

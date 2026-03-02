@@ -1,8 +1,9 @@
+#include blanco\utils;
+
 main()
 {
-	thread text();
 	ambientPlay("ambient_russia_nl");
-
+	thread text();
 	if (!isDefined(level.registerStage))
     {
         thread unlockGate();

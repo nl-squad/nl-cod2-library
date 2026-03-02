@@ -3,12 +3,12 @@
 main()
 {
 	ambientPlay("ambient_russia_nl");
+	[[ level.registerTeleportsForAll ]]("tp");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	ambientFX();
-	
-	thread tp();
 	thread kraty();
 	thread zapadnia();
-	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+
 	
 	if (!isDefined(level.registerDynamicMapPart))
     {
@@ -23,6 +23,12 @@ main()
     gateRegistration1.deactivateFunction = ::lockGate1;
 	gateRegistration1.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration1 );
+}
+
+ownerCredits()
+{
+    iPrintlnBold("Map was made by Avard");
+    iPrintlnBold("in March 2024"); 
 }
 
 ambientFX()
@@ -58,34 +64,6 @@ lockGate1(dynamicMapPart)
 
     if (isDefined(level.markAcitivationAsDone))
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
-}
-
-tp()
-{
-	teleporters = getentarray("tp", "targetname");
-	for(i = 0; i < teleporters.size; i++)
-	{
-		teleporters[i] thread teleport();
-	}
-}
-
-teleport()
-{
-	dest = getent(self.target, "targetname");
-	if(!isDefined(dest))
-	{
-		wait 15;
-		iPrintlnBold("^1MaxDamage is a thief");
-		return;
-	}
-
-	while(1)
-	{
-		self waittill("trigger", player);
-
-		player setOrigin(dest.origin);
-		player setPlayerAngles(dest.angles);
-	}
 }
 
 kraty()
@@ -130,8 +108,3 @@ zapadnia()
 	}
 }
 
-ownerCredits()
-{
-    iPrintlnBold("Map was made by Avard");
-    iPrintlnBold("in March 2024"); 
-}

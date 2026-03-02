@@ -1,3 +1,5 @@
+#include blanco\utils;
+
 main()
 {
 maps\mp\_load::main();

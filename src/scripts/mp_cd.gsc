@@ -1,11 +1,19 @@
+#include blanco\utils;
+
 main()
 {
-	[[ level.registerTeleportsForAll ]]("tp");
+	ambientPlay("ambient_france_nl");
+	[[ level.registerTeleportsForAll ]]("tp");	
+	[[ level.registerTeleportsForAll ]]("tpbot");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread elevator1();
 	thread elevator2();
-	thread text();
-	
-	ambientPlay("ambient_france_nl");
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by hyp3r");
+	iPrintlnBold("in September 2023"); 
 }
 
 elevator1()
@@ -54,10 +62,3 @@ elevator2()
     }
 }
 
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 0.1;
-	iPrintlnBold("in January 2014"); 
-}

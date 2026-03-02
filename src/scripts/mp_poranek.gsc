@@ -3,13 +3,16 @@
 main()
 {
 	ambientPlay("ambient_africa_nl");
-
 	spotFxFilename = "fx/misc/spotlight_decoytown.efx";
     level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 30, a(spotFxFilename, (0, -128, 9)));
-	
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
-
 	thread sphereControl(1);
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by K2o");
+	iPrintlnBold("in June 2012"); 
 }
 
 sphereControl(num)
@@ -22,8 +25,4 @@ sphereControl(num)
 		}
 }
 
-ownerCredits()
-{
-	iPrintlnBold("Map was made by K2o");
-	iPrintlnBold("in June 2012"); 
-}
+

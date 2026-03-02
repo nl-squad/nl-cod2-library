@@ -1,8 +1,10 @@
-main()
+#include blanco\utils;
 
+main()
 {
-	thread text();
 	ambientPlay("ambient_france_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+
 	
 	if (!isDefined(level.registerStage))
     {
@@ -19,6 +21,12 @@ main()
     [[ level.registerStageAction ]](2, ::unlockGate1, ::lockGate1);
     [[ level.registerStageAction ]](3, ::unlockGate2, ::lockGate2);
     [[ level.registerStageAction ]](4, ::unlockGate3, ::lockGate3);
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Dusza");
+	iPrintlnBold("in May 2024"); 
 }
 
 unlockGate1(dynamicMapPart)
@@ -84,10 +92,3 @@ lockGate3(dynamicMapPart)
         [[ level.markStageActionAsDone ]](dynamicMapPart);
 }
 
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 0.1;
-	iPrintlnBold("in May 2024"); 
-}

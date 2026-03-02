@@ -1,13 +1,19 @@
+#include blanco\utils;
+
 main()
 {
-	thread elevator();
-	thread text();
-	
 	ambientPlay("ambient_russia_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+	thread elevator();
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Dusza");
+	iPrintlnBold("in January 2017"); 
 }
 
 elevator()
-
 {
     elevator = getEnt("elevator", "targetname");
 	
@@ -22,12 +28,4 @@ elevator()
         elevator waittill ("movedone");
         wait 4;
     }
-}
-
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by Dusza");
-	wait 0.1;
-	iPrintlnBold("in January 2017");  
 }

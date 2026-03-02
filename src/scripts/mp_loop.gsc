@@ -1,16 +1,13 @@
+#include blanco\utils;
+
 main()
-
 {
-thread text();
-
-ambientPlay("ambient_russia_nl");
+	ambientPlay("ambient_russia_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
-
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by RiyT");
-	wait 0.1;
-	iPrintlnBold("in July 2008"); 	 
+	iPrintlnBold("in June 2008"); 
 }

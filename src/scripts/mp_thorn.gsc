@@ -1,9 +1,17 @@
+#include blanco\utils;
+
 main()
 {
+	ambientPlay("ambient_africa_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread elevator();
-	thread wall();
-    thread text();    
-    ambientPlay("ambient_africa_nl");
+	thread wall();  
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Avard");
+	iPrintlnBold("in September 2012"); 
 }
 
 elevator()
@@ -51,14 +59,6 @@ wall()
         wall waittill ("movedone");
         wait 10;
     }
-}
-
-text()
-{
-    wait 12 * 60;
-    iPrintlnBold("Map was made by Avard");
-	wait 0.1;
-	iPrintlnBold("in September 2012");  
 }
 
 

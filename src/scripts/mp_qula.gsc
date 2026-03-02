@@ -1,9 +1,16 @@
+#include blanco\utils;
+
 main()
 {
-	thread qula();
-	thread text();	
-	
 	ambientPlay("ambient_africa_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+	thread qula();
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by zazu");
+	iPrintlnBold("in August 2012"); 
 }
 
 qula()
@@ -15,12 +22,3 @@ qula()
 			qula waittill("rotatedone");
 		}
 }
-
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by zazu");
-	wait 0.1;
-	iPrintlnBold("in August 2012"); 		
-}
-

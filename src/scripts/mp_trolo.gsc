@@ -1,22 +1,21 @@
+#include blanco\utils;
+
 main()
 {
-	thread text();
+	ambientPlay("ambient_russia_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);	
 	thread NoZombies();
 	thread zooka();
 	thread czolganie();
 	thread winda();
 	thread secretVIP();
 	thread watchSecretCampers();
-
-	ambientPlay("ambient_russia_nl");
 }
 
-text()
+ownerCredits()
 {
-	wait 12 * 60;
-	iPrintlnBold("Map was made by Avard & BlancO");
-	wait 0.1;
-	iPrintlnBold("in September 2012"); 
+    iPrintlnBold("Map was made by Avard & BlancO");
+    iPrintlnBold("in September 2012"); 
 }
 
 NoZombies()

@@ -3,7 +3,7 @@
 main()
 {
 	ambientPlay("ambient_france_nl");
-	
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 
 	fireFxFilename = "fx/props/barrel_fire2.efx";
     level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 1, a(fireFxFilename, (-864, -646, 60)));
@@ -13,8 +13,6 @@ main()
     level RegisterLoopCallback("loopFx5", ::QueuePlayFx, 1, a(fireFxFilename, (504, -968, 80)));
     level RegisterLoopCallback("loopFx6", ::QueuePlayFx, 1, a(fireFxFilename, (464, -968, 80)));
     
-	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
-
     if (!isDefined(level.registerDynamicMapPart))
     {
         thread unlockGate1();
@@ -29,6 +27,12 @@ main()
 	gateRegistration1.isRoundActivatedOnce = true;
     [[ level.registerDynamicMapPart ]]( gateRegistration1 );
 	
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Dusza");
+	iPrintlnBold("in April 2023"); 
 }
 
 unlockGate1(dynamicMapPart)
@@ -53,8 +57,3 @@ lockGate1(dynamicMapPart)
         [[ level.markAcitivationAsDone ]](dynamicMapPart);
 }
 
-ownerCredits()
-{
-	iPrintlnBold("Map was made by Dusza");
-	iPrintlnBold("in April 2023"); 
-}

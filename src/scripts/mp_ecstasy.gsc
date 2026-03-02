@@ -1,11 +1,18 @@
+#include blanco\utils;
+
 main()
 
 {
+	ambientPlay("ambient_france_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread green();
 	thread red();
-	thread text();
+}
 
-	ambientPlay("ambient_france_nl");
+ownerCredits()
+{
+	iPrintlnBold("Map was made by K2o");
+	iPrintlnBold("in July 2013"); 
 }
 
 green()
@@ -40,12 +47,4 @@ red()
 		elevator1 movex(64, 2);
 		elevator1 waittill("movedone");
 	}
-}
-
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by K2o");
-	wait 0.1;
-	iPrintlnBold("in July 2013"); 
 }
