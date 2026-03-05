@@ -1,37 +1,35 @@
+#include blanco\utils;
+
 main()
 {
+	ambientPlay("ambient_africa_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread wall();
 	thread wallL();
-	thread text();
-	
-	ambientPlay("ambient_africa_nl");
-	
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Bozzy & zieqa");
+	iPrintlnBold("in April 2024");
 }
 
 wall()
 {
-    wall = getEnt("wall", "targetname"); 
-    
-    wait 180;
-    wall moveZ(-60, 2);  
-    wall waittill("movedone"); 
+	wall = getEnt("wall", "targetname");
+
+	wait 180;
+	wall moveZ(-60, 2);
+	wall waittill("movedone");
 }
 
 wallL()
 {
-    wallL = getEnt("wallL", "targetname"); 
-    
-    wait 180;
-	iPrintlnBold("Lugers are ^2Available");	
-    wallL moveZ(-60, 2);  
-    wallL waittill("movedone"); 
-}
+	wallL = getEnt("wallL", "targetname");
 
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by Bozzy & zieqa");
-	wait 0.1;
-	iPrintlnBold("in April 2024"); 
+	wait 180;
+	iPrintlnBold("Lugers are ^2Available");
+	wallL moveZ(-60, 2);
+	wallL waittill("movedone");
 }
 

@@ -1,15 +1,13 @@
+#include blanco\utils;
+
 main()
 {
-	thread text();	
-	
-	ambientPlay("ambient_africa_nl");
+	ambientPlay("ambient_france_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
-
-text()
+ownerCredits()
 {
-	wait 12 * 60;
 	iPrintlnBold("Map was made by Bozzy");
-	wait 0.1;
-	iPrintlnBold("in September 2023"); 		
+	iPrintlnBold("in September 2023");
 }

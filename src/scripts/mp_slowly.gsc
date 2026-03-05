@@ -1,63 +1,45 @@
+#include blanco\utils;
+
 main()
-
 {
-	thread secret1();
-	thread secret2();
-	thread secret3();
-	thread secret4();
-	thread text();
-
 	ambientPlay("ambient_france_nl");
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
+	level RegisterDelayCallback("slowlySecret1", ::secret1, 120);
+	level RegisterDelayCallback("slowlySecret2", ::secret2, 420);
+	level RegisterDelayCallback("slowlySecret3", ::secret3, 720);
+	level RegisterDelayCallback("slowlySecret4", ::secret4, 1020);
+}
+
+ownerCredits()
+{
+	iPrintlnBold("Map was made by Megan");
+	iPrintlnBold("in August 2023");
 }
 
 secret1()
 {
-    secret1 = getEnt("secret1", "targetname"); 
-    
-    wait 120;  
-    iPrintlnBold("Box #1 ^2Available"); 
-    
-    secret1 moveX(48, 2);  
-    secret1 waittill("movedone"); 
+	secret1 = getEnt("secret1", "targetname");
+	iPrintlnBold("Box #1 ^2Available");
+	secret1 moveX(48, 2);
 }
 
 secret2()
 {
-    secret2 = getEnt("secret2", "targetname"); 
-    
-    wait 420;  
-    iPrintlnBold("Box #2 ^2Available"); 
-    
-    secret2 moveY(-48, 2);  
-    secret2 waittill("movedone"); 
+	secret2 = getEnt("secret2", "targetname");
+	iPrintlnBold("Box #2 ^2Available");
+	secret2 moveY(-48, 2);
 }
 
 secret3()
 {
-    secret3 = getEnt("secret3", "targetname"); 
-    
-    wait 720;  
-    iPrintlnBold("Box #3 ^2Available"); 
-    
-    secret3 moveY(-48, 2);  
-    secret3 waittill("movedone"); 
+	secret3 = getEnt("secret3", "targetname");
+	iPrintlnBold("Box #3 ^2Available");
+	secret3 moveY(-48, 2);
 }
 
 secret4()
 {
-    secret4 = getEnt("secret4", "targetname"); 
-    
-    wait 1020;  
-    iPrintlnBold("Box #4 ^2Available"); 
-    
-    secret4 moveY(-48, 2);  
-    secret4 waittill("movedone"); 
-}
-
-text()
-{
-	wait 12 * 60;
-	iPrintlnBold("Map was made by M3gan");
-	wait 0.1;
-	iPrintlnBold("in August 2023"); 
+	secret4 = getEnt("secret4", "targetname");
+	iPrintlnBold("Box #4 ^2Available");
+	secret4 moveY(-48, 2);
 }
