@@ -10,22 +10,22 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Dusza");
-	iPrintlnBold("in January 2017"); 
+	iPrintlnBold("in January 2017");
 }
 
 elevator()
 {
-    elevator = getEnt("elevator", "targetname");
-	
-    while(1)
-    {
+	elevator = getEnt("elevator", "targetname");
 
-        elevator moveZ(256, 2);
-        elevator waittill ("movedone");
-        wait 2;
+	while(1)
+	{
 
-        elevator moveZ(-256, 2);
-        elevator waittill ("movedone");
-        wait 4;
-    }
+		elevator moveZ(256, 2);
+		elevator waittill ("movedone");
+		wait 2;
+
+		elevator moveZ(-256, 2);
+		elevator waittill ("movedone");
+		wait 4;
+	}
 }

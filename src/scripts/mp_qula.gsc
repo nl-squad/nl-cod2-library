@@ -10,15 +10,15 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by zazu");
-	iPrintlnBold("in August 2012"); 
+	iPrintlnBold("in August 2012");
 }
 
 qula()
 {
-	qula = getEnt("qula", "targetname");	
+	qula = getEnt("qula", "targetname");
 	while(true)
-		{
-			qula rotateyaw(360, 10);
-			qula waittill("rotatedone");
-		}
+	{
+		qula rotateyaw(360, 10);
+		qula waittill("rotatedone");
+	}
 }

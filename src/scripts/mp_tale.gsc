@@ -10,5 +10,5 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Arno");
-	iPrintlnBold("in December 2014"); 
+	iPrintlnBold("in December 2014");
 }

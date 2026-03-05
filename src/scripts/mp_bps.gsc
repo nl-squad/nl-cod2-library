@@ -3,7 +3,7 @@
 main()
 {
 	ambientPlay("ambient_africa_nl");
-	[[ level.registerTeleportsForAll ]]("tp");	
+	[[ level.registerTeleportsForAll ]]("tp");
 	[[ level.registerTeleportsForAll ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
@@ -11,5 +11,5 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Akamaru");
-	iPrintlnBold("in December 2012"); 
+	iPrintlnBold("in December 2012");
 }

@@ -3,7 +3,7 @@
 main()
 {
 	ambientPlay("ambient_russia_nl");
-	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);	
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread NoZombies();
 	thread zooka();
 	thread czolganie();
@@ -14,8 +14,8 @@ main()
 
 ownerCredits()
 {
-    iPrintlnBold("Map was made by Avard & BlancO");
-    iPrintlnBold("in September 2012"); 
+	iPrintlnBold("Map was made by Avard & BlancO");
+	iPrintlnBold("in September 2012");
 }
 
 NoZombies()
@@ -45,7 +45,7 @@ zooka()
 
 		if(!isDefined(player.stats["money"]))
 			player.stats["money"] = 0;
-		
+
 		if(player.stats["money"] >= cost && player.pers["team"] == "allies")
 		{
 			weapon = "zooka_mp";
@@ -159,7 +159,7 @@ watchSecretCampers()
 		wait 1;
 
 		players = getentarray("player", "classname");
-		for(i = 0; i < players.size; i++)			
+		for(i = 0; i < players.size; i++)
 		{
 			touching = false;
 			for(x = 0; x < trigs.size; x++)

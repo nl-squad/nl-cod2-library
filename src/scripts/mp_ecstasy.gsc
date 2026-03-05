@@ -12,14 +12,14 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by K2o");
-	iPrintlnBold("in July 2013"); 
+	iPrintlnBold("in July 2013");
 }
 
 green()
 {
 	elevator = getent("green", "targetname");
 	trig = getent("green_trig", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger");
@@ -36,7 +36,7 @@ red()
 {
 	elevator1 = getent("red", "targetname");
 	trig1 = getent("red_trig", "targetname");
-	
+
 	while(1)
 	{
 		trig1 waittill("trigger");

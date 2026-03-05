@@ -11,5 +11,5 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by TyreX");
-	iPrintlnBold("in September 2012"); 
+	iPrintlnBold("in September 2012");
 }

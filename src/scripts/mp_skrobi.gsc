@@ -3,11 +3,11 @@
 main()
 {
 	ambientPlay("ambient_africa_nl");
-	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);	
+	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Mlotek");
-	iPrintlnBold("in November 2012"); 
+	iPrintlnBold("in November 2012");
 }

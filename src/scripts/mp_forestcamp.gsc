@@ -11,16 +11,16 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Dusza");
-	iPrintlnBold("in February 2015"); 
+	iPrintlnBold("in February 2015");
 }
 
 elevator()
 {
 	elevator = getent("elevator", "targetname");
 	trig = getent("trig_elevator", "targetname");
-	
+
 	trig setHintString("Move the wooden planks ");
-	
+
 	while(1)
 	{
 		trig waittill("trigger");

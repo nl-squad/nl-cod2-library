@@ -3,13 +3,12 @@
 main()
 {
 	ambientPlay("ambient_france_nl");
-	[ level.registerTeleportsForAll ]]("tp");
+	[[ level.registerTeleportsForAll ]]("tp");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Yoshi");
-	iPrintlnBold("in November 2008"); 
+	iPrintlnBold("in November 2008");
 }
-

@@ -11,5 +11,5 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Akamaru & Vegarin");
-	iPrintlnBold("in January 2012"); 
+	iPrintlnBold("in January 2012");
 }

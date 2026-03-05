@@ -10,17 +10,17 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Wolf");
-	iPrintlnBold("in June 2023"); 
+	iPrintlnBold("in June 2023");
 }
 
 nl()
 {
-	nl = getEnt("nl", "targetname");	
+	nl = getEnt("nl", "targetname");
 	while(true)
-		{
-			nl rotateyaw(360, 5);
-			nl waittill("rotatedone");
-		}
+	{
+		nl rotateyaw(360, 5);
+		nl waittill("rotatedone");
+	}
 }
 
 

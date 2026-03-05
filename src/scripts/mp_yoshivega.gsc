@@ -9,5 +9,5 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Vegarin");
-	iPrintlnBold("in August 2025"); 
+	iPrintlnBold("in August 2025");
 }

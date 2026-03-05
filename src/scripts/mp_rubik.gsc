@@ -11,16 +11,16 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by K2o");
-	iPrintlnBold("in June 2013"); 
+	iPrintlnBold("in June 2013");
 }
 
 q2()
 {
-	q2 = getEnt("q2", "targetname");	
+	q2 = getEnt("q2", "targetname");
 	while(true)
-		{
-			q2 rotateyaw(360, 10);
-			q2 waittill("rotatedone");
-		}
+	{
+		q2 rotateyaw(360, 10);
+		q2 waittill("rotatedone");
+	}
 }
 
