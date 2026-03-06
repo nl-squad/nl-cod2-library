@@ -4,7 +4,7 @@ main()
 {
 	ambientPlay("ambient_france_nl");
 	[[ level.registerTeleportsForAll ]]("tp");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	fireFxFilename = "fx/props/barrel_fire2.efx";
 	smokeFxFilename = "fx/smoke/damaged_vehicle_smoke.efx";

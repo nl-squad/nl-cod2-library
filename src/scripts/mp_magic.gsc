@@ -4,7 +4,7 @@ main()
 {
 	ambientPlay("ambient_france_nl");
 	[[ level.registerTeleportsForAll ]]("tp");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	spotFxFilename = "fx/misc/spotlight_decoytown.efx";
 	level RegisterLoopCallback("loopFx1", ::QueuePlayFx, 5, a(spotFxFilename, (63, 598, -184)));

@@ -4,7 +4,7 @@ main()
 {
 	ambientPlay("ambient_russia_nl");
 	[[ level.registerTeleportsForAll ]]("tp");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread object();
 }

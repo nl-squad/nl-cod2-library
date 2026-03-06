@@ -4,7 +4,7 @@ main()
 {
 	ambientPlay("ambient_france_nl");
 	[[ level.registerTeleportsForAll ]]("tp");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread runElevatorZ("1", -344, 3);
 	thread runElevatorZ("2", -344, 3);
