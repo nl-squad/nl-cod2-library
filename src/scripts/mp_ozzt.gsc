@@ -3,7 +3,7 @@
 main()
 {
 	ambientPlay("ambient_france_nl");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread winda();
 	thread wiatrak();

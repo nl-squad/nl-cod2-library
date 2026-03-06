@@ -3,7 +3,7 @@
 main()
 {
 	ambientPlay("ambient_africa_nl");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 }
 
