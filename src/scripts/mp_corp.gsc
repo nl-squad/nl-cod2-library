@@ -21,17 +21,17 @@ wall()
 {
 	wall = getEnt("wall", "targetname");
 	trig = getEnt("wall_trig", "targetname");
-	trig setHintString("Open the Gate ");
+	trig setHintString("Raise the Gate ");
 
 	while(1)
 	{
 		trig waittill ("trigger");
 
-		wall moveZ(80, 4);
+		wall moveZ(56, 3);
 		wall waittill ("movedone");
 		wait 15;
 
-		wall moveZ(-80, 2);
+		wall moveZ(-56, 2);
 		wall waittill ("movedone");
 	}
 }
