@@ -10,7 +10,7 @@ main()
 ownerCredits()
 {
 	iPrintlnBold("Map was made by BloW & BoNuS");
-	iPrintlnBold("in November 2012");
+	iPrintlnBold("in November 2014");
 }
 
 runElevatorZ(num, zDiff, moveTime)
