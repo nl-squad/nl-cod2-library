@@ -3,6 +3,8 @@
 main()
 {
 	ambientPlay("ambient_africa_nl");
+	[[ level.registerTeleportsForAll ]]("tp");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread runElevatorZ("1", -386, 3);
 }
