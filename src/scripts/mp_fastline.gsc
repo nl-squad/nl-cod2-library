@@ -7,6 +7,7 @@ main()
 	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread runElevatorZ("1", -386, 3);
+	thread gate();
 }
 
 ownerCredits()
@@ -36,4 +37,15 @@ runElevatorZ(num, zDiff, moveTime)
 		elevator waittill ("movedone");
 		wait 5;
 	}
+}
+
+gate()
+{
+	gate = getEnt("gate", "targetname");
+
+	wait 180;
+	iPrintlnBold("Luger is ^2Available");
+
+	gate moveZ(-44, 2);
+	gate waittill("movedone");
 }
