@@ -6,13 +6,13 @@ main()
 	[[ level.registerTeleportsForAll ]]("tp");
 	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
-	thread runElevatorZ("1", -386, 3);
+	thread runElevatorZ("1", -328, 3);
 	thread gate();
 }
 
 ownerCredits()
 {
-	iPrintlnBold("Map was made by BloW & BoNuS");
+	iPrintlnBold("Map was made by bLoW & BoNuS");
 	iPrintlnBold("in November 2014");
 }
 
