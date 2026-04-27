@@ -6,7 +6,7 @@ main()
 	[[ level.registerTeleportsForAll ]]("tp");
 	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
-	thread runElevatorZ("1", -328, 3);
+	thread runElevatorZ("1", -328, 4);
 	thread gate();
 }
 
