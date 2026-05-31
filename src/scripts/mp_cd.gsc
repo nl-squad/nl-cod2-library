@@ -12,8 +12,8 @@ main()
 
 ownerCredits()
 {
-	iPrintlnBold("Map was made by hyp3r");
-	iPrintlnBold("in September 2023");
+	iPrintlnBold("Map was made by Dusza");
+	iPrintlnBold("in January 2014");
 }
 
 elevator1()
