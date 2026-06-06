@@ -25,7 +25,7 @@ wall()
 {
 	wall = getEnt("wall", "targetname");
 	trig = getEnt("wall_trig", "targetname");
-	trig setHintString("Reduce Hunters' Sight ^315^7s ");
+	trig setHintString("Reduce Hunters' Sight ^320^7s ");
 
 	wall movez(-136, 2);
 	wall waittill ("movedone");
