@@ -10,6 +10,7 @@ main()
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 
 	thread wall();
+	
 	thread windowInit();
 	thread registerWindow();
 }
@@ -58,15 +59,7 @@ registerWindow()
 {
 	trig = getEnt("window_trig", "targetname");
 
-	level.registerPaidMapPart(
-		trig,
-		300,
-		level.MAP_PARTS_TEAM_HUNTERS,
-		::onWindowActivate,
-		::onWindowDeactivate,
-		"Press ^3F ^7to Close the Windows",
-		30
-	);
+	level.registerPaidMapPart(trig, 300, level.MAP_PARTS_TEAM_HUNTERS, ::onWindowActivate, ::onWindowDeactivate, "Press ^3F ^7to Close the Windows", 30);
 }
 
 onWindowActivate(paidMapPart, player)
