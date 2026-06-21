@@ -50,7 +50,7 @@ windowInit()
 {
 	window = getEnt("window", "targetname");
 
-	window moveZ(60, 1);
+	window moveZ(60, 2);
 	window waittill("movedone");
 }
 
@@ -62,28 +62,29 @@ registerWindow()
 		trig,
 		300,
 		level.MAP_PARTS_TEAM_HUNTERS,
-		::openWindow,
-		::closeWindow,
-		"Close the Windows for ^3$300",
+		::onWindowActivate,
+		::onWindowDeactivate,
+		"Close the Windws (30 s) for ^3$300",
 		30
 	);
 }
 
-openWindow(paidMapPart, player)
+onWindowActivate(paidMapPart, player)
 {
 	window = getEnt("window", "targetname");
+
 	window moveZ(-60, 2);
 	window waittill("movedone");
 
 	level.markPaidActivationAsDone(paidMapPart);
 }
 
-closeWindow(paidMapPart)
+onWindowDeactivate(paidMapPart)
 {
 	window = getEnt("window", "targetname");
+
 	window moveZ(60, 2);
 	window waittill("movedone");
 
 	level.markPaidDeactivationAsDone(paidMapPart);
 }
-
