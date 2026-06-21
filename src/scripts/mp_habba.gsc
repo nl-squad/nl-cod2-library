@@ -25,7 +25,7 @@ wall()
 	wall = getEnt("wall", "targetname");
 	trig = getEnt("wall_trig", "targetname");
 
-	trig setHintString("Reduce Hunters' Sight ^315^7s ");
+	trig setHintString("Reduce Hunters' Sight 15s");
 
 	wall moveZ(56, 2);
 	wall waittill("movedone");
@@ -50,7 +50,7 @@ windowInit()
 {
 	window = getEnt("window", "targetname");
 
-	window moveZ(60, 2);
+	window moveTo(window.origin + (0, 0, 60), 0.1);
 	window waittill("movedone");
 }
 
@@ -64,7 +64,7 @@ registerWindow()
 		level.MAP_PARTS_TEAM_HUNTERS,
 		::onWindowActivate,
 		::onWindowDeactivate,
-		"Close the Windws (30 s) for ^3$300",
+		"Press ^3F ^7to Close the Windows",
 		30
 	);
 }
@@ -73,7 +73,7 @@ onWindowActivate(paidMapPart, player)
 {
 	window = getEnt("window", "targetname");
 
-	window moveZ(-60, 2);
+	window moveTo(window.origin + (0, 0, -60), 0.5);
 	window waittill("movedone");
 
 	level.markPaidActivationAsDone(paidMapPart);
@@ -83,7 +83,7 @@ onWindowDeactivate(paidMapPart)
 {
 	window = getEnt("window", "targetname");
 
-	window moveZ(60, 2);
+	window moveTo(window.origin + (0, 0, 60), 0.5);
 	window waittill("movedone");
 
 	level.markPaidDeactivationAsDone(paidMapPart);
