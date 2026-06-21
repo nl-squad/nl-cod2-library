@@ -11,21 +11,20 @@ Main()
 
     wall = getEnt("wall", "targetname");
     wall_trig = getEnt("wall_trig", "targetname");
-
-    window = getEnt("window", "targetname");
-    window_trig = getEnt("window_trig", "targetname");
-
     thread wall_logic(wall, wall_trig);
 
-    level.registerPaidMapPart(
-        window_trig,
-        200,
-        level.MAP_PARTS_TEAM_HUNTERS,
-        ::onWindowActivate,
-        ::onWindowDeactivate,
-        "Press ^4[^9USE^4] ^7to open window ^4~> ^3300",
-        30
-    );
+	window = getEnt("window", "targetname");
+	window_trig = getEnt("window_trig", "targetname");
+
+	level.registerPaidMapPart(
+    window_trig,
+    200,
+    level.MAP_PARTS_TEAM_HUNTERS,
+    onWindowActivate,
+    onWindowDeactivate,
+    "Press ^4[^9USE^4] ^7to open window ^4~> ^3300",
+    30
+);
 
     thread ownerCredits();
 }
