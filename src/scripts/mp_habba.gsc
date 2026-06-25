@@ -14,13 +14,15 @@ Main()
     thread wall_logic(wall, wall_trig);
 
 	window_trig = getEnt("window_trig", "targetname");
+	window = getEnt("window", "targetname");
+    window moveZ(60, 0.5);
 	[[ level.registerPaidMapPart ]](
         window_trig,
-        200,
+        300,
         level.MAP_PARTS_TEAM_HUNTERS,
         ::onWindowActivate,
         ::onWindowDeactivate,
-        "Press ^4[^9USE^4] ^7to open window ^4~> ^3300",
+        "Close the Windows",
         30
     );
 
@@ -56,7 +58,7 @@ wall_logic(wall, trig)
     if (!isDefined(wall) || !isDefined(trig))
         return;
 
-    trig setHintString("Reduce Hunters' Sight 15s");
+    trig setHintString("Reduce Hunters' Sight 15 s ");
 
     wall moveZ(56, 2);
     wall waittill("movedone");
