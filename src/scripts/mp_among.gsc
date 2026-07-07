@@ -2,7 +2,7 @@
 
 main()
 {
-	ambientPlay("ambient_africa_nl");
+	ambientPlay("ambient_space_nl");
     level thread plat1();
     level thread plat2();
     level thread platforma1();
