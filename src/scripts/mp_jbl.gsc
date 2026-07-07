@@ -2,7 +2,7 @@
 
 main()
 {
-	ambientPlay("ambient_africa_nl");
+	ambientPlay("ambient_bunker_nl");
 	[[ level.registerTeleportsForAll ]]("tp");
 	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	[[ level.registerTeleportsForAll ]]("tp0");
