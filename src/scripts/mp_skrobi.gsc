@@ -2,7 +2,7 @@
 
 main()
 {
-	ambientPlay("ambient_bunker_nl");
+	ambientPlay("ambient_france_nl");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread wall();
 }
