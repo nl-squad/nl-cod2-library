@@ -3,6 +3,8 @@
 main()
 {
 	ambientPlay("ambient_space_nl");
+	[[ level.registerTeleportsForAll ]]("tp");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
     level thread plat1();
     level thread plat2();
     level thread platforma1();
