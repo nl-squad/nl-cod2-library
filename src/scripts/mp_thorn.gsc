@@ -2,7 +2,7 @@
 
 main()
 {
-	ambientPlay("ambient_africa_nl");
+	ambientPlay("ambient_bunker_nl");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	level RegisterDelayCallback("thornOpenYellowRoom", ::thornOpenYellowRoom, 40);
 	thread wall();
