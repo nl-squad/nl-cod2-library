@@ -19,7 +19,7 @@ wall()
 {
 	wall = getEnt("wall", "targetname");
 	trig = getEnt("wall_trig", "targetname");
-	trig setHintString("Reduce Hunters' Sight ^315^7s ");
+	trig setHintString("Reduce Hunters' Sight ^315 ^7s ");
 
 	wall movez(40, 2);
 	wall waittill ("movedone");
@@ -34,6 +34,6 @@ wall()
 
 		wall moveZ(40, 2);
 		wall waittill ("movedone");
-		wait 10;
+		wait 3;
 	}
 }

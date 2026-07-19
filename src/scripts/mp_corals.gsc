@@ -5,27 +5,15 @@ main()
 	ambientPlay("ambient_africa_nl");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	
-	wall = getEnt("wall", "targetname");
-    wall_trig = getEnt("wall_trig", "targetname");
-    thread wall_logic(wall, wall_trig);
-	
-	thread wallLuger();
 	thread secret();
+	thread wall();
+	thread wallLuger();
 }
 
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Bozzy & zieqa");
 	iPrintlnBold("in April 2024");
-}
-
-wallLuger()
-{
-	wallLuger = getEnt("wallLuger", "targetname");
-
-	wait 180;
-	wallLuger moveZ(-60, 2);
-	wallLuger waittill("movedone");
 }
 
 secret()
@@ -38,34 +26,34 @@ secret()
 	secret waittill("movedone");
 }
 
-wall_logic(wall, trig)
+wall()
 {
-    if (!isDefined(wall) || !isDefined(trig))
-        return;
+	wall = getEnt("wall", "targetname");
+	trig = getEnt("wall_trig", "targetname");
+	trig setHintString("Reduce Hunters' Sight ^315 ^7s ");
 
-    trig setHintString("Reduce Hunters' Sight 15 s ");
+	wall movez(40, 2);
+	wall waittill ("movedone");
 
-    wall moveZ(48, 2);
-    wall waittill("movedone");
+	while(1)
+	{
+		trig waittill ("trigger");
 
-    while (isDefined(trig))
-    {
-        trig waittill("trigger");
+		wall moveZ(-40, 2);
+		wall waittill ("movedone");
+		wait 15;
 
-        if (!isDefined(wall))
-            return;
+		wall moveZ(40, 2);
+		wall waittill ("movedone");
+		wait 3;
+	}
+}
 
-        wall moveZ(-48, 2);
-        wall waittill("movedone");
+wallLuger()
+{
+	wallLuger = getEnt("wallLuger", "targetname");
 
-        wait 15;
-
-        if (!isDefined(wall))
-            return;
-
-        wall moveZ(48, 2);
-        wall waittill("movedone");
-
-        wait 3;
-    }
+	wait 180;
+	wallLuger moveZ(-60, 2);
+	wallLuger waittill("movedone");
 }
