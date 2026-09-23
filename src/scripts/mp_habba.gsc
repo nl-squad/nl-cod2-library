@@ -12,6 +12,10 @@ Main()
     wall = getEnt("wall", "targetname");
     wall_trig = getEnt("wall_trig", "targetname");
     thread wall_logic(wall, wall_trig);
+	
+	wall2 = getEnt("wall2", "targetname");
+    wall2_trig = getEnt("wall2_trig", "targetname");
+    thread wall2_logic(wall2, wall2_trig);
 
 	window_trig = getEnt("window_trig", "targetname");
 	window = getEnt("window", "targetname");
@@ -58,7 +62,7 @@ wall_logic(wall, trig)
     if (!isDefined(wall) || !isDefined(trig))
         return;
 
-    trig setHintString("Reduce Hunters' Sight 15 s ");
+    trig setHintString("Reduce Hunters' Sight 30 s ");
 
     wall moveZ(56, 2);
     wall waittill("movedone");
@@ -73,13 +77,45 @@ wall_logic(wall, trig)
         wall moveZ(-56, 2);
         wall waittill("movedone");
 
-        wait 15;
+        wait 30;
 
         if (!isDefined(wall))
             return;
 
         wall moveZ(56, 2);
         wall waittill("movedone");
+
+        wait 5;
+    }
+}
+
+wall2_logic(wall2, trig)
+{
+    if (!isDefined(wall2) || !isDefined(trig))
+        return;
+
+    trig setHintString("Reduce Hunters' Sight 30 s ");
+
+    wall2 moveX(-244, 2);
+    wall2 waittill("movedone");
+
+    while (isDefined(trig))
+    {
+        trig waittill("trigger");
+
+        if (!isDefined(wall2))
+            return;
+
+        wall2 moveX(244, 2);
+        wall2 waittill("movedone");
+
+        wait 30;
+
+        if (!isDefined(wall2))
+            return;
+
+        wall2 moveX(-244, 2);
+        wall2 waittill("movedone");
 
         wait 5;
     }
