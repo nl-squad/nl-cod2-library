@@ -26,7 +26,7 @@ Main()
         level.MAP_PARTS_TEAM_HUNTERS,
         ::onWindowActivate,
         ::onWindowDeactivate,
-        "Close the Windows",
+        "Close the Windows 30 s",
         30
     );
 
@@ -64,7 +64,7 @@ wall_logic(wall, trig)
 
     trig setHintString("Reduce Hunters' Sight 30 s ");
 
-    wall moveZ(56, 2);
+    wall moveZ(72, 2);
     wall waittill("movedone");
 
     while (isDefined(trig))
@@ -74,7 +74,7 @@ wall_logic(wall, trig)
         if (!isDefined(wall))
             return;
 
-        wall moveZ(-56, 2);
+        wall moveZ(-72, 2);
         wall waittill("movedone");
 
         wait 30;
@@ -82,7 +82,7 @@ wall_logic(wall, trig)
         if (!isDefined(wall))
             return;
 
-        wall moveZ(56, 2);
+        wall moveZ(72, 2);
         wall waittill("movedone");
 
         wait 5;
