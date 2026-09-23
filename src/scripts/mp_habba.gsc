@@ -22,11 +22,11 @@ Main()
     window moveZ(60, 0.5);
 	[[ level.registerPaidMapPart ]](
         window_trig,
-        300,
+        250,
         level.MAP_PARTS_TEAM_HUNTERS,
         ::onWindowActivate,
         ::onWindowDeactivate,
-        "Close the Windows 30 s",
+        "Close the Windows",
         30
     );
 
