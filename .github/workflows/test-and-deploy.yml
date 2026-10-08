@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v7
 
     - name: Check for .gsc files in .iwd files
       run: |
@@ -37,7 +37,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v7
 
     - name: Check if each .gsc file has a corresponding .iwd file
       run: |
@@ -64,7 +64,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v7
 
     - name: Check for forbidden content in .gsc files
       run: |
@@ -86,7 +86,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v7
 
     - name: Check if all .iwd files can be successfully unzipped
       run: |
@@ -95,8 +95,7 @@ jobs:
 
         for iwd_file in src/iwds/*.iwd; do
           echo " - attempting to unzip $iwd_file"
-          unzip -tq "$iwd_file"
-          if [ $? -ne 0 ]; then
+          if ! unzip -tq "$iwd_file"; then
             unzip_failure=true
             echo "Error: Failed to unzip $iwd_file!"
           fi
