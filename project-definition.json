@@ -9,7 +9,9 @@
             "localDeploymentPath": "src",
             "remoteDeploymentPath": "~/cod2/library",
             "rsyncExclude": [
-                ".DS_Store"
+                ".DS_Store",
+                "/000empty.iwd",
+                "/iwds_sum"
             ],
             "cod2": {
                 "iwdsPath": "src/iwds"
