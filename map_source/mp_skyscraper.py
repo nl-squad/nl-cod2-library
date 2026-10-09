@@ -6,12 +6,12 @@ LEVEL_H = 256
 SLAB = 32
 LEVELS = 5
 ROOF = LEVELS * LEVEL_H
-HALF = 384
+HALF = 640
 WALL = 32
 IN = HALF - WALL
-STAIR_W = 128
-STAIR_STEPS = 16
-STAIR_RUN = 32
+STAIR_W = 160
+STAIR_STEPS = 32
+STAIR_RUN = 16
 HOLE_START = 16
 WORLD = 1792
 SKY_TOP = 2048
@@ -23,8 +23,8 @@ ROAD_WALK = 304
 ROAD_BLOCK = 704
 ROAD_END = 3072
 BARRICADE = 1560
-WINDOWS = (-256, -96, 96, 256)
-PILASTERS = (-176, 0, 176)
+WINDOWS = (-480, -320, -160, 160, 320, 480)
+PILASTERS = (-400, -240, 0, 240, 400)
 
 FACADE = "nl_sky_facade"
 COLUMN = "duhoc_concrete_side"
@@ -76,13 +76,13 @@ SIZES = {
 
 # Wall breaches: (level, side) -> (along from, along to, bottom, top above the level's floor, rubble inside)
 BREACHES = {
-    (1, "E"): (-330, -150, 30, 200, False),
-    (2, "S"): (-150, 150, 20, 210, True),
-    (3, "S"): (-340, -170, 40, 200, True),
-    (4, "N"): (200, 352, 40, 224, True),
-    (4, "E"): (200, 352, 60, 224, True),
+    (1, "E"): (-560, -380, 30, 200, False),
+    (2, "S"): (-160, 160, 20, 210, True),
+    (3, "S"): (150, 400, 40, 200, True),
+    (4, "N"): (420, IN, 40, 224, True),
+    (4, "E"): (400, IN, 60, 224, True),
 }
-BROKEN_PARAPET = {"N": (180, HALF), "E": (180, IN)}
+BROKEN_PARAPET = {"N": (300, HALF), "E": (300, IN)}
 
 rng = random.Random(7)
 world = []
@@ -398,14 +398,26 @@ def ladder_hatch_dir(side):
 CONNECTIONS = {
     0: [("stairs", (-IN, -IN + STAIR_W, -256, 256), "yp", "xp"),
         ("stairs", (IN - STAIR_W, IN, -256, 256), "yn", "xn")],
-    1: [("stairs", (-216, 296, IN - STAIR_W, IN), "xp", "yn"),
-        ("ladder", "E", -176), ("ladder", "S", 0)],
-    2: [("elevator", (160, 288, -64, 64)),
-        ("ladder", "W", -176)],
-    3: [("ramp", (-320, 136, IN - STAIR_W, IN), -80),
-        ("ladder", "S", 176)],
-    4: [("ladder", "W", -176), ("ladder", "E", -176)],
+    1: [("stairs", (-112, 400, IN - STAIR_W, IN), "xn", "yn"),
+        ("ladder", "S", -400), ("ladder", "E", 300)],
+    2: [("elevator", (-448, -320, -64, 64), "xp"),
+        ("ladder", "E", -400)],
+    3: [("ramp", (-300, 156, IN - STAIR_W, IN), -60),
+        ("ladder", "S", -300)],
+    4: [("ladder", "W", 300), ("ladder", "E", -300)],
 }
+
+# Raised corners behind a low wall, near each level's way up and facing its ways in from below.
+# Walls: edge -> where a 64-unit gap opens along it, or None for a solid wall.
+HOLDS = {
+    0: ((-160, 160, -112, 112), {"yn": None, "yp": None, "xn": 0, "xp": 0}),
+    1: ((416, IN, 352, IN), {"xn": 528, "yn": None}),
+    2: ((416, IN, -352, -120), {"xn": None, "yp": None}),
+    3: ((-IN, -360, 240, IN), {"xp": 528, "yn": None}),
+    4: ((-128, 128, -128, 128), {"yn": None, "yp": None, "xn": 0, "xp": 0}),
+}
+HOLD_RISE = 16
+HOLD_WALL = 40
 
 holes = {level: [] for level in range(LEVELS + 1)}
 occupied = {level: [] for level in range(LEVELS + 1)}
@@ -461,7 +473,7 @@ def build_ladder(level, side, a):
     occupied[level].append(rect_of(side, a - 24, a + 24, -40, 0))
 
 
-def build_elevator(level, rect):
+def build_elevator(level, rect, exit_edge):
     x0, x1, y0, y1 = rect
     z = level * LEVEL_H
     platform = box((x0, y0, z - 14), (x1, y1, z + 2), METAL, xn=FRAME, xp=FRAME, yn=FRAME, yp=FRAME)
@@ -469,7 +481,7 @@ def build_elevator(level, rect):
     for px in (x0 - 8, x1):
         for py in (y0 - 8, y1):
             add((px, py, z), (px + 8, py + 8, z + LEVEL_H - SLAB), FRAME)
-    add_hole(level + 1, rect, None, ["xn"])
+    add_hole(level + 1, rect, None, [exit_edge])
     occupied[level].append((x0 - 8, x1 + 8, y0 - 8, y1 + 8))
 
 
@@ -514,7 +526,7 @@ def build_connections():
             elif kind == "ladder":
                 build_ladder(level, item[1], item[2])
             elif kind == "elevator":
-                build_elevator(level, item[1])
+                build_elevator(level, item[1], item[2])
             else:
                 build_ramp(level, item[1], item[2])
 
@@ -771,11 +783,11 @@ def build_street():
     for sy in (-1, 1):
         paint(CITY_SIDEWALK + 120, sy * (ROAD_HALF - 28), ROAD_END - 256, sy * (ROAD_HALF - 34))
 
-    for mx, my in ((300, -1060), (1060, 300), (-700, 1060), (-1060, -500), (640, -640), (2000, 100), (2600, -100)):
+    for mx, my in ((300, -1123), (1124, 300), (-700, 1124), (-1124, -500), (851, -851), (2000, 100), (2600, -100)):
         cylinder(mx, my, 0, 2, 22, METAL)
 
-    for name, x, y, yaw in (("civiliancar_intact_blue", -540, -1185, 90), ("civiliancar_damaged_blue", 560, 1185, 270),
-                            ("civiliancar_intact_blue", -1185, 600, 0), ("civiliancar_intact_blue", 1185, -460, 180)):
+    for name, x, y, yaw in (("civiliancar_intact_blue", -540, -1207, 90), ("civiliancar_damaged_blue", 560, 1207, 270),
+                            ("civiliancar_intact_blue", -1207, 600, 0), ("civiliancar_intact_blue", 1207, -460, 180)):
         model(name, x, y, 0, yaw)
 
 
@@ -831,7 +843,7 @@ def build_rail(lo, hi, z):
 
 def build_beams(level):
     z = (level + 1) * LEVEL_H - SLAB
-    for y in (-176, 176):
+    for y in (-304, 304):
         segments = [((-IN, y - 12), (IN, y + 12))]
         for (x0, x1, y0, y1), _, _ in holes[level + 1]:
             segments = cut(segments, x0, x1, y0, y1)
@@ -842,62 +854,98 @@ def build_beams(level):
 def build_pillars(level):
     z = level * LEVEL_H
     top = z + LEVEL_H - SLAB
-    for x in (-112, 112):
-        occupied[level].append((x - 26, x + 26, -26, 26))
-        add((x - 20, -20, z), (x + 20, 20, top), COLUMN)
-        add((x - 26, -26, z), (x + 26, 26, z + 12), TRIM)
-        add((x - 26, -26, top - 12), (x + 26, 26, top), TRIM)
+    for x in (-304, 304):
+        for y in (-304, 304):
+            occupied[level].append((x - 26, x + 26, y - 26, y + 26))
+            add((x - 20, y - 20, z), (x + 20, y + 20, top), COLUMN)
+            add((x - 26, y - 26, z), (x + 26, y + 26, z + 12), TRIM)
+            add((x - 26, y - 26, top - 12), (x + 26, y + 26, top), TRIM)
+
+
+def build_hold(level, rect, walls):
+    x0, x1, y0, y1 = rect
+    z = level * LEVEL_H + HOLD_RISE
+    add((x0, y0, z - HOLD_RISE), (x1, y1, z), FRAME, zp=METAL)
+    for edge, gap in walls.items():
+        along_x = edge[0] == "y"
+        a0, a1 = (x0, x1) if along_x else (y0, y1)
+        pieces = [(a0, a1)] if gap is None else [(a0, gap - 32), (gap + 32, a1)]
+        for p0, p1 in pieces:
+            if along_x:
+                b0, b1 = (y0, y0 + 16) if edge == "yn" else (y1 - 16, y1)
+                add((p0, b0, z), (p1, b1, z + HOLD_WALL), PLINTH, zp=TRIM)
+            else:
+                b0, b1 = (x0, x0 + 16) if edge == "xn" else (x1 - 16, x1)
+                add((b0, p0, z), (b1, p1, z + HOLD_WALL), PLINTH, zp=TRIM)
+    occupied[level].append(rect)
+
+
+def build_roof_deck():
+    """A steel deck in the middle of the roof that sees both ladder tops and over the parapet."""
+    x0, x1, y0, y1, h = -160, 160, 160, 400, 48
+    stair0, stair1 = -48, 48
+    add((x0, y0, ROOF), (x1, y1, ROOF + h), FRAME, zp=METAL)
+    steps = h // 8
+    for i in range(steps):
+        add((stair0, y0 - (steps - i) * 16, ROOF), (stair1, y0 - (steps - i - 1) * 16, ROOF + (i + 1) * 8), METAL, xn=FRAME, xp=FRAME, yn=FRAME)
+    top = ROOF + h
+    build_rail((x0 - 6, y0), (x0, y1 + 6), top)
+    build_rail((x1, y0), (x1 + 6, y1 + 6), top)
+    build_rail((x0, y1), (x1, y1 + 6), top)
+    build_rail((x0, y0), (stair0, y0 + 6), top)
+    build_rail((stair1, y0), (x1, y0 + 6), top)
+    occupied[LEVELS].append((x0, x1, y0 - steps * 16, y1))
 
 
 def build_lights():
     for level in range(LEVELS):
         z = level * LEVEL_H + LEVEL_H - SLAB - 24
-        for x in (-192, 192):
-            for y in (-192, 192):
+        for x in (-384, 0, 384):
+            for y in (-384, 0, 384):
                 entity("light", origin="%d %d %d" % (x, y, z), radius="420", _color="1 0.92 0.8")
 
 
 def build_props():
     furniture = {
-        0: [("furniture_armchair", -150, -320, 90), ("furniture_armchair", 150, -320, 90),
-            ("furniture_bookshelvestall", -140, 330, 270), ("furniture_bookshelvestall", 140, 330, 270)],
-        1: [("furniture_bookshelvestall", -150, -330, 90), ("furniture_armchair_d", 140, -300, 120),
-            ("furniture_cabinet", -60, -330, 90)],
-        2: [("furniture_cabinet", -130, 330, 270), ("furniture_bookshelves1_d", -250, 330, 270),
-            ("furniture_armchair_d", 160, -150, 200), ("crate01", -60, 300, 15)],
-        3: [("furniture_bookshelves1_d", 40, -330, 90), ("furniture_armchair", 250, 300, 230),
-            ("furniture_bookshelveswide", 330, 200, 180), ("hill400_barrel_black", 280, -320, 0)],
-        4: [("military_sandbag_longsection", -220, 300, 0), ("crate01", 100, -330, 30),
-            ("crate02", 40, -320, 0), ("hill400_barrel_green", -160, -330, 0)],
-        5: [("crate01", 120, 150, 10), ("crate02", 160, 200, 40), ("hill400_barrel_black", -120, 120, 0),
-            ("military_sandbag_shortsection", 100, 230, 0)],
+        0: [("furniture_armchair", -300, -560, 90), ("furniture_armchair", 300, -560, 90),
+            ("furniture_bookshelvestall", -300, 570, 270), ("furniture_bookshelvestall", 300, 570, 270)],
+        1: [("furniture_bookshelvestall", -260, -570, 90), ("furniture_armchair_d", 200, -480, 120),
+            ("furniture_cabinet", -120, -570, 90)],
+        2: [("furniture_cabinet", 300, 570, 270), ("furniture_bookshelves1_d", 450, 570, 270),
+            ("furniture_armchair_d", 160, -200, 200), ("crate01", -160, 260, 15)],
+        3: [("furniture_bookshelves1_d", -100, -570, 90), ("furniture_armchair", 400, 420, 230),
+            ("furniture_bookshelveswide", 570, 220, 180), ("hill400_barrel_black", 500, -560, 0)],
+        4: [("military_sandbag_longsection", -400, 520, 0), ("crate01", 200, -570, 30),
+            ("crate02", 120, -560, 0), ("hill400_barrel_green", -150, -570, 0)],
+        5: [("crate01", 150, -150, 10), ("crate02", 200, -200, 40), ("hill400_barrel_black", -350, 100, 0),
+            ("military_sandbag_shortsection", 320, 100, 0)],
     }
     for level, items in furniture.items():
         for name, x, y, yaw in items:
             model(name, x, y, level * LEVEL_H, yaw)
             occupied[level].append((x - 48, x + 48, y - 48, y + 48))
 
-    rubble_pile(220, 330, 220, 330, ROOF, 8, 40)
-    add((230, -230, ROOF), (320, -150, ROOF + 48), RAIL, zp=METAL)
-    add((200, -120, ROOF), (264, -60, ROOF + 32), RAIL, zp=METAL)
-    add((-300, 300, ROOF), (-292, 308, ROOF + 320), FRAME)
-    occupied[LEVELS] += [(200, 352, 200, 352), (200, 330, -240, -50), (-310, -280, 290, 320)]
+    rubble_pile(400, 560, 400, 560, ROOF, 8, 40)
+    add((-420, -420, ROOF), (-330, -340, ROOF + 48), RAIL, zp=METAL)
+    add((-260, -300, ROOF), (-196, -240, ROOF + 32), RAIL, zp=METAL)
+    add((-500, 500, ROOF), (-492, 508, ROOF + 320), FRAME)
+    occupied[LEVELS] += [(380, 580, 380, 580), (-430, -186, -430, -230), (-510, -482, 490, 518)]
 
     street = [
-        ("civiliancar_damaged_blue", -640, -700, 30), ("civiliancar_intact_blue", 700, 640, 200),
-        ("vehicle_africa_jeep_crash_static", -660, 620, 120), ("civiliancar_damaged_blue", 1180, -760, 95),
-        ("military_hedgehog", 560, -640, 0), ("military_hedgehog", -560, 780, 40), ("military_hedgehog", 1220, 120, 15),
-        ("military_sandbag_longsection", -200, -480, 0), ("military_sandbag_longsection", 200, -480, 0),
-        ("military_sandbag_longsection", -200, 480, 180), ("military_sandbag_longsection", 200, 480, 180),
-        ("crate01", -1220, -300, 20), ("crate02", -1200, -360, 0), ("hill400_barrel_black", -1230, -240, 0),
-        ("hill400_barrel_green", 260, 1220, 0), ("crate01", 320, 1240, 40),
+        ("civiliancar_damaged_blue", -640, -891, 30), ("civiliancar_intact_blue", 891, 640, 200),
+        ("vehicle_africa_jeep_crash_static", -865, 620, 120), ("civiliancar_damaged_blue", 1204, -760, 95),
+        ("military_hedgehog", 560, -851, 0), ("military_hedgehog", -560, 943, 40), ("military_hedgehog", 1230, 120, 15),
+        ("military_sandbag_longsection", -200, -720, 0), ("military_sandbag_longsection", 200, -720, 0),
+        ("military_sandbag_longsection", -200, 720, 180), ("military_sandbag_longsection", 200, 720, 180),
+        ("crate01", -1230, -300, 20), ("crate02", -1216, -360, 0), ("hill400_barrel_black", -1236, -240, 0),
+        ("hill400_barrel_green", 260, 1230, 0), ("crate01", 320, 1243, 40),
         ("prop_rubble_rock_02", -1250, 640, 0), ("prop_rubble_rock_03", 1260, 980, 70),
         ("prop_redbrickpile_debris_02", -900, 1260, 0), ("prop_wood_debris_big_burnt_01", 980, -1250, 30),
     ]
     for name, x, y, yaw in street:
         r = max(abs(x), abs(y))
         model(name, x, y, 8 if r > CITY_SIDEWALK or r < SIDEWALK else 0, yaw)
-    for x, y in ((-470, -470), (470, -470), (-470, 470), (470, 470)):
+    for x, y in ((-720, -720), (720, -720), (-720, 720), (720, 720)):
         model("prop_streetlamp_off", x, y, 8)
     for p in range(-1024, 1025, 512):
         for x, y in ((p, -1300), (p, 1300), (-1300, p), (1300, p)):
@@ -910,7 +958,7 @@ def build_props():
 def build_billboard():
     """The map's hallmark: a neon sign on steel legs at the south edge of the roof, facing the square."""
     z0, z1 = ROOF + 256, ROOF + 640
-    y0, y1 = -308, -300
+    y0, y1 = -IN + 44, -IN + 52
     back = y1 + 40
     add((-384, y0, z0), (384, y1, z1), METAL, yn=NEON)
     add((-392, y0 - 8, z0 - 8), (392, y1, z0), FRAME)
@@ -939,8 +987,8 @@ def floor_spawns(level):
     """Spawn spots on a level that keep clear of stairs, holes, ladders, rubble and furniture."""
     z = level * LEVEL_H + 16
     free = []
-    for x in (-256, -160, -64, 32, 128, 224):
-        for y in (-272, -176, -80, 80, 176, 272):
+    for x in range(-480, 481, 160):
+        for y in range(-480, 481, 160):
             if not any(x0 - 20 < x < x1 + 20 and y0 - 20 < y < y1 + 20 for x0, x1, y0, y1 in occupied[level]):
                 free.append((x, y, z))
     return free
@@ -949,7 +997,7 @@ def floor_spawns(level):
 def street_spawns():
     points = []
     for i in range(20):
-        d = 900 if i % 2 else 1100
+        d = 1000 if i % 2 else 1150
         side = i % 4
         t = -720 + (i // 4) * 360
         x, y = [(t, -d), (d, t), (-t, d), (-d, -t)][side]
@@ -984,6 +1032,8 @@ def write(path):
             build_wall(side, level)
         build_pillars(level)
     build_connections()
+    for level, (rect, walls) in HOLDS.items():
+        build_hold(level, rect, walls)
     for level in range(LEVELS):
         build_beams(level)
     build_facade_trim()
@@ -992,6 +1042,7 @@ def write(path):
     for level in range(1, LEVELS + 1):
         build_slab(level)
     build_lights()
+    build_roof_deck()
     build_props()
     build_billboard()
     build_spawns()
