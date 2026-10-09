@@ -1,0 +1,5 @@
+{
+	map "mp_skyscraper"
+	longname "Skyscraper"
+	gametype "tdm ctf stage zom"
+}
