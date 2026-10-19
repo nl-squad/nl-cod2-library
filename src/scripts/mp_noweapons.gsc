@@ -25,7 +25,7 @@ wall_logic(wall, trig)
     if (!isDefined(wall) || !isDefined(trig))
         return;
 
-    trig setHintString("Reduce Hunters' Sight 30 s ");
+    trig setHintString("Close the Window ^330 ^7s ");
 
     wall moveY(-200, 2);
     wall waittill("movedone");
@@ -45,7 +45,7 @@ wall_logic(wall, trig)
         if (!isDefined(wall))
             return;
 
-        wall moveZ(-200, 2);
+        wall moveY(-200, 2);
         wall waittill("movedone");
 
         wait 3;
