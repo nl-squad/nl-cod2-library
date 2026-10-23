@@ -7,7 +7,6 @@ main()
 	
 	thread secret();
 	thread wall();
-	thread wallLuger();
 }
 
 ownerCredits()
@@ -32,28 +31,19 @@ wall()
 	trig = getEnt("wall_trig", "targetname");
 	trig setHintString("Reduce Hunters' Sight ^315 ^7s ");
 
-	wall movez(104, 2);
+	wall movez(168, 3);
 	wall waittill ("movedone");
 
 	while(1)
 	{
 		trig waittill ("trigger");
 
-		wall moveZ(-104, 3);
+		wall moveZ(-168, 3);
 		wall waittill ("movedone");
 		wait 15;
 
-		wall moveZ(104, 3);
+		wall moveZ(168, 3);
 		wall waittill ("movedone");
 		wait 3;
 	}
-}
-
-wallLuger()
-{
-	wallLuger = getEnt("wallLuger", "targetname");
-
-	wait 180;
-	wallLuger moveZ(-60, 2);
-	wallLuger waittill("movedone");
 }
