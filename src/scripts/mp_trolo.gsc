@@ -26,7 +26,7 @@ NoZombies()
 	{
 		trig waittill("trigger", player);
 
-		if(player.pers["team"] == "axis")
+		if(player.team == "axis")
 		{
 			player suicide();
 		}
@@ -46,7 +46,7 @@ zooka()
 		if(!isDefined(player.stats["money"]))
 			player.stats["money"] = 0;
 
-		if(player.stats["money"] >= cost && player.pers["team"] == "allies")
+		if(player.stats["money"] >= cost && player.team == "allies")
 		{
 			weapon = "zooka_mp";
 			player setWeaponSlotWeapon("primaryb", weapon);
@@ -54,7 +54,7 @@ zooka()
 			player switchToWeapon(weapon);
 			player setWeaponSlotAmmo("primaryb", 12);
 		}
-		else if(player.stats["money"] < cost && player.pers["team"] == "allies")
+		else if(player.stats["money"] < cost && player.team == "allies")
 		{
 			player iPrintlnBold("^4! ^7Not ^9Enough ^7Money ^4!");
 		}
@@ -119,7 +119,7 @@ secretVIP()
 
 		if(player.isVIP)
 		{
-			if(player.pers["team"] == "allies")
+			if(player.team == "allies")
 			{
 				if(isDefined(player.campingTime))
 				{
