@@ -3,8 +3,8 @@
 main()
 {
 	ambientPlay("ambient_bunker_nl");
+	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
-	thread nl();
 }
 
 ownerCredits()
