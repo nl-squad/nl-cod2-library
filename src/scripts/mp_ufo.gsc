@@ -10,6 +10,7 @@ main()
 	thread door();
 	thread objectRotate();
     thread objectRotate2();
+	thread objectRotate3();
 }
 
 ownerCredits()
@@ -63,6 +64,24 @@ objectRotate2()
     if (!isDefined(obj))
     {
         iprintlnBold("Nie znaleziono obiektu 'ufo2'!");
+        return;
+    }
+
+
+    while(2)
+    {
+        obj rotateYaw(90, 4);
+        obj waittill("rotatedone");
+    }
+}
+
+objectRotate3()
+{
+    obj = getEnt("ufo3", "targetname");
+
+    if (!isDefined(obj))
+    {
+        iprintlnBold("Nie znaleziono obiektu 'ufo3'!");
         return;
     }
 
