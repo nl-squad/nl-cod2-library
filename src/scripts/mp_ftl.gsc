@@ -4,7 +4,7 @@ main()
 {
 	ambientPlay("ambient_space_nl");
 	[[ level.registerTeleportsForAll ]]("tp");
-	[[ level.registerTeleportsForAll ]]("tpbot");
+	[[ level.registerTeleportsBotsOnly ]]("tpbot");
 	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
 	thread sphere1();
 	thread sphere2();	
