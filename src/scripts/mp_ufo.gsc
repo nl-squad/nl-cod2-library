@@ -2,41 +2,23 @@
 
 main()
 {
-	ambientPlay("ambient_africa_nl");
-	[[ level.registerTeleportsForAll ]]("tp");
-	[[ level.registerTeleportsForBotsOnly ]]("tpbot");
-	level RegisterDelayCallback("ownerCredits", ::ownerCredits, 12 * 60);
-	
-	thread door();
-	thread objectRotate();
-    thread objectRotate2();
-	thread objectRotate3();
+    ambientPlay("ambient_france_nl");
+    [[ level.registerTeleportsForAll ]]("tp");
+    [[ level.registerTeleportsForBotsOnly ]]("tpbot");
+    level thread objectRotate();
+    level thread objectRotate2();
+    level thread objectRotate3();
+    level thread door();
+    level thread door2();
+    level thread kapsula1();
+    level thread kapsula2();
+    level thread showCredits();
 }
 
 ownerCredits()
 {
 	iPrintlnBold("Map was made by Mynek");
-	iPrintlnBold("in March 2026");
-}
-
-door()
-{
-    trig = getent("doortrig","targetname");
-    plat = getent("door","targetname");
-
-    while(1)
-    {
-        trig waittill("trigger");
-        plat moveZ(80,7,1.2,1.2);
-        plat waittill("movedone");
-
-        wait(600);
-
-        plat moveZ(-80,7,1.2,1.2);
-        plat waittill("movedone");
-
-        wait(5);
-    }
+	iPrintlnBold("in November 2026");
 }
 
 objectRotate()
@@ -53,6 +35,24 @@ objectRotate()
     while(1)
     {
         obj rotateYaw(90, 2);
+        obj waittill("rotatedone");
+    }
+}
+
+objectRotate3()
+{
+    obj = getEnt("ufo3", "targetname");
+
+    if (!isDefined(obj))
+    {
+        iprintlnBold("Nie znaleziono obiektu 'ufo3'!");
+        return;
+    }
+
+
+    while(2)
+    {
+        obj rotateYaw(90, 4);
         obj waittill("rotatedone");
     }
 }
@@ -75,20 +75,82 @@ objectRotate2()
     }
 }
 
-objectRotate3()
+door()
 {
-    obj = getEnt("ufo3", "targetname");
+    trig = getent("doortrig","targetname");
+    plat = getent("door","targetname");
 
-    if (!isDefined(obj))
+    while(1)
     {
-        iprintlnBold("Nie znaleziono obiektu 'ufo3'!");
-        return;
+        trig waittill("trigger");
+        plat moveZ(80,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(600);
+
+        plat moveZ(-80,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(5);
     }
+}
 
+door2()
+{
+    trig = getent("door2trig","targetname");
+    plat = getent("door2","targetname");
 
-    while(2)
+    while(1)
     {
-        obj rotateYaw(90, 4);
-        obj waittill("rotatedone");
+        trig waittill("trigger");
+        plat moveZ(90,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(600);
+
+        plat moveZ(-90,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(5);
+    }
+}
+
+kapsula1()
+{
+    trig = getent("teleportacjaopen","targetname");
+    plat = getent("kapsula1","targetname");
+
+    while(1)
+    {
+        trig waittill("trigger");
+        plat moveZ(-70,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(8);
+
+        plat moveZ(70,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(10);
+    }
+}
+
+kapsula2()
+{
+    trig = getent("teleportacjastart","targetname");
+    plat = getent("kapsula2","targetname");
+
+    while(1)
+    {
+        trig waittill("trigger");
+        plat moveZ(46,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(3);
+
+        plat moveZ(-46,7,1.2,1.2);
+        plat waittill("movedone");
+
+        wait(10);
     }
 }
