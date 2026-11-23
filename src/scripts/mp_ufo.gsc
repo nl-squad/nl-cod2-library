@@ -15,7 +15,7 @@ main()
     level thread showCredits();
 }
 
-ownerCredits()
+showCredits()
 {
 	iPrintlnBold("Map was made by Mynek");
 	iPrintlnBold("in November 2026");
